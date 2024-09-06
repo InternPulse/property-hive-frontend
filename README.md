@@ -1,11 +1,4 @@
-<<<<<<< main
-# property-hive-frontend
-##TODO:
-- [x]Install react with vite 
-- [x]Install react-router-dom and configure it
-- [x]Install TailwindCSS  and configured it
-- [x]Install RTK and configure it
-- [x]Install React Hook form
+
 =======
 # Property Hive Frontend
 
@@ -156,4 +149,4 @@ export default App;
 ```
 
 You also get to decide whether to show the footer or sidebar using the available props.
->>>>>>> main
+
