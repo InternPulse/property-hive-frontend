@@ -1,20 +1,30 @@
-import Navbar from "./generalComponents/Navbar"
-import Sidebar from "./generalComponents/Sidebar"
+import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
+import Navbar from "./generalComponents/Navbar";
+import Sidebar from "./generalComponents/Sidebar";
 
-
-const MainLayout = ({children}) => {
+const pageTitles = {
+  "/": "Dashboard",
+  "/manage-properties": "Manage Properties",
+  "/manage-properties/add": "Add Property",
+};
+const MainLayout = ({ children }) => {
+  const pathname = useLocation().pathname;
   return (
     <div className="flex">
-        <div>
-            <Sidebar />
-        </div>
-        <div className="w-screen ">
-            <Navbar />
-            {children}
-        </div>
-        
+      <div>
+        <Sidebar />
+      </div>
+      <div className="w-screen">
+        <Navbar pagetitle={pageTitles[pathname]} />
+        {children}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default MainLayout
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default MainLayout;
