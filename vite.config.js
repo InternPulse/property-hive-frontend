@@ -9,8 +9,6 @@ export default defineConfig({
     alias: {
       // eslint-disable-next-line no-undef
       "@": path.resolve(__dirname, "./"),
-      // eslint-disable-next-line no-undef
-      "@src": path.resolve(__dirname, "./src"),
     },
   },
 });

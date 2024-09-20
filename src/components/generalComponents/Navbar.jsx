@@ -1,6 +1,6 @@
-import user from "@src/assets/icons/Frame 1000010090.png";
-import notificationIcon from "@src/assets/icons/Group 1000002800.png";
-import downArrow from "@src/assets/icons/Profile arrow.png";
+import user from "@/src/assets/icons/Frame 1000010090.png";
+import notificationIcon from "@/src/assets/icons/Group 1000002800.png";
+import downArrow from "@/src/assets/icons/Profile arrow.png";
 import { PropTypes } from "prop-types";
 
 const Navbar = ({ pagetitle = "Dashboard" }) => {

@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
-// eslint-disable-next-line no-unused-vars
-import React from "react";
 
-const ListingCard = ({ title, location, details, price }) => {
+const ListingCard = ({ title, location, details, price, image }) => {
   const modDetails = details.join(" | ");
   return (
     <div className="space-y-2 rounded-lg bg-neutrals-25 p-4">
       <div className="rounded-lg">
-        <img src="" alt="" className="" />
+        <img src={image} alt="" className="" />
       </div>
       <div className="">
         <div className="space-y-0.5">
@@ -25,5 +23,6 @@ ListingCard.propTypes = {
   location: PropTypes.string.isRequired,
   details: PropTypes.array.isRequired,
   price: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 export default ListingCard;
