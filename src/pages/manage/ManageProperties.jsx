@@ -1,27 +1,10 @@
-import chevDown from "@/src/assets/icons/chevronDown.svg";
 import testImg from "@/src/assets/images/testPropImg.png";
 import ListingCard from "@/src/components/Blocks/ListingCard";
-import { Button } from "@/src/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/src/components/ui/dropdown-menu";
+import { PropertiesFilterDropDown } from "@/src/components/Blocks/PropertiesFilterDropDown";
 import { useReducer, useState } from "react";
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
-const data = [
-  {
-    image: testImg,
-    title: "Luxury Detached Duplex Active House",
-    propType: "house",
-    location: "Maitama, Abuja",
-    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
-    price: "N120,000,000",
-    isActive: true,
-  },
+export const dummyPropertiesData = [
   {
     image: testImg,
     title: "Luxury Detached Duplex Active House",
@@ -51,12 +34,12 @@ const data = [
   },
   {
     image: testImg,
-    title: "Luxury Detached Duplex Disabled Land",
+    title: "Luxury Detached Duplex Active Land",
     propType: "land",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: false,
+    isActive: true,
   },
   {
     image: testImg,
@@ -71,16 +54,6 @@ const data = [
     image: testImg,
     title: "Luxury Detached Duplex Active Commercial",
     propType: "commercial",
-    location: "Maitama, Abuja",
-    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
-    price: "N120,000,000",
-    isActive: true,
-  },
-
-  {
-    image: testImg,
-    title: "Luxury Detached Duplex Active Land",
-    propType: "land",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
@@ -102,46 +75,11 @@ const PROPERTY_TYPES_CONDITIONS = {
   allProps: "all",
 };
 
-const CustomDropDown = ({ titles, data, state, dispatch }) => {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        asChild
-        className="w-[calc(200rem/16)] border-primary-500 bg-transparent p-2"
-      >
-        <Button
-          variant="outline"
-          className="flex items-center gap-1 capitalize text-neutrals-700"
-        >
-          {state === "allProps" ? "All" : state}
-          <img src={chevDown} alt="" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[calc(200rem/16)]">
-        <DropdownMenuRadioGroup
-          className="font-medium text-neutrals-950 lg:text-lg"
-          value={state}
-          onValueChange={(value) =>
-            dispatch({
-              type: value,
-              data,
-            })
-          }
-        >
-          {titles.map((title) => (
-            <DropdownMenuRadioItem key={title} value={title}>
-              {" "}
-              <div className="h-[18px] w-[18px] rounded-full border border-primary-500" />
-              <span className="capitalize">{title}</span>
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
-
 const ManageProperties = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchQuery = searchParams.get("query") || "";
+
   const reducer = (state, action) => {
     const statusKeyFound = Object.keys(STATUS_CONDITIONS).includes(action.type);
     const propTypeKeysFound = Object.keys(PROPERTY_TYPES_CONDITIONS).includes(
@@ -218,17 +156,11 @@ const ManageProperties = () => {
   const [state, dispatch] = useReducer(reducer, {
     status: "all",
     propertyType: "all",
-    data: data,
+    data: dummyPropertiesData,
   });
 
   // Instead of mutating the original array, this state will store the original data and help react know when changes has been made to it so that there is consistency in renders.
-  const [originalData] = useState(data);
-
-  console.log(
-    Object.keys(PROPERTY_TYPES_CONDITIONS).filter(
-      (item) => item !== "allProps",
-    ),
-  );
+  const [originalData] = useState(dummyPropertiesData);
 
   return (
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
@@ -236,7 +168,7 @@ const ManageProperties = () => {
         <div className="flex items-center gap-4 capitalize">
           <div className="flex flex-col gap-1 space-y-1">
             <span className="font-medium text-neutrals-950">status</span>
-            <CustomDropDown
+            <PropertiesFilterDropDown
               titles={Object.keys(STATUS_CONDITIONS)}
               state={state.status}
               dispatch={dispatch}
@@ -245,7 +177,7 @@ const ManageProperties = () => {
           </div>
           <div className="space-y-1">
             <span className="font-medium text-neutrals-950">property type</span>
-            <CustomDropDown
+            <PropertiesFilterDropDown
               titles={Object.keys(PROPERTY_TYPES_CONDITIONS).filter(
                 (item) => item !== "allProps",
               )}
@@ -255,13 +187,13 @@ const ManageProperties = () => {
             />
           </div>
         </div>
-        <Link
+        {/* <Link
           to="/manage-properties/add"
           className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 font-medium capitalize text-primary-25 lg:text-base"
         >
           <img src="" alt="" className="" />
           <span className="">add property</span>
-        </Link>
+        </Link> */}
       </section>
       <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
         {state.data.map((item, index) => (
