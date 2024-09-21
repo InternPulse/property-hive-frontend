@@ -111,15 +111,26 @@ const STATUS_CONDITIONS = {
   all: true,
 };
 
+const PROPERTY_TYPES_CONDITIONS = {
+  house: "house",
+  land: "land",
+  commercial: "commercial",
+  all: "all",
+  allProps: "all",
+};
+
 const ManageProperties = () => {
   const reducer = (state, action) => {
     console.log(action, state);
 
     const statusKeyFound = Object.keys(STATUS_CONDITIONS).includes(action.type);
-    console.log("check status", statusKeyFound);
-    console.log("checkProp", ["allProps", "all"].includes(state.propertyType));
+    const propTypeKeysFound = Object.keys(PROPERTY_TYPES_CONDITIONS).includes(
+      action.type,
+    );
+    console.log(propTypeKeysFound);
 
     if (statusKeyFound) {
+      console.log("got here 1");
       return {
         ...state,
         status: action.type,
@@ -152,56 +163,77 @@ const ManageProperties = () => {
         }),
       };
     }
-    switch (action.type) {
-      // case STATUS[action.type]: {
-      //   return {
-      //     ...state,
-      //     status: action.type,
-      //     data: action.data.filter(STATUS_CONDITIONS[action.type]),
-      //   };
-      // }
 
-      case action.type:
-        return {
-          ...state,
-          propertyType: action.type,
-          data: action.data.filter((item) => {
-            // if the the property type is all and the status is all, we will return all the properties
-            if (action.type === "allProps" && state.status === "all")
-              return true;
-            // if we change properties to all when the status is not all, return all the properties matching the status
-            else if (
-              !["allProps", "all"].includes(action.type) &&
-              state.status === "all"
-            ) {
-              console.log("2nd");
-              return item.isActive === STATUS_CONDITIONS[state.status];
-            }
-            // if we select the status to be all and a property type is selected, display both disabled and enabled listing for that property type
-            else if (state.status !== "all") {
-              console.log("3rd");
-              return (
-                item.propType === action.type &&
-                item.isActive === STATUS_CONDITIONS[state.status]
-              );
-            }
-            // if we select a property type and the status is changed between active and disabled, display all the properties type for that status
-            else {
-              console.log("4th");
-              return item.propType === action.type;
-            }
-          }),
-        };
-      default:
+    if (propTypeKeysFound) {
+      console.log("got here");
+      return {
+        ...state,
+        propertyType: action.type,
+        data: action.data.filter((item) => {
+          // if the the property type is switched to all and the status is all, we will return all the properties
+          if (
+            ["allProps", "all"].includes(action.type) &&
+            state.status === "all"
+          )
+            return true;
+          // if we change properties and status is not all, return all the properties matching the status
+          else if (
+            !["allProps", "all"].includes(action.type) &&
+            state.status !== "all"
+          ) {
+            return (
+              item.propType === action.type &&
+              item.isActive === STATUS_CONDITIONS[state.status]
+            );
+          }
+          // if we select the status to be all and a property type is selected, display both disabled and enabled listings with that property type
+          else if (
+            !["allProps", "all"].includes(action.type) &&
+            state.status === "all"
+          ) {
+            return item.propType === action.type;
+          }
+        }),
+      };
     }
+    // switch (action.type) {
+    //   case action.type:
+    //     return {
+    //       ...state,
+    //       propertyType: action.type,
+    //       data: action.data.filter((item) => {
+    //         // if the the property type is all and the status is all, we will return all the properties
+    //         if (
+    //           ["allProps", "all"].includes(action.type) &&
+    //           state.status === "all"
+    //         )
+    //           return true;
+    //         // if we change properties to all when the status is not all, return all the properties matching the status
+    //         else if (
+    //           ["allProps", "all"].includes(action.type) &&
+    //           state.status !== "all"
+    //         ) {
+    //           return item.isActive === STATUS_CONDITIONS[state.status];
+    //         }
+    //         // if we select the status to be all and a property type is selected, display both disabled and enabled listings with that property type
+    //         else if (state.status !== "all") {
+    //           return (
+    //             item.propType === action.type &&
+    //             item.isActive === STATUS_CONDITIONS[state.status]
+    //           );
+    //         }
+    //       }),
+    //     };
+    //   default:
+    // }
   };
+
   const [state, dispatch] = useReducer(reducer, {
     status: "all",
     propertyType: "all",
     data: data,
   });
   const [originalData] = useState(data);
-  console.log(state);
   return (
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
       <section className="mb-[calc(30rem/16)] flex items-end justify-between">
