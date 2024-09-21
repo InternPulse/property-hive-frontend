@@ -12,47 +12,195 @@ import {
 import { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 
-const data = {
-  image: testImg,
-  title: "Luxury Detached Duplex",
-  location: "Maitama, Abuja",
-  details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
-  price: "N120,000,000",
-  isActive: true,
+const data = [
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Active House",
+    propType: "house",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: true,
+  },
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Active House",
+    propType: "house",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: true,
+  },
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Disabled House",
+    propType: "house",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: false,
+  },
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Disabled Land",
+    propType: "land",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: false,
+  },
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Disabled Land",
+    propType: "land",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: false,
+  },
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Disabled Commercial",
+    propType: "commercial",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: false,
+  },
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Active Commercial",
+    propType: "commercial",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: true,
+  },
+
+  {
+    image: testImg,
+    title: "Luxury Detached Duplex Active Land",
+    propType: "land",
+    location: "Maitama, Abuja",
+    details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
+    price: "N120,000,000",
+    isActive: true,
+  },
+];
+
+// const dataArr1 = Array(3).fill(data);
+// const dataArr2 = Array(2).fill({ ...data, isActive: false });
+// const dataArr3 = Array(2).fill({ ...data, isActive: false, propType: "land" });
+// const dataArr4 = Array(2).fill({
+//   ...data,
+//   isActive: false,
+//   propType: "commercial",
+// });
+
+// const dataArr = [...dataArr1, ...dataArr2, ...dataArr3, ...dataArr4];
+
+// const STATUS = {
+//   active: "active",
+//   disabled: "disabled",
+//   all: "all",
+// };
+
+const STATUS_CONDITIONS = {
+  active: true,
+  disabled: false,
+  all: true,
 };
-
-const dataArr1 = Array(5).fill(data);
-const dataArr2 = Array(5).fill({ ...data, isActive: false });
-
-const dataArr = [...dataArr1, ...dataArr2];
 
 const ManageProperties = () => {
   const reducer = (state, action) => {
+    console.log(action, state);
+
+    const statusKeyFound = Object.keys(STATUS_CONDITIONS).includes(action.type);
+    console.log("check status", statusKeyFound);
+    console.log("checkProp", ["allProps", "all"].includes(state.propertyType));
+
+    if (statusKeyFound) {
+      return {
+        ...state,
+        status: action.type,
+        data: action.data.filter((item) => {
+          // if the the property type is all and the status is changed from other options to all, we will return all the properties
+          if (
+            ["allProps", "all"].includes(state.propertyType) &&
+            action.type === "all"
+          )
+            return true;
+          // if property type is still all but we change status, return listings that match the chosen status
+          else if (
+            ["allProps", "all"].includes(state.propertyType) &&
+            action.type !== "all"
+          )
+            return item.isActive === STATUS_CONDITIONS[action.type];
+
+          // if we change properties to all when the status is not all, return all the properties matching the status
+          if (
+            ["allProps", "all"].includes(action.type) &&
+            state.status !== "all"
+          )
+            return item.propType === state.propertyType;
+          // if we change properties to all when the status is not all, return all the properties matching the status
+          else
+            return (
+              item.isActive === STATUS_CONDITIONS[action.type] &&
+              item.propType === state.propertyType
+            );
+        }),
+      };
+    }
     switch (action.type) {
-      case "active":
+      // case STATUS[action.type]: {
+      //   return {
+      //     ...state,
+      //     status: action.type,
+      //     data: action.data.filter(STATUS_CONDITIONS[action.type]),
+      //   };
+      // }
+
+      case action.type:
         return {
-          type: "active",
-          data: action.data.filter((item) => item.isActive === true),
-        };
-      case "disabled":
-        return {
-          type: "disabled",
-          data: action.data.filter((item) => item.isActive === false),
-        };
-      case "all":
-        return {
-          type: "all",
-          data: action.data,
+          ...state,
+          propertyType: action.type,
+          data: action.data.filter((item) => {
+            // if the the property type is all and the status is all, we will return all the properties
+            if (action.type === "allProps" && state.status === "all")
+              return true;
+            // if we change properties to all when the status is not all, return all the properties matching the status
+            else if (
+              !["allProps", "all"].includes(action.type) &&
+              state.status === "all"
+            ) {
+              console.log("2nd");
+              return item.isActive === STATUS_CONDITIONS[state.status];
+            }
+            // if we select the status to be all and a property type is selected, display both disabled and enabled listing for that property type
+            else if (state.status !== "all") {
+              console.log("3rd");
+              return (
+                item.propType === action.type &&
+                item.isActive === STATUS_CONDITIONS[state.status]
+              );
+            }
+            // if we select a property type and the status is changed between active and disabled, display all the properties type for that status
+            else {
+              console.log("4th");
+              return item.propType === action.type;
+            }
+          }),
         };
       default:
-        throw Error("Unknown action: " + action.type);
     }
   };
   const [state, dispatch] = useReducer(reducer, {
-    type: "all",
-    data: dataArr,
+    status: "all",
+    propertyType: "all",
+    data: data,
   });
-  const [originalData] = useState(dataArr);
+  const [originalData] = useState(data);
   console.log(state);
   return (
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
@@ -69,13 +217,14 @@ const ManageProperties = () => {
                   variant="outline"
                   className="flex items-center gap-1 capitalize text-neutrals-700"
                 >
-                  {state.type}
+                  {state.status}
                   <img src={chevDown} alt="" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[calc(200rem/16)]">
                 <DropdownMenuRadioGroup
-                  value={state.type}
+                  className="font-medium text-neutrals-950 lg:text-lg"
+                  value={state.status}
                   onValueChange={(value) =>
                     dispatch({
                       type: value,
@@ -95,7 +244,48 @@ const ManageProperties = () => {
             </DropdownMenu>
           </div>
           <div className="space-y-1">
-            <span className="font-medium text-neutrals-950">status</span>
+            <span className="font-medium text-neutrals-950">property type</span>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                asChild
+                className="w-[calc(200rem/16)] border-primary-500 bg-transparent p-2"
+              >
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-1 capitalize text-neutrals-700"
+                >
+                  {state.propertyType === "allProps"
+                    ? "All"
+                    : state.propertyType}
+                  <img src={chevDown} alt="" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[calc(200rem/16)]">
+                <DropdownMenuRadioGroup
+                  className="font-medium text-neutrals-950 lg:text-lg"
+                  value={state.propertyType}
+                  onValueChange={(value) =>
+                    dispatch({
+                      type: value,
+                      data: originalData,
+                    })
+                  }
+                >
+                  <DropdownMenuRadioItem value="allProps">
+                    All
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="house">
+                    House
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="land">
+                    Land
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="commercial">
+                    Commercial
+                  </DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
         <Link
