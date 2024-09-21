@@ -88,49 +88,67 @@ const data = [
   },
 ];
 
-// const dataArr1 = Array(3).fill(data);
-// const dataArr2 = Array(2).fill({ ...data, isActive: false });
-// const dataArr3 = Array(2).fill({ ...data, isActive: false, propType: "land" });
-// const dataArr4 = Array(2).fill({
-//   ...data,
-//   isActive: false,
-//   propType: "commercial",
-// });
-
-// const dataArr = [...dataArr1, ...dataArr2, ...dataArr3, ...dataArr4];
-
-// const STATUS = {
-//   active: "active",
-//   disabled: "disabled",
-//   all: "all",
-// };
-
 const STATUS_CONDITIONS = {
+  all: true,
   active: true,
   disabled: false,
-  all: true,
 };
 
 const PROPERTY_TYPES_CONDITIONS = {
+  all: "all",
   house: "house",
   land: "land",
   commercial: "commercial",
-  all: "all",
   allProps: "all",
+};
+
+const CustomDropDown = ({ titles, data, state, dispatch }) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        asChild
+        className="w-[calc(200rem/16)] border-primary-500 bg-transparent p-2"
+      >
+        <Button
+          variant="outline"
+          className="flex items-center gap-1 capitalize text-neutrals-700"
+        >
+          {state === "allProps" ? "All" : state}
+          <img src={chevDown} alt="" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-[calc(200rem/16)]">
+        <DropdownMenuRadioGroup
+          className="font-medium text-neutrals-950 lg:text-lg"
+          value={state}
+          onValueChange={(value) =>
+            dispatch({
+              type: value,
+              data,
+            })
+          }
+        >
+          {titles.map((title) => (
+            <DropdownMenuRadioItem key={title} value={title}>
+              {" "}
+              <div className="h-[18px] w-[18px] rounded-full border border-primary-500" />
+              <span className="capitalize">{title}</span>
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 };
 
 const ManageProperties = () => {
   const reducer = (state, action) => {
-    console.log(action, state);
-
     const statusKeyFound = Object.keys(STATUS_CONDITIONS).includes(action.type);
     const propTypeKeysFound = Object.keys(PROPERTY_TYPES_CONDITIONS).includes(
       action.type,
     );
-    console.log(propTypeKeysFound);
 
     if (statusKeyFound) {
-      console.log("got here 1");
       return {
         ...state,
         status: action.type,
@@ -165,7 +183,6 @@ const ManageProperties = () => {
     }
 
     if (propTypeKeysFound) {
-      console.log("got here");
       return {
         ...state,
         propertyType: action.type,
@@ -196,36 +213,6 @@ const ManageProperties = () => {
         }),
       };
     }
-    // switch (action.type) {
-    //   case action.type:
-    //     return {
-    //       ...state,
-    //       propertyType: action.type,
-    //       data: action.data.filter((item) => {
-    //         // if the the property type is all and the status is all, we will return all the properties
-    //         if (
-    //           ["allProps", "all"].includes(action.type) &&
-    //           state.status === "all"
-    //         )
-    //           return true;
-    //         // if we change properties to all when the status is not all, return all the properties matching the status
-    //         else if (
-    //           ["allProps", "all"].includes(action.type) &&
-    //           state.status !== "all"
-    //         ) {
-    //           return item.isActive === STATUS_CONDITIONS[state.status];
-    //         }
-    //         // if we select the status to be all and a property type is selected, display both disabled and enabled listings with that property type
-    //         else if (state.status !== "all") {
-    //           return (
-    //             item.propType === action.type &&
-    //             item.isActive === STATUS_CONDITIONS[state.status]
-    //           );
-    //         }
-    //       }),
-    //     };
-    //   default:
-    // }
   };
 
   const [state, dispatch] = useReducer(reducer, {
@@ -233,91 +220,39 @@ const ManageProperties = () => {
     propertyType: "all",
     data: data,
   });
+
+  // Instead of mutating the original array, this state will store the original data and help react know when changes has been made to it so that there is consistency in renders.
   const [originalData] = useState(data);
+
+  console.log(
+    Object.keys(PROPERTY_TYPES_CONDITIONS).filter(
+      (item) => item !== "allProps",
+    ),
+  );
+
   return (
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
       <section className="mb-[calc(30rem/16)] flex items-end justify-between">
         <div className="flex items-center gap-4 capitalize">
           <div className="flex flex-col gap-1 space-y-1">
             <span className="font-medium text-neutrals-950">status</span>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                asChild
-                className="w-[calc(200rem/16)] border-primary-500 bg-transparent p-2"
-              >
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-1 capitalize text-neutrals-700"
-                >
-                  {state.status}
-                  <img src={chevDown} alt="" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[calc(200rem/16)]">
-                <DropdownMenuRadioGroup
-                  className="font-medium text-neutrals-950 lg:text-lg"
-                  value={state.status}
-                  onValueChange={(value) =>
-                    dispatch({
-                      type: value,
-                      data: originalData,
-                    })
-                  }
-                >
-                  <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="active">
-                    Active
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="disabled">
-                    Disabled
-                  </DropdownMenuRadioItem>
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <CustomDropDown
+              titles={Object.keys(STATUS_CONDITIONS)}
+              state={state.status}
+              dispatch={dispatch}
+              data={originalData}
+            />
           </div>
           <div className="space-y-1">
             <span className="font-medium text-neutrals-950">property type</span>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                asChild
-                className="w-[calc(200rem/16)] border-primary-500 bg-transparent p-2"
-              >
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-1 capitalize text-neutrals-700"
-                >
-                  {state.propertyType === "allProps"
-                    ? "All"
-                    : state.propertyType}
-                  <img src={chevDown} alt="" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[calc(200rem/16)]">
-                <DropdownMenuRadioGroup
-                  className="font-medium text-neutrals-950 lg:text-lg"
-                  value={state.propertyType}
-                  onValueChange={(value) =>
-                    dispatch({
-                      type: value,
-                      data: originalData,
-                    })
-                  }
-                >
-                  <DropdownMenuRadioItem value="allProps">
-                    All
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="house">
-                    House
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="land">
-                    Land
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="commercial">
-                    Commercial
-                  </DropdownMenuRadioItem>
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <CustomDropDown
+              titles={Object.keys(PROPERTY_TYPES_CONDITIONS).filter(
+                (item) => item !== "allProps",
+              )}
+              state={state.propertyType}
+              dispatch={dispatch}
+              data={originalData}
+            />
           </div>
         </div>
         <Link
