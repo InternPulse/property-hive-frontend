@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import logo from "../../../../assets/images/Logo.png"
-import { FaBars } from "react-icons/fa"; 
-import './Navbar.css'
+import logo from "../../../../assets/images/Logo.png";
+import { FaBars } from "react-icons/fa";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +16,12 @@ const Navbar = () => {
 
   const handleMenuClick = (index) => {
     setActiveIndex(index);
-    setIsOpen(false); 
+    setIsOpen(false);
   };
 
   return (
-     <nav className="bg-[#224A4D] py-[1.6rem] px-[120px] w-full">
-      <div className="flex justify-between items-center  lg:mx-[4rem] w-full">
+    <nav className="bg-[#224A4D] py-[1.6rem] px-6 lg:px-[120px] w-full">
+      <div className="flex justify-between items-center w-full">
         <div className="flex justify-between ">
           <img src={logo} alt="Logo" className="h-[74.01px] min-w-[132px] " />
         </div>
@@ -82,7 +82,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 
 {
   /* <nav className="bg-[#224A4D] "> */
