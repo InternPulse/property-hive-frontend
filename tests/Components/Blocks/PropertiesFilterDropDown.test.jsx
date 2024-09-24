@@ -7,7 +7,7 @@ import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-describe("CustomDropDown appearance", () => {
+describe("PropertiesFilterDropDown appearance", () => {
   it("should render when page loads", () => {
     //   Render the page that contains the component to be tested
     renderWithRouter(<ManageProperties />, { route: "/manage/properties" });
@@ -38,7 +38,7 @@ describe("CustomDropDown appearance", () => {
   });
 });
 
-describe("CustomDropDown behavior", () => {
+describe("PropertiesFilterDropDown behavior", () => {
   it("should show the dropdown menu when button is clicked", async () => {
     const { user, getAllByTestId } = renderWithRouter(<ManageProperties />, {
       route: "/manage/properties",
