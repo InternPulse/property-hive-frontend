@@ -15,11 +15,11 @@ const OnPage = () => {
         setSelectMessage(true);
     }
   return (
-    <div className='bg-white h-[528px] rounded-2xl messages flex'>
-        <div className='w-[365px] border-r-[3px] border-[#F5F6F6]  h-full overflow-y-auto px-2 flex flex-col gap-3'>
+    <div className='bg-white min-h-[525px] rounded-2xl border messages flex '>
+        <div className='w-[365px] border-r-[3px] border-[#F5F6F6]  overflow-y-auto px-2 flex flex-col gap-3'>
                 {
                     users.map(user=>(
-                        <div key={user.id} className='flex gap-1 cursor-pointer' onClick={()=>onSelectUser(user)}>
+                        <div key={user.id} className='flex gap-1 cursor-pointer ' onClick={()=>onSelectUser(user)}>
                 <div className=''>
                 <div className='size-[51px]  rounded-full border relative'>
                     <img src={userProfilePic} alt=""  className='w-full h-full rounded-full  '/>
@@ -40,7 +40,7 @@ const OnPage = () => {
             
         </div>
 
-        <div className={`basis-[75%] h-full ${!selectMessage && 'flex items-center justify-center'}`}>
+        <div className={`basis-[75%]  ${!selectMessage && 'flex items-center justify-center'}`}>
                 { selectMessage ?
                 <div className="flex-grow bg-white h-full  py-1  flex flex-col">
       <div className="flex items-center pb-4 border-b px-2">
@@ -56,7 +56,7 @@ const OnPage = () => {
         <div className='flex flex-col even:items-end relative'>
             
         {messages.map((message) => (
-            <div key={message.id} className='mt-2'>
+            <div key={message.id} className='mt-2 '>
                 <div className='flex gap-2 '>
                 <div >
                     <div><img src={userProfilePic} alt="" className='size-[51px] rounded-full'/></div>
