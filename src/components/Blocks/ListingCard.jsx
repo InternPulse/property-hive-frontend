@@ -9,31 +9,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
+import { useDialogControls } from "@/lib/hooks/useDialogControls";
 import { Dialog, DialogContent } from "../ui/dialog";
-
-export const useShowHide = (defaultVisible = false) => {
-  const [visible, setVisible] = useState(defaultVisible);
-
-  const show = () => setVisible(true);
-  const hide = () => setVisible(false);
-
-  const toggle = (nextVisible) => {
-    if (typeof nextVisible !== "undefined") {
-      setVisible(nextVisible);
-    } else {
-      setVisible((previousVisible) => !previousVisible);
-    }
-  };
-
-  return { hide, show, toggle, visible };
-};
+import ConfirmDialog from "./ConfirmDialog";
 
 const ListingCard = ({ title, location, details, price, image }) => {
-  const deleteDialog = useShowHide();
+  const deleteDialog = useDialogControls();
   const modDetails = details.join(" | ");
   return (
     <div
@@ -63,7 +46,7 @@ const ListingCard = ({ title, location, details, price, image }) => {
                   data-testid="listing-options-dropdown-menu"
                   className="w-[calc(173rem/16)] text-neutrals-950"
                 >
-                  <DropdownMenuItem className="">
+                  <DropdownMenuItem className="hover:bg-neutrals-25">
                     <Link
                       to=""
                       className="flex items-center gap-2 font-medium capitalize lg:text-lg"
@@ -72,7 +55,7 @@ const ListingCard = ({ title, location, details, price, image }) => {
                       <span className="">edit</span>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center gap-2 font-medium capitalize lg:text-lg">
+                  <DropdownMenuItem className="flex items-center gap-2 font-medium capitalize hover:bg-neutrals-25 lg:text-lg">
                     <img src={eyeSlash} alt="" className="" />
                     <span className="">pause</span>
                   </DropdownMenuItem>
@@ -82,10 +65,10 @@ const ListingCard = ({ title, location, details, price, image }) => {
                     aria-expanded={deleteDialog.visible ? "true" : "false"}
                     aria-controls="radix-:rf:"
                     data-state={deleteDialog.visible ? "open" : "closed"}
-                    className="flex items-center gap-2 font-medium capitalize text-error-500 lg:text-lg"
+                    className="flex items-center gap-2 font-medium capitalize hover:bg-neutrals-25 lg:text-lg"
                   >
                     <img src={deleteIcon} alt="" className="" />
-                    <span className="">delete</span>
+                    <span className="text-error-500">delete</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -94,11 +77,9 @@ const ListingCard = ({ title, location, details, price, image }) => {
                 open={deleteDialog.visible}
               >
                 <DialogContent>
-                  hello world
-                  {/* <ConfirmDialog
-                    onSubmit={handleDelete}
-                    title="Are you sure to delete this post?"
-                  /> */}
+                  <ConfirmDialog
+                  // onConfirm={handleDelete}
+                  />
                 </DialogContent>
               </Dialog>
             </>
@@ -110,12 +91,5 @@ const ListingCard = ({ title, location, details, price, image }) => {
       </div>
     </div>
   );
-};
-ListingCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  details: PropTypes.array.isRequired,
-  price: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
 };
 export default ListingCard;

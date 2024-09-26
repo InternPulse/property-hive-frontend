@@ -7,7 +7,6 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import PropTypes from "prop-types";
 
 export const PropertiesFilterDropDown = ({ titles, data, state, dispatch }) => {
   return (
@@ -50,11 +49,4 @@ export const PropertiesFilterDropDown = ({ titles, data, state, dispatch }) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-PropertiesFilterDropDown.propTypes = {
-  titles: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired,
-  state: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
