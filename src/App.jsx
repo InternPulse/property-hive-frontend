@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "./Component/Layout/Layout";
 import Home from "../src/Component/Pages/Home/Home";
@@ -89,6 +90,7 @@ function App() {
 
     </>
   );
+
 }
 
 export default App;
