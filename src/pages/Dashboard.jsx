@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Area,
@@ -366,4 +367,5 @@ const Dashboard = () => {
     </main>
   );
 };
+
 export default Dashboard;
