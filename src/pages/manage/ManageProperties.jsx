@@ -195,7 +195,7 @@ const ManageProperties = () => {
           <span className="">add property</span>
         </Link> */}
       </section>
-      <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {state.data.map((item, index) => (
           <ListingCard key={index} {...item} />
         ))}
