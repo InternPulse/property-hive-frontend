@@ -6,29 +6,30 @@ import PropTypes from 'prop-types';
 
 const Form1 = ({r,switchPage,set,error,isValid}) => {
     const [addedPhotos,setAddedPhotos] = useState([]);
-   
+    const  [index,setIndex] = useState(null)
     const [selectPropertyType,setSelectPropertyType] = useState('');
     const [propertyItem,setProperty] = useState(false)
     const [selectState, setSelectState] = useState('');
     const [selectLGA, setSelectLGA] = useState(false);
     const imageRef = useRef(HTMLImageElement)
     
-    const handleClick = () => {
+    const handleClick = (i) => {
         document.getElementById('fileInput').click(); 
+        setIndex(i)
+        
       };
-    
+
       const handleImage =(e) =>{
         const file = e.target.files[0]; 
         setAddedPhotos(prev => {
-          const existingIndex = prev.findIndex(url => url === file);
-          console.log(existingIndex)
-          if (existingIndex !== -1) {
-            const newPhotos = [...prev];
-            newPhotos[existingIndex] = file;
-            return newPhotos;
+          const updatedPhotos = [...prev]; // Create a copy of the existing array
+          // If an item exists at the given index, update it with the new file
+          if (updatedPhotos[index]) {
+            updatedPhotos.splice(index, 1, file); // Replace the item at the index with the new file
           } else {
-            return [...prev,file];
+            updatedPhotos.push(file); // If the index doesn't exist, push the new file to the array
           }
+          return updatedPhotos
         });
       }
 
@@ -69,7 +70,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
             {error.propertyType && <span className='text-red-500 '>{error.propertyType.message}</span>}
             <fieldset className={` ${propertyItem ? ' flex ':' hidden '} duration-200 flex-col w-full absolute bg-white border border-[#CED3D3] select-items p-4 top-[90px]  rounded-lg`}>
                 <label className="flex items-center mb-4">
-                  <input type="radio"  onClick={handleInput} name="propertyType" value="House" className="hidden peer" />
+                  <input type="radio"  onClick={ handleInput} name="propertyType" value="House" className="hidden peer" />
                   <div className="w-[24px] h-[24px] border-2 border-gray-300 rounded-full flex justify-center items-center peer-checked:border-green-600 peer-checked:bg-green-500">
                     <span className="w-[12px] h-[12px] bg-white rounded-full peer-checked:bg-green-500"></span>
                   </div>
@@ -172,7 +173,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
       <div className="text-[#242828] bg-white px-2 md:px-4 py-6 rounded-lg mt-6">
         <h3 className="font-semibold py-5 text-[24px] leading-[32px] tracking-[-1px] text-[#242828]">Upload Property Images *</h3>
         <div className="grid place-content-center md:grid-cols-3 gap-[12px] md:w-[1033px] mx-auto">
-            <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+            <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(0)}>
               {addedPhotos && addedPhotos[0]?
               <img src={URL.createObjectURL(addedPhotos[0])} alt="" ref={imageRef} className="w-full h-full object-cover" />  
               :
@@ -185,7 +186,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
               <input id="fileInput"  type="file"  name="" accept="image/*" onChange={handleImage}  className="w-full h-full outline-none invisible"   />
               </div>
             
-              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(1)}>
               {addedPhotos  && addedPhotos[1]?
               <img src={URL.createObjectURL(addedPhotos[1])} alt="" className="w-full h-full object-cover" ref={imageRef} />  
               :
@@ -198,7 +199,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
               <input id="fileInput"  type="file" name="" accept="image/*" onChange={handleImage} className="w-full h-full outline-none invisible"    />
               </div>
 
-              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(2)}>
               {addedPhotos  && addedPhotos[2]?
               <img src={URL.createObjectURL(addedPhotos[2])} alt="" className="w-full h-full object-cover" ref={imageRef} />  
               :
@@ -212,7 +213,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
               </div>
 
 
-              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(3)}>
               {addedPhotos  && addedPhotos[3]?
               <img src={URL.createObjectURL(addedPhotos[3])} alt="" className="w-full h-full object-cover" ref={imageRef} />  
               :
@@ -225,7 +226,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
               <input id="fileInput"  type="file" name="" accept="image/*" onChange={handleImage} className="w-full h-full outline-none invisible"    />
               </div>
 
-              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(4)}>
               {addedPhotos  && addedPhotos[4]?
               <img src={URL.createObjectURL(addedPhotos[4])} alt="" className="w-full h-full object-cover" ref={imageRef} />  
               :
@@ -238,7 +239,7 @@ const Form1 = ({r,switchPage,set,error,isValid}) => {
               <input id="fileInput"  type="file" name="" accept="image/*" onChange={handleImage} className="w-full h-full outline-none invisible"    />
               </div>
 
-              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full md:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(5)}>
               {addedPhotos  && addedPhotos[5]?
               <img src={URL.createObjectURL(addedPhotos[5])} alt="" className="w-full h-full object-cover" ref={imageRef} />  
               :

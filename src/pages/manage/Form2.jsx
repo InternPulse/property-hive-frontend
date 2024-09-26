@@ -8,28 +8,28 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
     const [duration,setDuration] = useState('');
     const [propertyItem,setProperty] = useState(false)
     const [selectState, setSelectState] = useState('');
+    const  [index,setIndex] = useState(null)
     const [selectLGA, setSelectLGA] = useState(false);
     const imageRef = useRef(HTMLImageElement)
     
-    const handleClick = () => {
+    const handleClick = (i) => {
         document.getElementById('fileInput').click(); 
+        setIndex(i)
+        
       };
     
       const handleImage =(e) =>{
         const file = e.target.files[0]; 
         setAddedPhotos(prev => {
-          const existingIndex = prev.findIndex(url => url === file);
-          if (existingIndex !== -1) {
-            const newPhotos = [...prev];
-            newPhotos[existingIndex] = file;
-            return newPhotos;
+          const updatedPhotos = [...prev]; 
+          if (updatedPhotos[index]) {
+            updatedPhotos.splice(index, 1, file); 
           } else {
-            
-            return [...prev,file];
+            updatedPhotos.push(file); 
           }
+          return updatedPhotos
         });
       }
-    
       const handleInput = (e) =>{ 
         if(e.target.checked){
          setDuration(e.target.value)
@@ -186,7 +186,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
       <div className="text-[#242828] bg-white px-4 py-6 rounded-lg mt-6">
         <h3 className="font-semibold py-5 text-[24px] leading-[32px] tracking-[-1px] text-[#242828]">Upload Property Images *</h3>
         <div className="grid xl:grid-cols-3 gap-[12px] xl:w-[1033px] mx-auto">
-            <div className="div-list w-full xl:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+            <div className="div-list w-full xl:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(0)}>
               {addedPhotos && addedPhotos[0]?
               <img src={URL.createObjectURL(addedPhotos[0])} alt="" ref={imageRef} className="w-full h-full object-contain" />  
               :
@@ -199,7 +199,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
               <input id="fileInput"  type="file" accept="image/*" name="" onChange={handleImage} className="w-full h-full outline-none invisible"   />
               </div>
             
-              <div className="div-list w-full xl:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full xl:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(1)}>
               {addedPhotos  && addedPhotos[1]?
               <img src={URL.createObjectURL(addedPhotos[1])} alt="" className="w-full h-full object-contain" ref={imageRef} />  
               :
@@ -212,7 +212,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
               <input id="fileInput"  type="file" name="" accept="image/*" onChange={handleImage} className="w-full h-full outline-none invisible"   />
               </div>
 
-              <div className="div-list w-full xl:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={handleClick}>
+              <div className="div-list w-full xl:w-[333.67px] h-[146px] bg-[#F5F6F6]   border border-[#828E8E] border-dotted rounded-md cursor-pointer" onClick={()=>handleClick(2)}>
               {addedPhotos  && addedPhotos[2]?
               <img src={URL.createObjectURL(addedPhotos[2])} alt="" className="w-full h-full object-contain" ref={imageRef} />  
               :

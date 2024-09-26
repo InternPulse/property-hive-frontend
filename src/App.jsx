@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import ManageProperties from './pages/manage/ManageProperties';
 import AddProperties from './pages/manage/AddProperties';
 import Preview from './pages/manage/Preview';
+import Messages from './pages/Messages';
 
 
 function App() {
@@ -14,13 +15,15 @@ function App() {
           <Router>
       <MainLayout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <Routes>
           <Route path="/manage-properties" element={<ManageProperties />} />
           <Route path="/manage-properties/add-property" element={<AddProperties />} />
           <Route path="/manage-properties/add-property/preview" element={<Preview />} />
-
+        </Routes>
+        <Routes>
+            <Route path="/messages" element={<Messages />} />
         </Routes>
       </MainLayout>
     </Router>
