@@ -1,5 +1,4 @@
 import upload from '../../assets/Upload.png'
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 

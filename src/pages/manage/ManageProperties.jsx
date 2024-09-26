@@ -1,5 +1,6 @@
 
 import testImg from "@/src/assets/images/testPropImg.png";
+import addIcon from '@/src/assets/icons/add-circle.png'
 import ListingCard from "@/src/components/Blocks/ListingCard";
 import { PropertiesFilterDropDown } from "@/src/components/Blocks/PropertiesFilterDropDown";
 import { useReducer, useState } from "react";
@@ -189,13 +190,13 @@ const ManageProperties = () => {
             />
           </div>
         </div>
-        {/* <Link
-          to="/manage-properties/add"
+        <Link
+          to="/manage-properties/add-property"
           className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 font-medium capitalize text-primary-25 lg:text-base"
         >
           <img src="" alt="" className="" />
-          <span className="">add property</span>
-        </Link> */}
+          <span className="flex items-center gap-2">add property <img src={addIcon} alt="" /></span>
+        </Link>
       </section>
       <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {state.data.map((item, index) => (

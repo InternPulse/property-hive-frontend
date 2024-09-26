@@ -1,10 +1,11 @@
 
-import notificationIcon from '../../assets/Group 1000002800.png'
-import user from '../../assets/Frame 1000010090.png'
-import downArrow from '../../assets/Profile arrow.png'
+import notificationIcon from '../../assets/images/Group 1000002800.png'
+import user from '../../assets/icons/Frame 1000010090.png'
+import downArrow from '../../assets/icons/Profile arrow.png'
 import hamburger_menu from '../../assets/hamburger.png'
 import { useContext } from 'react'
 import DisplayContext from '../../context/DispalyContext'
+import PropTypes from 'prop-types'
 
 const Navbar = ({pagetitle}) => {
     const {display,setDisplay} = useContext(DisplayContext)

@@ -33,6 +33,7 @@ const CompanySignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    navigate('/dashboard')
     setIsSubmitted(true);
     let isValid = true;
 

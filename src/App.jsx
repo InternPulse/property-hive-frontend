@@ -24,6 +24,7 @@ function App() {
     <>
 
           <Router>
+
             <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -32,9 +33,10 @@ function App() {
         </Routes>
 
     
+
         <Routes>
           {/* Authentication Routes */}
-          <Route path="/" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/buyer-signin" element={<SignInForm />} />
           <Route path="/buyer-signup" element={<SignUpForm />} /> 
           <Route path="/forgot-password" element={<ForgotPassword />} /> 
@@ -47,7 +49,7 @@ function App() {
     
           {/* Main Application Routes */}
          <Routes>
-          <Route path="/dashboard" element={
+            <Route path="/dashboard" element={
             <MainLayout>
             <Dashboard />
             </MainLayout>
@@ -72,7 +74,7 @@ function App() {
             </MainLayout>
             } />
           </Routes>
-      
+
     </Router>
 
 
