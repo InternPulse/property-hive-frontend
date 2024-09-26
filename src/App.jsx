@@ -1,5 +1,7 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from "./Component/Layout/Layout";
+import Home from "../src/Component/Pages/Home/Home";
+import Features from "./Component/Pages/Features/Features";
 import MainLayout from './components/MainLayout';
 import Dashboard from './pages/Dashboard';
 import ManageProperties from './pages/manage/ManageProperties';
@@ -24,8 +26,13 @@ function App() {
           <Router>
 
             <Routes>
-              <Route path="/" element={<Dashboard />} ></Route>
-            </Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/features" element={<Features />} />
+          </Route>
+        </Routes>
+
+    
 
         <Routes>
           {/* Authentication Routes */}
@@ -69,6 +76,7 @@ function App() {
           </Routes>
 
     </Router>
+
 
 
     </>
