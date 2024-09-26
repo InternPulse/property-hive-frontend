@@ -11,7 +11,7 @@ import {
 } from "@/src/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 
-import { useDialogControls } from "@/lib/hooks/useDialogControls";
+import { useDialogControls } from "@/tests/utils/hooks/useDialogControls";
 import { Dialog, DialogContent } from "../ui/dialog";
 import ConfirmDialog from "./ConfirmDialog";
 

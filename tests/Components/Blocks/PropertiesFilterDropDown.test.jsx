@@ -54,7 +54,7 @@ describe("PropertiesFilterDropDown behavior", () => {
     expect(dropdownMenus[0]).toBeInTheDocument();
   });
 
-  it("should the value of the selected option as new button label", async () => {
+  it("should show the value of the selected option as new button label", async () => {
     // eslint-disable-next-line no-unused-vars
     const statusTitles = ["all", "active", "disabled"];
     const propertyTitles = ["all", "house", "land", "commercial"];
