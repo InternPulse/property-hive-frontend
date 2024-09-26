@@ -119,6 +119,7 @@ nav {
 input{
   box-shadow: 0px 1px 2px 0px #1018280D;
 }
+
 .next-button{
   box-shadow: 0px 1px 2px 0px #1018280D;
 }
@@ -140,10 +141,9 @@ input{
   button {
     background-color: #f9f9f9;
   }
-} */
+} 
+
 .messages{
   box-shadow: 0px 8px 8px -4px #10182808;
 box-shadow: 0px 20px 24px -4px #10182814;
 }
-
-
