@@ -1,8 +1,9 @@
+
 import testImg from "@/src/assets/images/testPropImg.png";
 import ListingCard from "@/src/components/Blocks/ListingCard";
 import { PropertiesFilterDropDown } from "@/src/components/Blocks/PropertiesFilterDropDown";
 import { useReducer, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams,Link } from "react-router-dom";
 
 export const dummyPropertiesData = [
   {
@@ -163,6 +164,7 @@ const ManageProperties = () => {
   const [originalData] = useState(dummyPropertiesData);
 
   return (
+
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
       <section className="mb-[calc(30rem/16)] flex items-end justify-between">
         <div className="flex items-center gap-4 capitalize">
@@ -203,5 +205,6 @@ const ManageProperties = () => {
     </main>
   );
 };
+
 
 export default ManageProperties;

@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+
   resolve: {
     alias: {
       // eslint-disable-next-line no-undef
@@ -12,3 +13,10 @@ export default defineConfig({
     },
   },
 });
+
+
+  build: {
+    outDir: 'dist', // Ensure this is set to 'dist'
+  },
+})
+

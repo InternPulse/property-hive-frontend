@@ -14,9 +14,7 @@ body {
 nav {
   box-shadow: 0px 1px 2px 0px #1018280f;
 }
-/* .main-container{
-  width: calc(100vw - 279px);
-} */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -82,3 +80,23 @@ nav {
     @apply lg:focus-visible:ring-secondary ring-offset-white focus-visible:rounded focus-visible:outline-none lg:focus-visible:ring-2 lg:focus-visible:ring-offset-4;
   }
 }
+
+
+input{
+  box-shadow: 0px 1px 2px 0px #1018280D;
+}
+.next-button{
+  box-shadow: 0px 1px 2px 0px #1018280D;
+}
+.select-items{
+  box-shadow: 0px 4px 6px -2px #10182808;
+  box-shadow: 0px 12px 16px -4px #10182814;
+
+}
+
+.messages{
+  box-shadow: 0px 8px 8px -4px #10182808;
+box-shadow: 0px 20px 24px -4px #10182814;
+}
+
+

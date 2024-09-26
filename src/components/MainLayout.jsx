@@ -11,7 +11,8 @@ const pageTitles = {
 const MainLayout = ({ children }) => {
   const pathname = useLocation().pathname;
   return (
-    <div className="flex">
+
+    <div className="flex bg-[#F5F6F6]">
       <div>
         <Sidebar />
       </div>
