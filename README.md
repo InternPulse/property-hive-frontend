@@ -27,7 +27,6 @@ yarn dev
 # or
 pnpm dev
 ```
-
 ### Project Structure
 
 - `src/assets`: Static assets like images.
@@ -64,7 +63,6 @@ FamTrust is open to contributions, but I recommend creating an issue or replying
 9. Create a pull request to the `dev` branch not `main`.
 10. Ensure to describe your pull request.
 11. > If you've added code that should be tested, add some test examples.
-
 # Merging
 
 Under any circumstances should you merge a pull request on a specific branch to the `dev` or `main` branch
@@ -82,11 +80,10 @@ Under any circumstances should you merge a pull request on a specific branch to 
 | test     | Tests                    | Adding missing tests or correcting existing tests                                                           |
 | build    | Builds                   | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)         |
 | ci       | Continuous Integrations  | Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs) |
-| chore    | Chores                   | Other changes that don't modify, frontend or test files                                                     |
+| chore    | Chores                   | Other changes that don't modify, frontend or test files                                                    |
 | revert   | Reverts                  | Reverts a previous commit                                                                                   |
 
 > _Sample Commit Messages_
-
 - `chore: Updated README file` := `chore` is used because the commit didn't make any changes to the frontend or test folders in any way.
 - `feat: Added plugin info endpoints` := `feat` is used here because the feature was non-existent before the commit.
 
@@ -97,7 +94,6 @@ Under any circumstances should you merge a pull request on a specific branch to 
 A separate folder called http contains axios.js and index.js files to handle any outgoing or incoming HTTP requests/responses. The index.js file should contain all outgoing API calls to the backend server.
 
 > ❗❗Do not create any custom http calls inside a page or components. Whatever calls need to be processed by the server should be called within the `index.js` file.
-
 ### Custom Authentication Handler
 
 Within the `helpers` folder contains **two** different files called `withAuth.js` and `withoutAuth.js`.
@@ -130,10 +126,10 @@ Within this file contains a `MainLayout` component, rather than calling `Footer`
 for eg
 
 ```js
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import MainLayout from "./components/Layout/MainLayout";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import MainLayout from './components/Layout/MainLayout';
 
 function App() {
   return (
