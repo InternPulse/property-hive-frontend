@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ManageProperties = () => {
   return (
-    <div>ManageProperties</div>
+    <div>
+      <Link to={'/manage-properties/add-property'}>AddProperties</Link>
+      
+      </div>
   )
 }
 
