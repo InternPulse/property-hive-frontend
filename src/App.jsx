@@ -13,19 +13,41 @@ function App() {
   return (
     <>
           <Router>
-      <MainLayout>
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-        <Routes>
-          <Route path="/manage-properties" element={<ManageProperties />} />
-          <Route path="/manage-properties/add-property" element={<AddProperties />} />
-          <Route path="/manage-properties/add-property/preview" element={<Preview />} />
-        </Routes>
-        <Routes>
-            <Route path="/messages" element={<Messages />} />
-        </Routes>
-      </MainLayout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} ></Route>
+            </Routes>
+
+          
+          
+          <Routes>
+          <Route path="/dashboard" element={
+            <MainLayout>
+            <Dashboard />
+            </MainLayout>
+            } />
+          <Route path="/manage-properties" element={
+           <MainLayout>
+            <ManageProperties />
+            </MainLayout>
+            } />
+          <Route path="/manage-properties/add-property" element={
+            <MainLayout>
+            <AddProperties />
+            </MainLayout>
+            } />
+          <Route path="/manage-properties/add-property/preview" element={
+            <MainLayout>
+            <Preview />
+            </MainLayout>} />
+          <Route path="/messages" element={
+            <MainLayout>
+            <Messages />
+            </MainLayout>
+            } />
+          </Routes>
+          
+        
+     
     </Router>
 
     </>
