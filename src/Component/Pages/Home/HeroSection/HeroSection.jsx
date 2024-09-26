@@ -1,6 +1,5 @@
 import React from "react";
 import heroImage from "../../../../assets/images/Dashboard.png"; 
-// import { FaChevronRight } from "react-icons/fa";
 import arrow from '../../../../assets/images/arrow-right.png';
 
 const HeroSection = () => {
@@ -24,7 +23,7 @@ const HeroSection = () => {
           <button className="flex items-center bg-[#389294]  text-white px-6 py-2 rounded-lg border border-transparent hover:bg-transparent hover:border-white transition duration-300">
             Join Us Now
             <img src={arrow} alt="Arrow Right Icon" className="ml-2 w-4 h-4" />
-            {/* <FaChevronRight className="ml-2 w-4 h-4" />*/}
+          
           </button>
         </div>
       </div>

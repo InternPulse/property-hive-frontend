@@ -34,7 +34,7 @@ const ContactUs = () => {
           <h3 className="text-lg text-[#255A5D] font-semibold mb-4">
             Send us a message
           </h3>
-          <form onSubmit={handleSubmit} className="flex flex-col flex-grow">
+          <form onSubmit={handleSubmit} className="flex flex-col flex-grow h-[443px]">
             <div className="mb-4">
               <input
                 type="text"
@@ -70,7 +70,7 @@ const ContactUs = () => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-teal-600 text-white px-3 py-1 rounded-lg hover:bg-teal-500 transition duration-300"
+                className="bg-teal-600 text-white px-3 py-3 rounded-lg hover:bg-teal-500 w-[129px]  transition duration-300"
               >
                 Send
               </button>

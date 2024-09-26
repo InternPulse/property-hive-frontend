@@ -14,13 +14,12 @@ const Subscription = () => {
           your inbox.
         </p>
 
-        
         <div className="flex space-x-4">
           <div>
             <input
               type="email"
               placeholder="Enter Your Email Address"
-              className="p-3 rounded-lg w-[250px] text-black"
+              className="p-3 rounded-lg w-[328px] text-black"
             />
           </div>
           <div>
@@ -31,10 +30,9 @@ const Subscription = () => {
         </div>
       </div>
 
-     
       <div className="w-3/5 h-[404px]">
         <img
-          src={subscription} 
+          src={subscription}
           alt="Working on laptop"
           className="h-[404px] w-full object-cover rounded-lg"
         />
