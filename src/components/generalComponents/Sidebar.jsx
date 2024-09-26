@@ -21,7 +21,7 @@ const Sidebar = () => {
             <ul className='w-full '>
                 <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={dasboardIcon} alt="" /><span>Dashboard</span></Link></li>
                 <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={manangeIcon} alt="" /><span>Manage Properties</span></Link></li>
-                <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={transactionsIcon} alt="" /><span>Transactions</span></Link></li>
+                <li className=''><Link to="/transactions" className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={transactionsIcon} alt="" /><span>Transactions</span></Link></li>
                 <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={inquiriesIcon} alt="" /><span>Inquiries</span></Link></li>
                 <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={messagesIcon} alt="" /><span>Messages</span></Link></li>
             </ul>
