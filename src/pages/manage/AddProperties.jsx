@@ -1,3 +1,4 @@
+
 import { useForm } from "react-hook-form"
 import {  useState,useContext } from "react";
 import Form1 from "./Form1";
@@ -41,4 +42,5 @@ const AddProperties = () => {
   )
 }
 
-export default AddProperties
+
+export default AddProperties;

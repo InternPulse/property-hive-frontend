@@ -1,3 +1,4 @@
+
 import notificationIcon from '../../assets/Group 1000002800.png'
 import user from '../../assets/Frame 1000010090.png'
 import downArrow from '../../assets/Profile arrow.png'
@@ -11,7 +12,7 @@ const Navbar = ({pagetitle}) => {
   return (
     <nav className=' w-full bg-[#FCFDFD] pt-[16px] pb-[8px] px-2 xl:px-[40px] gap-0 md:gap-3 xl:gap-0 flex justify-between items-center'>
         <div>
-            <h1 className='md:text-[20px] xl:text-[28px] leading-[36px] tracking-[-1px] font-semibold text-[#242828]'>Manage Properties</h1>
+            <h1 className='md:text-[20px] xl:text-[28px] leading-[36px] tracking-[-1px] font-semibold text-[#242828]'>{pagetitle}</h1>
         </div>
 
         <div>
@@ -34,8 +35,13 @@ const Navbar = ({pagetitle}) => {
                 <img src={hamburger_menu} onClick={()=>setDisplay(!display)} className='size-6 md:size-10 object-contain' alt="" />
             </div>
         </div>
-    </nav>
-  )
-}
 
-export default Navbar
+    </nav>
+  );
+};
+
+Navbar.propTypes = {
+  pagetitle: PropTypes.string.isRequired,
+};
+
+export default Navbar;

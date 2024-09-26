@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
 import Dashboard from './pages/Dashboard';
@@ -15,9 +16,11 @@ import ResetPassword from './pages/authentication/buyer/user-reset-password';
 import CompanySignInForm from './pages/authentication/company/company-signin';
 import CompanySignUpForm from './pages/authentication/company/company -signup';
 
+
 function App() {
   return (
     <>
+
           <Router>
         <Routes>
           {/* Authentication Routes */}
@@ -62,8 +65,9 @@ function App() {
       
     </Router>
 
+
     </>
-  )
+  );
 }
 
-export default App
+export default App;

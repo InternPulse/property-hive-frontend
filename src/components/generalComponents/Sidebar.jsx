@@ -1,3 +1,4 @@
+
 import logo from '../../assets/Group 1000002785.png'
 import dasboardIcon from '../../assets/home.png'
 import manangeIcon from '../../assets/buliding.png'
@@ -10,6 +11,7 @@ import logoutIcon from '../../assets/logout.png'
 import { Link,useLocation } from 'react-router-dom';
 import { useContext } from 'react'
 import DisplayContext from '../../context/DispalyContext'
+
 
 const Sidebar = () => {
     const {pathname} = useLocation()
@@ -32,18 +34,32 @@ const Sidebar = () => {
             </ul>
         </div>
 
-        <div className=' w-full '>
-            <ul className='w-full '>
-            <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={infoIcon} alt="" /><span>Help & Support</span></Link></li>
-            <li className=''><Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={settingsIcon} alt="" /><span>Settings</span></Link></li>
-            </ul>
-        </div>
 
-        <div className='w-full '>
-        <Link className='pl-5 flex items-center gap-3 py-[12px] text-[20px] leading-[28px] tracking-[-0.75px]'><img src={logoutIcon} alt="" /><span>Logout</span></Link>
-        </div>
+      <div className="w-full">
+        <ul className="w-full">
+          <li className="">
+            <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+              <img src={infoIcon} alt="" />
+              <span>Help & Support</span>
+            </Link>
+          </li>
+          <li className="">
+            <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+              <img src={settingsIcon} alt="" />
+              <span>Settings</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      <div className="w-full">
+        <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+          <img src={logoutIcon} alt="" />
+          <span>Logout</span>
+        </Link>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
