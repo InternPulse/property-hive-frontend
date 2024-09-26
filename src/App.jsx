@@ -19,13 +19,14 @@ import EmailVerification from './pages/authentication/buyer/email-verification';
 import ResetPassword from './pages/authentication/buyer/user-reset-password';
 import CompanySignInForm from './pages/authentication/company/company-signin';
 import CompanySignUpForm from './pages/authentication/company/company -signup';
+import Inquiries from './pages/Inquiries';
 
 
 
 function App() {
   return (
     <>
-      <Router>
+      
         
 
           <Router>
@@ -74,7 +75,12 @@ function App() {
               <Transactions />
               </MainLayout>
             } />
-            
+
+            <Route path='/inquiries' element={
+              <MainLayout>
+                <Inquiries />
+              </MainLayout>
+            } />
           <Route path="/manage-properties/add-property/preview" element={
             <MainLayout>
             <Preview />

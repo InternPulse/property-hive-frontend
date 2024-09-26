@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "../../components/ui/badge"
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 import {
     Card,
     CardContent,
@@ -9,10 +9,10 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+  } from "../../components/ui/card"
 import { MdCheck } from "react-icons/md";
-import { Separator } from "@/components/ui/separator"
-import logo from '../../assets/Group 1000002785.png'
+import { Separator } from "../../components/ui/separator"
+import logo from '../../assets/icons/Group 1000002785.png'
 
 const tableItems = [
   {
