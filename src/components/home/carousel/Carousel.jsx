@@ -31,7 +31,7 @@ export function EmblaCarousel() {
 						/>
 						<img
 							src={image4}
-							alt='Mixta Africa Logo'
+							alt='Mixta Africa Logos'
 							className='h-[70px] w-[140px]'
 						/>
 						<img
