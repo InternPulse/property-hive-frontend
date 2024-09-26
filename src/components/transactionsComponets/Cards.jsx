@@ -13,6 +13,9 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Link } from 'react-router-dom';
+import { Input } from "@/components/ui/input"
+import { Separator } from "@/components/ui/separator"
+import logo from '../../assets/Group 1000002785.png'
 
 const earnings = [
   {
@@ -56,6 +59,7 @@ const Cards = () => {
   const handleChanges = (e, field) => {
     setState({ ...state, [field]: e.target.value });
   };
+  
 
   const inputFocus = (e) => {
     const next = e.target.getAttribute("data-index");
@@ -79,8 +83,16 @@ const Cards = () => {
       // Proceed to confirmation step
       setStep(3);
     } else if (step === 3 && isPinComplete) {
-      // Final step: success message
       setStep(4);
+    }
+      else if (step === 4 ) {
+    setStep(5);
+  }
+    else if (step === 5 ) {
+      setStep(6);
+    }
+    else if (step === 6 ) {
+      setStep(7);
     }
   };
 
@@ -294,7 +306,189 @@ const Cards = () => {
                           Withdrawal PIN Set Successfully
                       </div>
                   </CardContent>
+                  <CardFooter>
+                  <Button
+                  variant="outline"
+                  className="w-full gap-1.5 text-sm border-[#389294]"
+                >
+                  <span className="text-[#389294]" onClick={handleProceed}>Continue</span>
+                </Button>
+                  </CardFooter>
               </Card>
+            )}
+
+            {step === 5 && (
+              <Card className="w-full max-w-sm">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-xl ml-[120px] font-semibold">
+                      Withdraw
+                    </CardTitle>
+                    <Button variant="ghost">
+                    <IoClose className="h-4 w-4 text-muted-foreground" />
+                    </Button>
+                  </CardHeader>
+                  <CardContent className="grid gap-4">
+                    <div className="flex flex-col">
+                      <label
+                        htmlFor="countries"
+                        className="mb-2 text-sm font-medium text-gray-900"
+                      >
+                        Bank
+                      </label>
+                      <select
+                        id="countries"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block p-2.5 dark:border-gray-950 dark:placeholder-gray-400"
+                      >
+                        <option selected>Select Bank</option>
+                        <option value="alat">ALAT by WEMA</option>
+                        <option value="access">Access bank</option>
+                        <option value="bowen">Bowen MFB</option>
+                        <option value="citi">CitiBank</option>
+                        <option value="guaranty">Guaranty Trust Bank</option>
+                      </select>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-black text-sm mb-1">Account Number</span>
+                      <Input
+                        type="text"
+                        placeholder="Enter Account Number"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-black text-sm mb-1">Amount</span>
+                      <Input
+                        type="number"
+                        placeholder="Enter Amount"
+                      />
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                      <Button className="w-full bg-[#389294] hover:bg-[#389294]" onClick={handleProceed}>Withdraw</Button>
+                  </CardFooter>
+              </Card>
+            )}
+
+            {step === 6 && (
+              <>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-xl ml-[120px] font-semibold">Enter PIN</CardTitle>
+                <Button variant="ghost" onClick={closeModal}>
+                  <IoClose className="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </CardHeader>
+              <CardContent className="grid gap-4">
+                <div className="mt-6 flex items-center justify-center gap-x-2">
+                  <input
+                    type="text"
+                    data-index="0"
+                    value={state.code01}
+                    className="w-12 h-12 rounded-lg border focus:border-[#389294] outline-none text-center text-2xl"
+                    onChange={(e) => handleChanges(e, "code01")}
+                    onKeyUp={inputFocus}
+                  />
+                  <input
+                    type="text"
+                    data-index="1"
+                    value={state.code02}
+                    className="w-12 h-12 rounded-lg border focus:border-[#389294] outline-none text-center text-2xl"
+                    onChange={(e) => handleChanges(e, "code02")}
+                    onKeyUp={inputFocus}
+                  />
+                  <input
+                    type="text"
+                    data-index="2"
+                    value={state.code03}
+                    className="w-12 h-12 rounded-lg border focus:border-[#389294] outline-none text-center text-2xl"
+                    onChange={(e) => handleChanges(e, "code03")}
+                    onKeyUp={inputFocus}
+                  />
+                  <input
+                    type="text"
+                    data-index="3"
+                    value={state.code04}
+                    className="w-12 h-12 rounded-lg border focus:border-[#389294] outline-none text-center text-2xl"
+                    onChange={(e) => handleChanges(e, "code04")}
+                    onKeyUp={inputFocus}
+                  />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  className={`w-full ${isPinComplete ? 'bg-[#389294] hover:bg-[#389294]' : 'bg-[#CED3D3] text-gray-400 cursor-not-allowed'}`}
+                  disabled={!isPinComplete}
+                  onClick={handleProceed}
+                >
+                  Confirm
+                </Button>
+              </CardFooter>
+            </>
+            )}
+
+          {step === 7 && (
+              <Card className="relative w-full max-w-sm">
+              {/* Close button at the top-right */}
+              <Button
+                variant="ghost"
+                className="absolute top-2 right-2"
+                onClick={closeModal}
+              >
+                <IoClose className="h-6 w-6 text-gray-500" />
+              </Button>
+            
+              <CardHeader className="pb-2">
+                <CardTitle className="text-xl font-semibold flex flex-col items-center text-gray-500">
+                  <div
+                    className="border rounded-full text-6xl mb-2"
+                    style={{ backgroundColor: "#5FC92E" }}
+                  >
+                    <span className="text-white">
+                      <MdCheck />
+                    </span>
+                  </div>
+                  Withdrawal Successful
+                </CardTitle>
+              </CardHeader>
+              <CardDescription className="text-center text-3xl font-semibold text-black">
+                ₦1,000,000
+              </CardDescription>
+              <CardContent className="p-6 text-sm">
+                <Separator className="my-2" />
+                <ul className="grid gap-3">
+                  <li className="flex items-center justify-between">
+                    <span className="text-base">Ref Number</span>
+                    <span>000085752257</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-base">Payment Time</span>
+                    <span>25-02-2023, 13:22:16</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-base">Account Name</span>
+                    <span>John James</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-base">Payment Number</span>
+                    <span>1234567890</span>
+                  </li>
+                  <li className="flex items-center justify-between">
+                    <span className="text-base">Bank</span>
+                    <span>Guaranty Bank PLC</span>
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter className="flex flex-col items-center">
+                <Button
+                  variant="outline"
+                  className="w-full gap-1.5 text-sm border-[#389294]"
+                >
+                  <span className="text-[#389294]">Download Receipt</span>
+                </Button>
+                <div className="mt-6">
+                  <img src={logo} alt="logo" />
+                </div>
+              </CardFooter>
+            </Card>
+            
             )}
           </div>
         </div>
