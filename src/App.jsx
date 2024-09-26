@@ -1,9 +1,11 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "./Component/Layout/Layout";
 import Home from "../src/Component/Pages/Home/Home";
 import Features from "./Component/Pages/Features/Features";
 import MainLayout from './components/MainLayout';
 import Dashboard from './pages/Dashboard';
+import Transactions from './pages/Transactions';
 import ManageProperties from './pages/manage/ManageProperties';
 import AddProperties from './pages/manage/AddProperties';
 import Preview from './pages/manage/Preview';
@@ -19,9 +21,12 @@ import CompanySignInForm from './pages/authentication/company/company-signin';
 import CompanySignUpForm from './pages/authentication/company/company -signup';
 
 
+
 function App() {
   return (
     <>
+      <Router>
+        
 
           <Router>
 
@@ -64,6 +69,12 @@ function App() {
             <AddProperties />
             </MainLayout>
             } />
+            <Route path="/transactions/*" element={
+             <MainLayout>
+              <Transactions />
+              </MainLayout>
+            } />
+            
           <Route path="/manage-properties/add-property/preview" element={
             <MainLayout>
             <Preview />
@@ -77,10 +88,9 @@ function App() {
 
     </Router>
 
-
-
     </>
   );
+
 }
 
 export default App;
