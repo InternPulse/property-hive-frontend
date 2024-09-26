@@ -1,7 +1,7 @@
 import EmptyState from '../components/MessageComponents/EmptyState'
 
 
-const Messages = () => {
+const Inquiries = () => {
   return (
     <div className='text-[#3A3E3F] px-2 md:px-8 py-[25px]'>
         <div>
@@ -16,4 +16,4 @@ const Messages = () => {
   )
 }
 
-export default Messages
+export default Inquiries

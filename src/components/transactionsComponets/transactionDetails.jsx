@@ -3,18 +3,18 @@ import {
     Paperclip,
     Phone,
 } from "lucide-react";
-import { Button } from "@/components/ui/button"
+import { Button } from "../ui/button"
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
-} from "@/components/ui/avatar";
+} from "../ui/avatar";
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
+} from "../ui/card";
 
 
 const tableItems = [
