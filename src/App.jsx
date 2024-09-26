@@ -70,6 +70,12 @@ function App() {
             <AddProperties />
             </MainLayout>
             } />
+
+            <Route path='/manage-properties/add-property/preview' element={
+              <MainLayout>
+                <Preview />
+              </MainLayout>
+            }/>
             <Route path="/transactions/*" element={
              <MainLayout>
               <Transactions />

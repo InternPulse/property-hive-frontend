@@ -20,6 +20,7 @@ import icon from "../../src/assets/icon.png";
 import icon2 from "../../src/assets/icon2.png";
 import icon3 from "../../src/assets/icon3.png";
 import icon4 from "../../src/assets/icon4.png";
+import { Link } from "react-router-dom";
 
 const websiteData = [
   { name: "sep 8", views: 100 },
@@ -158,10 +159,10 @@ const Dashboard = () => {
 
           {/* Add Property Button */}
 
-          <button className="bg-[#fafdfe] text-[#389294] border border-[#389294] rounded-[8px] px-[20px] py-[12px] w-[178px] h-[48px]  flex items-center justify-center">
+          <Link to={'/manage-properties/add-property'} className="bg-[#fafdfe] text-[#389294] border border-[#389294] rounded-[8px] px-[20px] py-[12px] w-[178px] h-[48px]  flex items-center justify-center">
             Add Property
             <img src={circle} className="inline ml-2" alt="add property icon" />
-          </button>
+          </Link>
         </div>
       </header>
 

@@ -192,7 +192,7 @@ const ManageProperties = () => {
         </div>
         <Link
           to="/manage-properties/add-property"
-          className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 font-medium capitalize text-primary-25 lg:text-base"
+          className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 font-medium capitalize text-primary-25 lg:text-base text-[#F5F6F6] bg-[#389294]"
         >
           <img src="" alt="" className="" />
           <span className="flex items-center gap-2">add property <img src={addIcon} alt="" /></span>
