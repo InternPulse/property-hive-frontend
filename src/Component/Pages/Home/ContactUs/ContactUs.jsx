@@ -11,31 +11,34 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
-        <div className="flex justify-center items-center p-8">
-        <h2>Contact Us</h2>
-        </div>
-      <div className="flex flex-col md:flex-row justify-between p-8 bg-black">
-        {/* Left Section */}
-        <div className="md:w-1/2 mb-8 md:mb-0">
-          <p className="text-gray-600">
+    <div className="bg-white">
+      <div className="flex justify-center items-center py-8 px-4 md:px-12">
+        <h1 className="text-[#255A5D] text-3xl md:text-5xl font-bold mt-14 mb-4">
+          Contact Us
+        </h1>
+      </div>
+      <div className="flex flex-col md:flex-row justify-center gap-32 items-start p-8 lg:px-20">
+        
+        <div className="md:w-4/5 mb-8 md:mb-0 max-w-xs text-left">
+          <h2 className="text-3xl text-[#000000] font-semibold mb-2">
             Chat with us
-            <br />
+          </h2>
+          <p className="text-[#4B5353] text-2xl max-h-[6rem]  font-medium">
             If you’d prefer to chat in real time with our support team, we’re
             online Monday to Friday, whatever your time zone.
           </p>
         </div>
 
-        {/* Right Section - Form */}
-        <div className="md:w-1/2 bg-white shadow-md rounded-lg p-6">
-          <h3 className="text-lg font-semibold mb-4">Send us a message</h3>
-          <form onSubmit={handleSubmit}>
+      
+        <div className="md:w-1/2 w-[250px] h-[443px] bg-white shadow-md border-2 border-black rounded-lg p-6 flex flex-col md:ml-0 lg:ml-2  md:flex-col">
+          <h3 className="text-lg text-[#255A5D] font-semibold mb-4">
+            Send us a message
+          </h3>
+          <form onSubmit={handleSubmit} className="flex flex-col flex-grow">
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="name">
-                Your Name
-              </label>
               <input
                 type="text"
+                placeholder="Your name"
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -44,11 +47,9 @@ const ContactUs = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="email">
-                Your Email
-              </label>
               <input
                 type="email"
+                placeholder="Email Address"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -57,23 +58,23 @@ const ContactUs = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="message">
-                Message
-              </label>
               <textarea
                 id="message"
+                placeholder="Messages"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="border border-gray-300 rounded-lg w-full p-2 h-32"
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-500 transition duration-300"
-            >
-              Send
-            </button>
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="bg-teal-600 text-white px-3 py-1 rounded-lg hover:bg-teal-500 transition duration-300"
+              >
+                Send
+              </button>
+            </div>
           </form>
         </div>
       </div>

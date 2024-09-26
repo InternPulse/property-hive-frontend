@@ -1,11 +1,12 @@
 import React from "react";
-import heroImage from "../../../assets/images/Dashboard.png"; 
+import heroImage from "../../../../assets/images/Dashboard.png"; 
 // import { FaChevronRight } from "react-icons/fa";
-import arrow from '../../../assets/images/arrow-right.png';
+import arrow from '../../../../assets/images/arrow-right.png';
 
 const HeroSection = () => {
   return (
-    <div className=" flex flex-col items-center justify-center min-h-screen text-white  bg-[#224A4D]">
+    <div className=" flex flex-col items-center justify-center  text-white bg-[#224A4D]">
+
       <div className="text-center p-4">
         <h1 className="text-3xl md:text-5xl font-bold mt-14 mb-4">
           Comprehensive Real Estate Digital Tool
