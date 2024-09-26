@@ -142,7 +142,7 @@ function Table() {
                   <td className="px-6 py-4 whitespace-nowrap">{item.property}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.amount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.document}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-[#E29400]">• {item.document}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-blue-500">
                     {item.status}
                   </td>
