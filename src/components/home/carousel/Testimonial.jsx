@@ -1,6 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import image1 from '../../../assets/carousel/Ellipse-80.png'
+import image2 from '../../../assets/carousel/Ellipse-80(1).png'
+import image3 from '../../../assets/carousel/Ellipse-80(2).png'
 
 const Testimonial = () => {
 	const settings = {
@@ -57,21 +60,21 @@ const data = [
 	{
 		name: "Esv. Amelia Joseph",
 		position: "Principal Partner",
-		img: "/src/assets/carousel/Ellipse-80.png",
+		img: image1,
 		review:
 			"The user-friendly interface and  targeted marketing tools helped us attract serious buyers and grow our business effortlessly.",
 	},
 	{
 		name: "Joseph Ronald",
 		position: "CEO, DreamHomes",
-		img: "/src/assets/carousel/Ellipse-80(1).png",
+		img: image2,
 		review:
 			"The seamless customization features allowed us to showcase our properties with our unique branding, making it easier to build trust with clients.",
 	},
 	{
 		name: "Esv. Amelia Joseph",
 		position: "Principal Partner",
-		img: "/src/assets/carousel/Ellipse-80(2).png",
+		img: image3,
 		review:
 			"With real-time financial tracking and advanced analytics, we’ve been able to make data-driven decisions.",
 	},
