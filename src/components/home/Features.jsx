@@ -1,4 +1,11 @@
 import { EmblaCarousel } from "./carousel/Carousel";
+import image1 from '../../assets/Landing-Page.png'
+import image2 from '../../assets/Featured-Section.png'
+import image3 from '../../assets/Properties-section.png'
+import image4 from '../../assets/Top.png'
+import image5 from '../../assets/Properties(1).png'
+import image6 from '../../assets/Finances.png'
+
 
 const Features = () => {
 	return (
@@ -37,20 +44,20 @@ const Features = () => {
 						</div>
 						<div className=' bg-[#F5F6F6] border rounded-2xl shadow-2xl items-center justify-center flex p-7 flex-col space-y-3  w-[440px] lg:w-[480px] '>
 							<img
-								src='/src/assets/Landing-Page.png'
+								src={image1}
 								className=' border'
 								sizes={100}
 							/>
-							<img src='/src/assets/Featured-Section.png' className='border' />
+							<img src={image2} className='border' />
 						</div>
 					</div>
 					<div className=' flex justify-between flex-col lg:flex-row space-y-7 mt-20 '>
 						<div className=' bg-[#F5F6F6] border rounded-2xl shadow-2xl items-center justify-center flex p-7 flex-col space-y-3  w-[400px] lg:w-[480px] '>
 							<img
-								src='/src/assets/Properties-section.png'
+								src={image3}
 								className=' border'
 							/>
-							<img src='/src/assets/Top.png' className=' border' />
+							<img src={image4} className=' border' />
 						</div>
 						<div className=' mt-40'>
 							<h4 className='text-base md:text-base lg:text-base xl:text-lg font-light text-[#2B7376] bg-[#ECFFFF] p-1.5 text-center w-48  xl:w-[195px] border border-[#2B7376] rounded-full  '>
@@ -90,8 +97,8 @@ const Features = () => {
 							</p>
 						</div>
 						<div className=' bg-[#F5F6F6] border rounded-2xl shadow-2xl items-center justify-center flex p-7 flex-col space-y-3  w-[400px] lg:w-[480px] '>
-							<img src='/src/assets/Properties(1).png' className=' border' />
-							<img src='/src/assets/Finances.png' className=' border' />
+							<img src={image5} className=' border' />
+							<img src={image6} className=' border' />
 						</div>
 					</div>
 				</div>
