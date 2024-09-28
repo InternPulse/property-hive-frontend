@@ -188,7 +188,7 @@ const CompanySignInForm = () => {
               </div>
 
               <div className="text-sm">
-                <a href="/forgot-password" className="font-medium text-teal-600 hover:text-teal-500">
+                <a href="/forgot-password1" className="font-medium text-teal-600 hover:text-teal-500">
                   Forgot Password?
                 </a>
               </div>

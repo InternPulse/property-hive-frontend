@@ -14,6 +14,7 @@ import SignInForm from './pages/authentication/buyer/user-sign-in';
 import SignUpForm from './pages/authentication/buyer/user-sign-up';
 import SignIn from './pages/Signin';
 import ForgotPassword from './pages/authentication/buyer/forgortPassword';
+import ForgotPassword1 from './pages/authentication/company/forgotPassword';
 import Verification from './pages/authentication/buyer/token-verification';
 import EmailVerification from './pages/authentication/buyer/email-verification';
 import ResetPassword from './pages/authentication/buyer/user-reset-password';
@@ -46,6 +47,7 @@ function App() {
           <Route path="/buyer-signin" element={<SignInForm />} />
           <Route path="/buyer-signup" element={<SignUpForm />} /> 
           <Route path="/forgot-password" element={<ForgotPassword />} /> 
+          <Route path="/forgot-password1" element={<ForgotPassword1 />} /> 
           <Route path="/token-verification" element={<Verification />} />
           <Route path="/email-verification" element={<EmailVerification />} /> 
           <Route path="/user-reset-password" element={<ResetPassword />} />

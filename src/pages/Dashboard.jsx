@@ -14,12 +14,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import global from "../../src/assets/global.png";
-import circle from "../../src/assets/add-circle.png";
-import icon from "../../src/assets/icon.png";
-import icon2 from "../../src/assets/icon2.png";
-import icon3 from "../../src/assets/icon3.png";
-import icon4 from "../../src/assets/icon4.png";
+
 import { Link } from "react-router-dom";
 
 const websiteData = [
@@ -46,7 +41,7 @@ const earningsData = [
 const StatsCard = ({ title, value, footer }) => (
   <div className="bg-[#fcfdfd] pt-5 pb-4 px-6 rounded-md border border-[#e5e8e7] w-full flex flex-col items-center sm:w-[196px] h-auto sm:h-[192px]">
     {/* Icon */}
-    <img src={icon} alt="icon" className="w-6 h-6 mb-2 " />
+    <img src="/dashboard-images/Icon.png" alt="icon" className="w-6 h-6 mb-2 " />
 
     {/* Title */}
     <h2 className="font-medium text-lg sm:text-[18px] leading-6 tracking-[-0.5px] mb-1">
@@ -67,7 +62,7 @@ const StatsCard = ({ title, value, footer }) => (
 const StatsCard2 = ({ title, value, footer }) => (
   <div className="bg-[#fcfdfd] pt-5 pb-4 px-6 rounded-md border border-[#e5e8e7] w-full flex flex-col items-center sm:w-[196px] h-auto sm:h-[192px]">
     {/* Icon */}
-    <img src={icon2} alt="icon" className="w-6 h-6 mb-2 " />
+    <img src="/dashboard-images/icon2.png" alt="icon" className="w-6 h-6 mb-2 " />
 
     {/* Title */}
     <h2 className="font-medium text-lg sm:text-[18px] leading-6 tracking-[-0.5px] mb-1">
@@ -88,7 +83,7 @@ const StatsCard2 = ({ title, value, footer }) => (
 const StatsCard3 = ({ title, value, footer }) => (
   <div className="bg-[#fcfdfd] pt-5 pb-4 px-6 rounded-md border border-[#e5e8e7] w-full flex flex-col items-center sm:w-[196px] h-auto sm:h-[192px]">
     {/* Icon */}
-    <img src={icon3} alt="icon" className="w-6 h-6 mb-2 " />
+    <img src="dashboard-images/icon3" alt="icon" className="w-6 h-6 mb-2 " />
 
     {/* Title */}
     <h2 className="font-medium text-lg sm:text-[18px] leading-6 tracking-[-0.5px] mb-1">
@@ -151,7 +146,7 @@ const Dashboard = () => {
           <button className="bg-[#389294] w-[215px] h-[48px] text-[#FAFDFE] px-[20px] py-[12px] rounded-[8px] flex items-center justify-center">
             Manage Webpage
             <img
-              src={global}
+              src="/dashboard-images/global.png"
               className="inline ml-2"
               alt="manage webpage icon"
             />
@@ -161,7 +156,7 @@ const Dashboard = () => {
 
           <Link to={'/manage-properties/add-property'} className="bg-[#fafdfe] text-[#389294] border border-[#389294] rounded-[8px] px-[20px] py-[12px] w-[178px] h-[48px]  flex items-center justify-center">
             Add Property
-            <img src={circle} className="inline ml-2" alt="add property icon" />
+            <img src="/dashboard-images/add-circle.png" className="inline ml-2" alt="add property icon" />
           </Link>
         </div>
       </header>
@@ -205,7 +200,7 @@ const Dashboard = () => {
                     Available Earnings
                   </p>
                   <img
-                    src={icon4}
+                    src="/dashboard-images/icon4"
                     alt="finance icon"
                     className="w-[40px] h-[40px]"
                   />
