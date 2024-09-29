@@ -131,6 +131,7 @@ const EarningsStatsChart = () => (
     </ResponsiveContainer>
   </div>
 );
+
 const Dashboard = () => {
   return (
     <main className="  w-full  mx-auto p-4 md:p-6">

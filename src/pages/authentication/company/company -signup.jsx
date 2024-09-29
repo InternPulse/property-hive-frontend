@@ -49,8 +49,8 @@ const CompanySignUpForm = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-full items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row min-h-screen items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-md rounded-lg h-full flex flex-col md:flex-row">
         {/* Left Section */}
         <div className="w-full h-full md:w-1/2">
           <img

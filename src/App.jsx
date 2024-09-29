@@ -18,6 +18,7 @@ import ForgotPassword1 from './pages/authentication/company/forgotPassword';
 import Verification from './pages/authentication/buyer/token-verification';
 import EmailVerification from './pages/authentication/buyer/email-verification';
 import ResetPassword from './pages/authentication/buyer/user-reset-password';
+import ResetPassword1 from './pages/authentication/company/user-reset-password';
 import CompanySignInForm from './pages/authentication/company/company-signin';
 import CompanySignUpForm from './pages/authentication/company/company -signup';
 import Inquiries from './pages/Inquiries';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/token-verification" element={<Verification />} />
           <Route path="/email-verification" element={<EmailVerification />} /> 
           <Route path="/user-reset-password" element={<ResetPassword />} />
+          <Route path="/company-reset-password" element={<ResetPassword1 />} />
           <Route path="/company-signin" element={<CompanySignInForm />} />
           <Route path="/company-signup" element={<CompanySignUpForm />} />
         </Routes>      
