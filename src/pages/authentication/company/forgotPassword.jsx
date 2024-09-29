@@ -1,50 +1,44 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { registerOptions } from '../../../utlis/validator';
+import { baseurl } from './company -signup';
 
 const ForgotPassword1 = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
+
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [responseMessage, setResponseMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleBackClick = () => {
     navigate('/company-signin');
   };
 
-  // Email validation function
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email) && email.length <= 254; // Ensure email length is within limits
-  };
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleError = (errors) => { };
+
+  const handleForgotPassword = async (data) => {
+    // navigate('/dashboard')
     setIsSubmitted(true);
-
-    // Validate email format
-    if (!validateEmail(email)) {
-      setEmailError('Invalid email address');
-      return;
-    }
-
-    setEmailError('');
-    setIsLoading(true);
-    
     try {
-      const response = await axios.post('/forgot-password-endpoint', { email });
-      
-      // Display a generic message regardless of email existence
-      setResponseMessage('If this email is registered, a password reset link will be sent.');
+      const headers  = {
+        'Content-Type' : 'application/json'
+      }
+      console.log(data);
+      const response = axios.post(`${baseurl}api/v1/forgot-password/` , data, {
+        headers: headers
+      })
+      console.log(response.data);
+
+  
     } catch (error) {
-      // Optionally handle error logging here
-      setResponseMessage('Something went wrong. Please try again later.');
-    } finally {
-      setIsLoading(false);
+      setLoading(false);
+      console.log(error);
+
     }
-  };
+  }
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row p-4 lg:p-20 bg-gray-100">
@@ -80,7 +74,7 @@ const ForgotPassword1 = () => {
         <h2 className="text-3xl font-bold mb-4 mt-10">Forgot Password</h2>
         <p className="text-gray-500 mb-6">Enter your email to reset your password</p>
 
-        <form onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit(handleForgotPassword)}>
           <div className="mb-6">
             <label
               htmlFor="email"
@@ -92,15 +86,13 @@ const ForgotPassword1 = () => {
               type="email"
               id="email"
               placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`mt-1 block w-full px-4 py-2 border ${
-                isSubmitted && emailError ? 'border-red-500' : 'border-gray-300'
-              } rounded-md shadow-sm focus:outline-none focus:ring-teal-600 focus:border-teal-600`}
+              {...register('email', registerOptions.email)}
+              className={`mt-1 block w-full px-4 py-2 border  'border-gray-300'
+              rounded-md shadow-sm focus:outline-none focus:ring-teal-600 focus:border-teal-600`}
             />
-            {isSubmitted && emailError && (
-              <p className="text-red-500 text-sm mt-1">{emailError}</p>
-            )}
+              <small className="text-red-600 text-sm mt-2">
+                  {errors?.email && errors.email.message}
+                </small>
           </div>
 
           <button
@@ -111,10 +103,6 @@ const ForgotPassword1 = () => {
             {isLoading ? 'Processing...' : 'Proceed'}
           </button>
         </form>
-
-        {responseMessage && (
-          <p className="mt-4 text-sm text-red-500">{responseMessage}</p>
-        )}
       </div>
     </div>
   );
