@@ -52,7 +52,7 @@ function App() {
           <Route path="/token-verification" element={<Verification />} />
           <Route path="/email-verification" element={<EmailVerification />} /> 
           <Route path="/user-reset-password" element={<ResetPassword />} />
-          <Route path="/company-reset-password" element={<ResetPassword1 />} />
+          <Route path="/reset-password" element={<ResetPassword1 />} />
           <Route path="/company-signin" element={<CompanySignInForm />} />
           <Route path="/company-signup" element={<CompanySignUpForm />} />
         </Routes>      

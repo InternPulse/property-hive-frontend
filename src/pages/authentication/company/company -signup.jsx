@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { registerOptions } from '../../../utlis/validator';
 export const baseurl = 'http://api.propertyhive.com.ng/'
+// export const baseurl = 'https://property-hive-backend.onrender.com/'
 import { useNavigate } from 'react-router-dom';
 
 const CompanySignUpForm = () => {
@@ -20,24 +21,28 @@ const CompanySignUpForm = () => {
 
   const handleRegistration = async (data) => {
     try {
-      const headers  = {
-        'Content-Type' : 'application/json'
-      }
-   
-      const formData = {
-        email : data.email,
-        lname : data.lname,
-        fname: data.fname,
-        business_name: data.business_name,
-        profile_picture: data.profile_picture,
-        password : data.password,
-      }
-      console.log(formData);
-      const response = await axios.post(`${baseurl}api/v1/register/company` , formData, {
+ 
+      const headers = {
+        'Content-Type': 'multipart/form-data'
+      };
+  
+      const formData = new FormData();
+      formData.append('email', data.email);
+      formData.append('lname', data.lname);
+      formData.append('fname', data.fname);
+      formData.append('business_name', data.business_name);
+      formData.append('profile_picture', data.profile_picture[0]); // Access the file
+      formData.append('password', data.password);
+      formData.append('phone_number', data.phone_number);
+
+      console.log([...formData]); 
+
+      const response = await axios.post(`${baseurl}api/v1/register/company/` , formData, {
         headers: headers
       })
-
-      if (response.data.status === 201) {
+      console.log(response);
+      
+      if (response.status === 201) {
         navigate('/email-verification')
       }
      

@@ -10,10 +10,13 @@ const ForgotPassword1 = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+ 
 
   const handleBackClick = () => {
     navigate('/company-signin');
   };
+
+
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -26,11 +29,19 @@ const ForgotPassword1 = () => {
       const headers  = {
         'Content-Type' : 'application/json'
       }
-      console.log(data);
-      const response = axios.post(`${baseurl}api/v1/forgot-password/` , data, {
+
+      const response = await axios.post(`${baseurl}api/v1/forgot-password/` , data, {
         headers: headers
       })
-      console.log(response.data);
+    
+
+      const message = response.data.message;
+     
+      
+
+      if (message === 'Password reset email sent.') {
+        alert('Password reset email sent. Please check your email')
+      }
 
   
     } catch (error) {

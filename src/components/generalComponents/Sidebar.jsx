@@ -8,14 +8,41 @@ import messagesIcon from '../../assets/icons/sms.png'
 import infoIcon from '../../assets/icons/info-circle.png'
 import settingsIcon from '../../assets/icons/setting-2.png'
 import logoutIcon from '../../assets/icons/logout.png'
-import { Link,useLocation } from 'react-router-dom';
+import { Link,useLocation , useNavigate} from 'react-router-dom';
 import { useContext } from 'react'
 import DisplayContext from '../../context/DispalyContext'
+import axios from 'axios'
+import { baseurl } from '../../pages/authentication/company/company -signup'
 
 
 const Sidebar = () => {
     const {pathname} = useLocation()
+    const navigate = useNavigate();
     const {display} = useContext(DisplayContext)
+
+    const accessToken = localStorage.getItem("accessToken");
+
+    console.log("acessToken" +accessToken);
+    
+
+    const handleLogout = async () => {
+try {
+  const response = await axios.post(`${baseurl}api/v1/log-out`,  {}, {
+    headers: {Authorization: `Bearer ${accessToken}`}
+  });
+
+  console.log(response);
+  if (response.status === 200) {
+    navigate('/company-signin')
+  }
+} catch (error) {
+  console.log(error)
+}
+      
+    }
+
+  
+    
     
   return (
     <div className={`fixed z-10 ${display? ' translate-x-0': '-translate-x-[500px]'}  duration-300  xl:translate-x-0 xl:static w-[279px] text-[#F5F6F6] bg-[#203F41] min-h-screen py-[32px] flex flex-col justify-between items-center`}>
@@ -55,7 +82,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      <div className="w-full">
+      <div className="w-full" onClick={handleLogout}>
         <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
           <img src={logoutIcon} alt="" />
           <span>Logout</span>

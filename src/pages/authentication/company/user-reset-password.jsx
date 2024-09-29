@@ -8,6 +8,13 @@ import { baseurl } from './company -signup';
 const ResetPassword1 = () => {
 
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const urlToken = window.location.search.split("=")[1];
+    setToken(urlToken || "");
+    console.log(urlToken);
+  }, [])
   
   const [loading, setLoading] = useState(false);
 
@@ -26,11 +33,15 @@ const ResetPassword1 = () => {
       const headers  = {
         'Content-Type' : 'application/json'
       }
-      console.log(data);
-      const response = axios.post(`${baseurl}api/v1/reset-password/` , data, {
+     
+      const newData = {
+        password : data.password
+      }
+      const response = await axios.post(`${baseurl}api/v1/reset-password/` , {...newData, token}, {
         headers: headers
       })
       console.log(response.data);
+
 
   
     } catch (error) {

@@ -30,28 +30,39 @@ const CompanySignInForm = () => {
         'Content-Type' : 'application/json'
       }
       console.log(data);
-      const response = axios.post(`${baseurl}api/v1/login/` , data, {
+      const response = await axios.post(`${baseurl}api/v1/login/` , data, {
         headers: headers
       })
-      console.log(response.data);
-      const roleSelection = (await response).data.role;
-      switch (roleSelection) {
-        case 'Admin':
-          navigate('/admin-dashboard');
-          break;
-        case 'Real Estate Agent':
-          navigate('/agent-dashboard');
-          break;
-        case 'Buyer':
-          navigate('/buyer-dashboard');
-          break;
-        case 'Seller':
-          navigate('/seller-dashboard');
-          break;
-        default:
-          alert('Invalid role selected.');
-          break;
+      console.log(response);
+      
+      const refreshToken = response.data.refresh;
+      const accessToken = response.data.access;
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("accessToken", accessToken);
+
+      if (response?.status === 200) {
+        navigate('/dashboard')
       }
+      
+      
+      // const roleSelection = (await response).data.role;
+      // switch (roleSelection) {
+      //   case 'Admin':
+      //     navigate('/admin-dashboard');
+      //     break;
+      //   case 'Real Estate Agent':
+      //     navigate('/agent-dashboard');
+      //     break;
+      //   case 'Buyer':
+      //     navigate('/buyer-dashboard');
+      //     break;
+      //   case 'Seller':
+      //     navigate('/seller-dashboard');
+      //     break;
+      //   default:
+      //     alert('Invalid role selected.');
+      //     break;
+      // }
   
     } catch (error) {
       setLoading(false);
