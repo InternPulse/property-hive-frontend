@@ -28,7 +28,7 @@ const ResetPassword1 = () => {
 
   const handleResetPassword = async (data) => {
     // navigate('/dashboard')
-    setIsSubmitted(true);
+    // setIsSubmitted(true);
     try {
       const headers  = {
         'Content-Type' : 'application/json'
