@@ -2,7 +2,7 @@ import React, { useState , useRef} from 'react';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { registerOptions } from '../../../utlis/validator';
-export const baseurl = 'http://api.propertyhive.com.ng/'
+export const baseurl = 'http://api.propertyhive.com.ng/';
 // export const baseurl = 'https://property-hive-backend.onrender.com/'
 import { useNavigate } from 'react-router-dom';
 
