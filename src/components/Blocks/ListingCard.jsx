@@ -11,13 +11,24 @@ import {
 } from "@/src/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 
+import { useDeletePropertyMutation } from "@/src/redux/service/propertiesApi";
 import { useDialogControls } from "@/tests/utils/hooks/useDialogControls";
+import { toast } from "sonner";
 import { Dialog, DialogContent } from "../ui/dialog";
 import ConfirmDialog from "./ConfirmDialog";
 
-const ListingCard = ({ title, location, details, price, image }) => {
+const ListingCard = ({ title, location, details, price, image, id }) => {
   const deleteDialog = useDialogControls();
-  const modDetails = details.join(" | ");
+  const [deleteProperty] = useDeletePropertyMutation();
+  const handleDelete = async (id) => {
+    toast.promise(deleteProperty(id), {
+      // loading: "Deleting property...",
+      success: "Property deleted successfully",
+      error: "Error deleting property",
+      duration: 600,
+    });
+    deleteDialog.hide();
+  };
   return (
     <div
       data-testid="property-listing-card"
@@ -77,16 +88,20 @@ const ListingCard = ({ title, location, details, price, image }) => {
                 open={deleteDialog.visible}
               >
                 <DialogContent>
-                  <ConfirmDialog
-                  // onConfirm={handleDelete}
-                  />
+                  <ConfirmDialog onConfirm={() => handleDelete(id)} />
                 </DialogContent>
               </Dialog>
             </>
           </div>
           <p className="font-medium text-neutrals-700">{location}</p>
-          <p className="text-sm font-medium text-neutrals-700">{modDetails}</p>
-          <p className="text-xl font-semibold text-primary-800">{price}</p>
+          <p className="text-sm font-medium text-neutrals-700">{details}</p>
+          <p className="text-xl font-semibold text-primary-800">
+            {new Intl.NumberFormat("en-NG", {
+              style: "currency",
+              currency: "NGN",
+              maximumSignificantDigits: 3,
+            }).format(price)}
+          </p>
         </div>
       </div>
     </div>

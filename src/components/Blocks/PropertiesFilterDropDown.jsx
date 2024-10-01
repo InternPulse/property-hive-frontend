@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 
-export const PropertiesFilterDropDown = ({ titles, data, state, dispatch }) => {
+export const PropertiesFilterDropDown = ({ titles, state, dispatch }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -32,10 +32,7 @@ export const PropertiesFilterDropDown = ({ titles, data, state, dispatch }) => {
           className="font-medium text-neutrals-950 lg:text-lg"
           value={state}
           onValueChange={(value) =>
-            dispatch({
-              type: value,
-              data,
-            })
+            dispatch(value === "allProps" ? "all" : value)
           }
         >
           {titles.map((title) => (
