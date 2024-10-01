@@ -9,7 +9,7 @@ const ForgotPassword1 = () => {
   const navigate = useNavigate();
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
  
 
   const handleBackClick = () => {

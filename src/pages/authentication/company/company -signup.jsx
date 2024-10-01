@@ -11,8 +11,6 @@ const CompanySignUpForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loading, setLoading] = useState(false); // Added loading state for API requests
- 
-
 
   const { register, handleSubmit, watch ,formState: { errors } } = useForm();
 
@@ -178,7 +176,7 @@ const CompanySignUpForm = () => {
                 </small>
               </div>
 
-              <div>
+              <div className="relative">
                   <label className="block text-gray-600 font-semibold">Confirm Password</label>
                   <input
                     type="password"
@@ -193,7 +191,7 @@ const CompanySignUpForm = () => {
                    })}
                     placeholder="Confirm password"
                     className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:border-teal-500"
-                  />
+                  />                  
                  <small className="text-red-600 text-sm mt-2">
                   {errors?.confirm_password && errors.confirm_password.message}
                 </small>
