@@ -46,52 +46,6 @@ const ListingCard = ({ title, location, details, price, image, id }) => {
             >
               {title}
             </h2>
-            <>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild className="">
-                  <Button variant="ghost" className="h-5 w-5 text-neutrals-700">
-                    <img src={verticalDots} alt="" className="h-full w-full" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  data-testid="listing-options-dropdown-menu"
-                  className="w-[calc(173rem/16)] text-neutrals-950"
-                >
-                  <DropdownMenuItem className="hover:bg-neutrals-25">
-                    <Link
-                      to=""
-                      className="flex items-center gap-2 font-medium capitalize lg:text-lg"
-                    >
-                      <img src={editIcon} alt="" className="" />
-                      <span className="">edit</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center gap-2 font-medium capitalize hover:bg-neutrals-25 lg:text-lg">
-                    <img src={eyeSlash} alt="" className="" />
-                    <span className="">pause</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onSelect={deleteDialog.show}
-                    aria-haspopup="dialog"
-                    aria-expanded={deleteDialog.visible ? "true" : "false"}
-                    aria-controls="radix-:rf:"
-                    data-state={deleteDialog.visible ? "open" : "closed"}
-                    className="flex items-center gap-2 font-medium capitalize hover:bg-neutrals-25 lg:text-lg"
-                  >
-                    <img src={deleteIcon} alt="" className="" />
-                    <span className="text-error-500">delete</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <Dialog
-                onOpenChange={deleteDialog.toggle}
-                open={deleteDialog.visible}
-              >
-                <DialogContent>
-                  <ConfirmDialog onConfirm={() => handleDelete(id)} />
-                </DialogContent>
-              </Dialog>
-            </>
           </div>
           <p className="font-medium text-neutrals-700">{location}</p>
           <p className="text-sm font-medium text-neutrals-700">{details}</p>
@@ -102,6 +56,55 @@ const ListingCard = ({ title, location, details, price, image, id }) => {
               maximumSignificantDigits: 3,
             }).format(price)}
           </p>
+        </div>
+        <div className="">
+          <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild className="">
+                <Button variant="ghost" className="h-5 w-5 text-neutrals-700">
+                  <img src={verticalDots} alt="" className="h-full w-full" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                data-testid="listing-options-dropdown-menu"
+                className="w-[calc(173rem/16)] text-neutrals-950"
+              >
+                <DropdownMenuItem className="hover:bg-neutrals-25">
+                  <Link
+                    to=""
+                    className="flex items-center gap-2 font-medium capitalize lg:text-lg"
+                  >
+                    <img src={editIcon} alt="" className="" />
+                    <span className="">edit</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center gap-2 font-medium capitalize hover:bg-neutrals-25 lg:text-lg">
+                  <img src={eyeSlash} alt="" className="" />
+                  <span className="">pause</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onSelect={deleteDialog.show}
+                  aria-haspopup="dialog"
+                  aria-expanded={deleteDialog.visible ? "true" : "false"}
+                  aria-controls="radix-:rf:"
+                  data-state={deleteDialog.visible ? "open" : "closed"}
+                  className="flex items-center gap-2 font-medium capitalize hover:bg-neutrals-25 lg:text-lg"
+                >
+                  <img src={deleteIcon} alt="" className="" />
+                  <span className="text-error-500">delete</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Dialog
+              onOpenChange={deleteDialog.toggle}
+              open={deleteDialog.visible}
+            >
+              <DialogContent>
+                <ConfirmDialog onConfirm={() => handleDelete(id)} />
+              </DialogContent>
+            </Dialog>
+          </div>
+          <span className=""></span>
         </div>
       </div>
     </div>

@@ -122,6 +122,10 @@ const ManageProperties = () => {
     }
   }, [data]);
 
+  if ((isFetching && originalData.length === 0) || isLoading)
+    return <p>Loading...</p>;
+  if (isError) return <p>{error}!</p>;
+
   return (
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
       <section className="mb-[calc(30rem/16)] flex items-end justify-between">
@@ -154,14 +158,8 @@ const ManageProperties = () => {
         </Link>
       </section>
       <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-        {(isFetching && originalData.length === 0) || isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          isError && <p>{error}!</p>
-        )}
-
-        {filteredData.length === 0 ? (
-          <p>No properties found</p>
+        {filteredData?.length === 0 ? (
+          <p>No properties found!</p>
         ) : (
           filteredData?.map((item, index) => (
             <ListingCard
