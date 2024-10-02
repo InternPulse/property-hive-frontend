@@ -102,14 +102,16 @@ const ManageProperties = () => {
         !["allProps", "all"].includes(propertyTypeFilter) &&
         statusFilter === "all"
       )
-        return (matchPropertyType = item.property_type === propertyTypeFilter);
+        return (matchPropertyType =
+          item.property_type.toLowerCase() === propertyTypeFilter);
       else if (
         !["allProps", "all"].includes(propertyTypeFilter) &&
         statusFilter !== "all"
       )
         return (
           (matchStatus = item.is_sold === STATUS_CONDITIONS[statusFilter]) &&
-          (matchPropertyType = item.property_type === propertyTypeFilter)
+          (matchPropertyType =
+            item.property_type.toLowerCase() === propertyTypeFilter)
         );
 
       return matchStatus && matchPropertyType;
@@ -133,7 +135,7 @@ const ManageProperties = () => {
           <div className="space-y-1">
             <span className="font-medium text-neutrals-950">status</span>
             <PropertiesFilterDropDown
-              titles={Object.keys(STATUS_CONDITIONS)}
+              titles={Object.keys(STATUS_CONDITIONS).map((item) => `${item}S`)}
               state={statusFilter}
               dispatch={setStatusFilter}
             />
@@ -141,9 +143,9 @@ const ManageProperties = () => {
           <div className="space-y-1">
             <span className="font-medium text-neutrals-950">property type</span>
             <PropertiesFilterDropDown
-              titles={Object.keys(PROPERTY_TYPES_CONDITIONS).filter(
-                (item) => item !== "allProps",
-              )}
+              titles={Object.keys(PROPERTY_TYPES_CONDITIONS)
+                .filter((item) => item !== "allProps")
+                .map((item) => `${item}P`)}
               state={propertyTypeFilter}
               dispatch={setPropertyTypeFilter}
             />
@@ -164,6 +166,7 @@ const ManageProperties = () => {
           filteredData?.map((item, index) => (
             <ListingCard
               key={index}
+              isSold={item.is_sold}
               details={`${item.number_of_bedrooms} beds | ${item.number_of_bathrooms} baths | ${item.squaremeters} sq. m`}
               image={testImg}
               location={`${item.city}, ${item.state}`}

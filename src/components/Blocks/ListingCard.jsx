@@ -14,12 +14,22 @@ import { Link } from "react-router-dom";
 import { useDeletePropertyMutation } from "@/src/redux/service/propertiesApi";
 import { useDialogControls } from "@/tests/utils/hooks/useDialogControls";
 import { toast } from "sonner";
+import { Badge } from "../ui/badge";
 import { Dialog, DialogContent } from "../ui/dialog";
 import ConfirmDialog from "./ConfirmDialog";
 
-const ListingCard = ({ title, location, details, price, image, id }) => {
+const ListingCard = ({
+  title,
+  location,
+  details,
+  price,
+  image,
+  id,
+  isSold,
+}) => {
   const deleteDialog = useDialogControls();
   const [deleteProperty] = useDeletePropertyMutation();
+
   const handleDelete = async (id) => {
     toast.promise(deleteProperty(id), {
       // loading: "Deleting property...",
@@ -32,12 +42,12 @@ const ListingCard = ({ title, location, details, price, image, id }) => {
   return (
     <div
       data-testid="property-listing-card"
-      className="space-y-2 rounded-lg bg-neutrals-25 p-4"
+      className="flex flex-col space-y-2 rounded-lg bg-neutrals-25 p-4"
     >
       <div className="rounded-lg">
         <img src={image} alt="" className="w-full" />
       </div>
-      <div className="">
+      <div className="flex flex-1 justify-between">
         <div className="space-y-0.5">
           <div className="flex items-center justify-between">
             <h2
@@ -57,7 +67,7 @@ const ListingCard = ({ title, location, details, price, image, id }) => {
             }).format(price)}
           </p>
         </div>
-        <div className="">
+        <div className="mb-1 mt-2 flex flex-col items-end justify-between">
           <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="">
@@ -104,7 +114,9 @@ const ListingCard = ({ title, location, details, price, image, id }) => {
               </DialogContent>
             </Dialog>
           </div>
-          <span className=""></span>
+          <Badge variant={isSold ? "sucess" : "destructive"}>
+            {isSold ? "Active" : "Disabled"}
+          </Badge>
         </div>
       </div>
     </div>

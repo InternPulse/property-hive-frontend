@@ -62,7 +62,7 @@ export const propertiesApi = createApi({
       }),
       invalidatesTags: (id) => [{ type: "Properties", id }],
       onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
-        const patchResult = dispatch(
+        dispatch(
           propertiesApi.util.updateQueryData(
             "getAllProperties",
             id,
@@ -76,10 +76,10 @@ export const propertiesApi = createApi({
         );
         try {
           await queryFulfilled;
-          // dispatch(propertiesApi.util.invalidateTags(["Properties"]));
         } catch (err) {
           console.log("onQueryStarted error: ", err);
-          patchResult.undo();
+          // patchResult.undo();
+          dispatch(propertiesApi.util.invalidateTags(["Properties"]));
         }
       },
     }),
