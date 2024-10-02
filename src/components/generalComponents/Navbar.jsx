@@ -8,6 +8,7 @@ import DisplayContext from "../../context/DispalyContext";
 const Navbar = ({ pagetitle }) => {
   const { display, setDisplay } = useContext(DisplayContext);
 
+
   return (
     <nav className="flex w-full items-center justify-between gap-0 bg-[#FCFDFD] px-2 pb-[8px] pt-[16px] md:gap-3 xl:gap-0 xl:px-[40px]">
       <div>

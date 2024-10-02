@@ -1,4 +1,5 @@
 import testImg from "@/src/assets/images/testPropImg.png";
+import addIcon from '@/src/assets/icons/add-circle.png'
 import ListingCard from "@/src/components/Blocks/ListingCard";
 import { PropertiesFilterDropDown } from "@/src/components/Blocks/PropertiesFilterDropDown";
 import { useGetAllPropertiesQuery } from "@/src/redux/service/propertiesApi";
@@ -157,6 +158,7 @@ const ManageProperties = () => {
         >
           <img src="" alt="" className="" />
           <span className="">add property</span>
+
         </Link>
       </section>
       <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">

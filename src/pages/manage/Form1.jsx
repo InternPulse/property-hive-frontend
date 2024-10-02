@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import upload from '../../assets/Upload.png'
 import { useEffect, useRef, useState } from "react";
 import upload from "../../assets/Upload.png";
 import { statesOfNigeria } from "./states";

@@ -4,9 +4,11 @@ import Navbar from "./generalComponents/Navbar";
 import Sidebar from "./generalComponents/Sidebar";
 
 const pageTitles = {
-  "/": "Dashboard",
+  "/dashboard": "Dashboard",
   "/manage-properties": "Manage Properties",
-  "/manage-properties/add": "Add Property",
+  "/manage-properties/add-property": "Add Property",
+  "/messages": "Messages",
+  "/manage-properties/add-property/preview":"Preview"
 };
 const MainLayout = ({ children }) => {
   const pathname = useLocation().pathname;

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiAlertCircle } from 'react-icons/fi'; // Error icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios'; // Import Axios
+import { useForm } from "react-hook-form";
+import { registerOptions } from '../../../utlis/validator';
+import { baseurl } from './company -signup';
+
 
 const CompanySignInForm = () => {
   const navigate = useNavigate(); // Initialize useNavigate
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [serverError, setServerError] = useState('');
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState(''); // State for selected role
 
@@ -21,77 +20,59 @@ const CompanySignInForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const validatePassword = (password) => {
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordPattern.test(password);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (data) => {
+    // navigate('/dashboard')
     setIsSubmitted(true);
-    let isValid = true;
-
-    if (!validateEmail(email)) {
-      setEmailError('Invalid Email Address');
-      isValid = false;
-    } else {
-      setEmailError('');
-    }
-
-    if (!validatePassword(password)) {
-      setPasswordError('Invalid Password.');
-      isValid = false;
-    } else {
-      setPasswordError('');
-    }
-
-    if (isValid) {
-      setLoading(true);
-
-      try {
-        const response = await axios.post('/api/signin', { email, password });
-        console.log('Response:', response.data);
-
-        // After successful sign-in, show role selection
-        const roleSelection = prompt("Select your role (Admin, Real Estate Agent, Buyer, Seller):");
-        if (roleSelection) {
-          setRole(roleSelection); // Set the selected role
-          
-          // Redirect based on selected role
-          switch (roleSelection) {
-            case 'Admin':
-              navigate('/admin-dashboard');
-              break;
-            case 'Real Estate Agent':
-              navigate('/agent-dashboard');
-              break;
-            case 'Buyer':
-              navigate('/buyer-dashboard');
-              break;
-            case 'Seller':
-              navigate('/seller-dashboard');
-              break;
-            default:
-              alert('Invalid role selected.');
-              break;
-          }
-        }
-      } catch (error) {
-        setServerError('Invalid credentials. Please try again.');
-        console.error('Error signing in:', error);
-      } finally {
-        setLoading(false);
+    try {
+      const headers  = {
+        'Content-Type' : 'application/json'
       }
+      console.log(data);
+      const response = await axios.post(`${baseurl}api/v1/login/` , data, {
+        headers: headers
+      })
+      console.log(response);
+      
+      const refreshToken = response.data.refresh;
+      const accessToken = response.data.access;
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("accessToken", accessToken);
+
+      if (response?.status === 200) {
+        navigate('/dashboard')
+      }
+      
+      
+      // const roleSelection = (await response).data.role;
+      // switch (roleSelection) {
+      //   case 'Admin':
+      //     navigate('/admin-dashboard');
+      //     break;
+      //   case 'Real Estate Agent':
+      //     navigate('/agent-dashboard');
+      //     break;
+      //   case 'Buyer':
+      //     navigate('/buyer-dashboard');
+      //     break;
+      //   case 'Seller':
+      //     navigate('/seller-dashboard');
+      //     break;
+      //   default:
+      //     alert('Invalid role selected.');
+      //     break;
+      // }
+  
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+
     }
-  };
+  }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen items-center justify-center bg-gray-100">
+    <div className="flex flex-col md:flex-row h-full items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg flex">
         <img
           src="/user-auth-images/company1.png"
@@ -114,9 +95,10 @@ const CompanySignInForm = () => {
           <h2 className="text-3xl font-bold mb-6 mt-12 text-start">Sign in to your account</h2>
           <p className="text-gray-500 mb-8">Please enter your details below</p>
 
-          {serverError && <p className="text-red-500 text-sm mt-1">{serverError}</p>}
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+
+        
+          <form className="space-y-6" onSubmit={handleSubmit(handleLogin)}>
             <div className="relative">
               <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
                 Email
@@ -127,19 +109,14 @@ const CompanySignInForm = () => {
                   name="email"
                   type="email"
                   placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full mt-1 p-3 pr-10 border ${
-                    isSubmitted && emailError ? 'border-red-500' : 'border-gray-300'
-                  } rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500`}
+                  {...register('email', registerOptions.email)}
+                  className={`w-full mt-1 p-3 pr-10 border border-gray-300'
+                   rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500`}
                 />
-                {isSubmitted && emailError && (
-                  <FiAlertCircle className="absolute right-3 top-3 text-red-500" size={20} />
-                )}
               </div>
-              {isSubmitted && emailError && (
-                <p className="text-red-500 text-sm mt-1">{emailError}</p>
-              )}
+              <small className="text-red-600 text-sm mt-2">
+                  {errors?.email && errors.email.message}
+                </small>
             </div>
 
             <div className="relative">
@@ -152,11 +129,9 @@ const CompanySignInForm = () => {
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={`w-full mt-1 p-3 pr-10 border ${
-                    isSubmitted && passwordError ? 'border-red-500' : 'border-gray-300'
-                  } rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500`}
+                  {...register('password', registerOptions.login_password)}
+                  className={`w-full mt-1 p-3 pr-10 border border-gray-300'
+                  rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500`}
                 />
                 <span
                   onClick={togglePasswordVisibility}
@@ -164,13 +139,10 @@ const CompanySignInForm = () => {
                 >
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                 </span>
-                {isSubmitted && passwordError && (
-                  <FiAlertCircle className="absolute right-3 top-3 text-red-500" size={20} />
-                )}
               </div>
-              {isSubmitted && passwordError && (
-                <p className="text-red-500 text-sm mt-1">{passwordError}</p>
-              )}
+                <small className="text-red-600 text-sm mt-2">
+                  {errors?.login_password && errors.login_password.message}
+                </small>
             </div>
 
             <div className="flex items-center justify-between">
@@ -187,7 +159,7 @@ const CompanySignInForm = () => {
               </div>
 
               <div className="text-sm">
-                <a href="/forgot-password" className="font-medium text-teal-600 hover:text-teal-500">
+                <a href="/forgot-password1" className="font-medium text-teal-600 hover:text-teal-500">
                   Forgot Password?
                 </a>
               </div>
@@ -201,7 +173,7 @@ const CompanySignInForm = () => {
                   loading ? 'bg-teal-400 cursor-not-allowed' : 'bg-teal-600 hover:bg-teal-700'
                 }`}
               >
-                {loading ? 'Signing In...' : 'Sign In'}
+                {loading ? 'Loading..' : 'Sign In'}
               </button>
             </div>
           </form>
