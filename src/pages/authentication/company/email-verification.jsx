@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { baseurl } from './company -signup';
 
-const EmailVerification = () => {
+const CompanyEmailVerification = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -10,7 +11,7 @@ const EmailVerification = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleBackClick = () => {
-    navigate('/buyer-signin');
+    navigate('/company-signin');
   };
 
   // Email validation function
@@ -19,9 +20,9 @@ const EmailVerification = () => {
     return emailPattern.test(email);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
+  const handleSubmit = async (data) => {
+    // data.preventDefault();
+    // setIsSubmitted(true);
 
     if (!validateEmail(email)) {
       setEmailError('Invalid email address');
@@ -31,11 +32,30 @@ const EmailVerification = () => {
     }
 
     setIsLoading(true); // Start loading
+    
     try {
-      const response = await axios.post('/api/verify-email', { email });
-      console.log('Verification response:', response.data);
-      // Handle successful verification (e.g., navigate to another page)
-      navigate('/verification-success'); // Example success page
+      const headers  = {
+        'Content-Type' : 'application/json'
+      }
+
+      const response = await axios.post(`${baseurl}api/v1/verify-email/` , data, {
+        headers: headers
+      })
+    
+
+      const message = response.data.message;
+     
+      
+
+      if (message === 'Verification email sent.') {
+        alert('Verification email sent. Please check your email')
+      }
+      // const response = await axios.post('/api/verify-email', { email });
+      // console.log('Verification response:', response.data);
+      // // Handle successful verification (e.g., navigate to another page)
+      // navigate('/verification-success'); // Example success page
+
+
     } catch (error) {
       console.error('Error verifying email:', error);
       setEmailError('Verification failed. Please try again.');
@@ -130,7 +150,7 @@ const EmailVerification = () => {
   );
 };
 
-export default EmailVerification;
+export default CompanyEmailVerification;
 
 
 

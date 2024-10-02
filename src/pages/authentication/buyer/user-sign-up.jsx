@@ -2,7 +2,7 @@ import React, { useState , useRef} from 'react';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { registerOptions } from '../../../utlis/validator';
-export const baseurl = 'http://api.propertyhive.com.ng/';
+import { baseurl } from '../company/company -signup';
 // export const baseurl = 'https://property-hive-backend.onrender.com/'
 import { useNavigate } from 'react-router-dom';
 
@@ -56,7 +56,7 @@ const CompanySignUpForm = () => {
         {/* Left Section */}
         <div className="w-full h-full md:w-1/2">
           <img
-            src="/user-auth-images/company1.png"
+            src="/user-auth-images/Frame1.png"
             alt="Property Search"
             className="w-full md:h-screen object-cover"
           />
@@ -66,7 +66,7 @@ const CompanySignUpForm = () => {
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white p-10">
           <div className="flex justify-end">
             <p className="text-gray-500">
-              Already have an account? <a href="/company-signin" className="text-teal-600 font-semibold">Sign In</a>
+              Already have an account? <a href="/buyer-signin" className="text-teal-600 font-semibold">Sign In</a>
             </p>
           </div>
           <h2 className="text-2xl font-bold text-gray-700 mb-6 mt-6">
