@@ -49,6 +49,7 @@ const CompanyEmailVerification = () => {
 
       if (message === 'Verification email sent.') {
         alert('Verification email sent. Please check your email')
+        navigate('/company-verification-code')
       }
       // const response = await axios.post('/api/verify-email', { email });
       // console.log('Verification response:', response.data);
