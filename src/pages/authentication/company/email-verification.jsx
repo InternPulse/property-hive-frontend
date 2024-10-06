@@ -15,21 +15,9 @@ const CompanyEmailVerification = () => {
   };
 
   // Email validation function
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
 
   const handleSubmit = async (data) => {
-    // data.preventDefault();
-    // setIsSubmitted(true);
-
-    if (!validateEmail(email)) {
-      setEmailError('Invalid email address');
-      return; // Stop here if validation fails
-    } else {
-      setEmailError('');
-    }
+    data.preventDefault();
 
     setIsLoading(true); // Start loading
     
@@ -37,6 +25,14 @@ const CompanyEmailVerification = () => {
       const headers  = {
         'Content-Type' : 'application/json'
       }
+      const useremail = localStorage.getItem('user-email');
+      const code = email;
+
+      const data = {
+         email: useremail,
+        code : code,
+      };
+      console.log(data)
 
       const response = await axios.post(`${baseurl}api/v1/verify-email/` , data, {
         headers: headers
@@ -48,8 +44,9 @@ const CompanyEmailVerification = () => {
       
 
       if (message === 'Verification email sent.') {
+        localStorage.clear();
         alert('Verification email sent. Please check your email')
-        navigate('/company-verification-code')
+        navigate('/company-')
       }
       // const response = await axios.post('/api/verify-email', { email });
       // console.log('Verification response:', response.data);
@@ -112,7 +109,7 @@ const CompanyEmailVerification = () => {
               Valid ID Number (NIN/Passport/Driver's License)
             </label>
             <input
-              type="email"
+              type="number"
               id="email"
               placeholder="Enter ID"
               value={email}

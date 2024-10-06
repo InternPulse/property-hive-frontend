@@ -19,6 +19,13 @@ const Verification = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fullCode = code.join('');
+    const email = localStorage.getItem('user-email');
+
+    const data = {
+       email: email,
+      code : fullCode,
+    };
+    console.log(data)
 
     try {
       // Replace with your actual API endpoint

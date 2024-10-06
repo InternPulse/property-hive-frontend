@@ -29,6 +29,7 @@ const ResetPassword1 = () => {
   const handleResetPassword = async (data) => {
     // navigate('/dashboard')
     // setIsSubmitted(true);
+    data.preventDefault();
     try {
       const headers  = {
         'Content-Type' : 'application/json'
@@ -43,8 +44,9 @@ const ResetPassword1 = () => {
       })
       console.log(response.data);
 
-
-  
+      if (response.data.message === 'Password has been reset.') {
+        alert('Password has been reset successfully.')
+      }
     } catch (error) {
       setLoading(false);
       console.log(error);

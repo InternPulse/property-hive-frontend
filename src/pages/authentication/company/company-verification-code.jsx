@@ -19,11 +19,25 @@ const CompanyVerificationCode = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fullCode = code.join('');
+    const email = localStorage.getItem('user-email');
+
+    const data = {
+       email: email,
+      code : fullCode,
+    };
+    console.log(data)
 
     try {
       // Replace with your actual API endpoint
-      const response = await axios.post('/api/verify-email', { code: fullCode });
+      const response = await axios.post('/api/verify-email', data);
       console.log('Verification response:', response.data);
+      
+      if (response.data.message === 'Email verified successfully') {
+        localStorage.clear();
+        alert('Verification email sent. Please check your email')
+        navigate('/company-signin')
+      }
+
       // Handle successful verification (e.g., redirect or show a success message)
     } catch (err) {
       setError('Failed to verify code. Please try again.');

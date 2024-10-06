@@ -41,7 +41,10 @@ const CompanySignUpForm = () => {
       console.log(response);
       
       if (response.status === 201) {
+        alert('Regiteration successfu. Verication email sent, Please check your email')
+
         navigate('/company-email-verification')
+        localStorage.setItem('user-email', data?.email);
       }
      
   
