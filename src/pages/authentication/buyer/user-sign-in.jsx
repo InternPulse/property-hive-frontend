@@ -75,7 +75,7 @@ const CompanySignInForm = () => {
     <div className="flex flex-col md:flex-row h-full items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg flex">
         <img
-          src="/user-auth-images/company1.png"
+          src="/user-auth-images/Frame1.png"
           alt="Property Search"
           className="w-full h-screen object-cover"
         />
@@ -159,7 +159,7 @@ const CompanySignInForm = () => {
               </div>
 
               <div className="text-sm">
-                <a href="/forgot-password1" className="font-medium text-teal-600 hover:text-teal-500">
+                <a href="/forgot-password" className="font-medium text-teal-600 hover:text-teal-500">
                   Forgot Password?
                 </a>
               </div>

@@ -68,7 +68,7 @@ const ResetPassword1 = () => {
       {/* Right side with form */}
       <div className="lg:w-1/2 flex flex-col justify-start items-start bg-white p-10 h-full">
         <div className="w-full max-w-md">
-          <a href="/company-signin" className="text-sm text-gray-500 mb-4 inline-block">&larr; Back</a>
+          <a href="/signin" className="text-sm text-gray-500 mb-4 inline-block">&larr; Back</a>
           <h2 className="text-3xl font-bold text-gray-800 mb-4 mt-20">New Password</h2>
           <p className="text-gray-500 mb-6">
             Enter your new password to get back into your account.
