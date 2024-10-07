@@ -23,12 +23,13 @@ const Sidebar = () => {
     const accessToken = localStorage.getItem("accessToken");
 
     console.log("acessToken" +accessToken);
-    
+
 
     const handleLogout = async () => {
 try {
-  const response = await axios.post(`${baseurl}api/v1/log-out`,  {}, {
+  const response = await axios.post(`${baseurl}api/v1/log-out`, {}, {
     headers: {Authorization: `Bearer ${accessToken}`}
+    
   });
 
   console.log(response);
@@ -40,9 +41,6 @@ try {
 }
       
     }
-
-  
-    
     
   return (
     <div className={`fixed z-10 ${display? ' translate-x-0': '-translate-x-[500px]'}  duration-300  xl:translate-x-0 xl:static w-[279px] text-[#F5F6F6] bg-[#203F41] min-h-screen py-[32px] flex flex-col justify-between items-center`}>

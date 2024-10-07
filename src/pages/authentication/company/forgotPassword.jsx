@@ -40,7 +40,7 @@ const ForgotPassword1 = () => {
       
 
       if (response.data.message === 'Password has been reset.') {
-        alert('Password has been reset successfully. Please check your email')
+        alert('Operation was a success. Please check your email to reset password')
       }
 
   

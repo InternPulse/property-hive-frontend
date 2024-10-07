@@ -13,7 +13,7 @@ const CompanyEmailVerification = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleBackClick = () => {
-    navigate('/company-signin');
+    navigate('/signin');
   };
 
   // Email validation function
@@ -40,13 +40,14 @@ const CompanyEmailVerification = () => {
       })
     
       const message = response.data.message;
+
+      // alert(message)
      
       
-
-      if (message === 'Verification email sent.') {
-        localStorage.clear();
+      if (message === 'Email verified successfully') {
+        // localStorage.clear();
         alert('Verification email sent. Please check your email')
-        navigate('/company-signin')
+        navigate('/signin')
       }
 
 
