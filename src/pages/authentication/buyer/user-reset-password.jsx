@@ -46,6 +46,7 @@ const ResetPassword = () => {
 
       if (response.data.message === 'Password has been reset.') {
         alert('Password has been reset successfully.')
+        navigate('/buyer-signin')
       }
     } catch (error) {
       setLoading(false);

@@ -30,9 +30,9 @@ const ResetPassword1 = () => {
   
   const [loading, setLoading] = useState(false);
 
-  const handleBackClick = () => {
-    navigate('/company-signin');
-  };
+  // const handleBackClick = () => {
+  //   navigate('/company-signin');
+  // };
 
   const { register, handleSubmit, watch , formState: { errors } } = useForm();
 
@@ -57,6 +57,7 @@ const ResetPassword1 = () => {
 
       if (response.data.message === 'Password has been reset.') {
         alert('Password has been reset successfully.')
+        navigate('/signin')
       }
     } catch (error) {
       setLoading(false);

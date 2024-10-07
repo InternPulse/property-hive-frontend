@@ -53,7 +53,7 @@ const CompanySignUpForm = () => {
       console.log(response);
       
       if (response.status === 201) {
-        navigate('/company-email-verification')
+        navigate('/email-verification')
       }
      
   

@@ -13,7 +13,7 @@ const CompanyEmailVerification = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleBackClick = () => {
-    navigate('/signin');
+    navigate('/company-signin');
   };
 
   // Email validation function
@@ -46,8 +46,8 @@ const CompanyEmailVerification = () => {
       
       if (message === 'Email verified successfully') {
         // localStorage.clear();
-        alert('Verification email sent. Please check your email')
-        navigate('/signin')
+        alert('Email Verified Successfully.')
+        navigate('/copany-signin')
       }
 
 
@@ -55,7 +55,7 @@ const CompanyEmailVerification = () => {
     } catch (error) {
       console.error('Error verifying email:', error);
       setEmailError('Verification failed. Please try again.');
-      alert('Verification failed. Please try again.')
+      alert('Error verifying email. Please try again.')
     } finally {
       setIsLoading(false); // Stop loading
     }
