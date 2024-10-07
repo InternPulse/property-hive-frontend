@@ -4,11 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { registerOptions } from '../../../utlis/validator';
 import { baseurl } from './company -signup';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ResetPassword1 = () => {
 
   const navigate = useNavigate();
   const [token, setToken] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
@@ -75,24 +87,30 @@ const ResetPassword1 = () => {
 
           <form className="space-y-6" onSubmit={handleSubmit(handleResetPassword)}>
 
-            <div className="mb-6">
+            <div className="mb-6 relative">
               <label className="block text-gray-700 font-medium mb-3">New Password</label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Enter password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                 {...register('password', registerOptions.password)}
               />
+              <span
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </span>
               <small className="text-red-600 text-sm mt-2 ml-2">
                   {errors?.password && errors.password.message}
                 </small>
             </div>
 
  
-            <div className='mb-6'>
+            <div className='mb-6 relative'>
                   <label className="block text-gray-600 font-semibold">Confirm Password</label>
                   <input
-                    type="password"
+                    type={showConfirmPassword ? 'text' : 'password'}
                    {...register("confirm_password", {
                     required: true,
                     validate: (val) => {
@@ -104,6 +122,12 @@ const ResetPassword1 = () => {
                     placeholder="Confirm password"
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
+                  <span
+                  onClick={toggleConfirmPasswordVisibility}
+                  className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                >
+                  <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
+                </span>
                  <small className="text-red-600 text-sm mt-2 ml-2">
                   {errors?.confirm_password && errors.confirm_password.message}
                 </small>

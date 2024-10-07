@@ -22,6 +22,7 @@ const ForgotPassword1 = () => {
 
   const handleError = (errors) => { };
 
+
   const handleForgotPassword = async (data) => {
     // navigate('/dashboard')
     setIsSubmitted(true);
@@ -54,7 +55,7 @@ const ForgotPassword1 = () => {
     } catch (error) {
       setLoading(false);
       console.log(error);
-
+      alert('Operation failed. Please try again.')
     }
   }
 

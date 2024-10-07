@@ -5,6 +5,8 @@ import { registerOptions } from '../../../utlis/validator';
 import { baseurl } from '../company/company -signup';
 // export const baseurl = 'https://property-hive-backend.onrender.com/'
 import { useNavigate } from 'react-router-dom';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CompanySignUpForm = () => {
   const navigate = useNavigate();
@@ -13,6 +15,17 @@ const CompanySignUpForm = () => {
   const [loading, setLoading] = useState(false); // Added loading state for API requests
 
   const { register, handleSubmit, watch ,formState: { errors } } = useForm();
+
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
 
 
   const handleError = (errors) => { };
@@ -148,15 +161,21 @@ const CompanySignUpForm = () => {
                 </small>
               </div>
 
-              <div>
+              <div className='relative'>
                 <label className="block text-gray-600 font-semibold">Password</label>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
 
                   {...register('password', registerOptions.password)}
                   placeholder="Enter password"
                   className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:border-teal-500"
                 />
+                <span
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </span>
                 <small className="text-red-600 text-sm mt-2">
                   {errors?.password && errors.password.message}
                 </small>
@@ -165,7 +184,7 @@ const CompanySignUpForm = () => {
               <div className="relative">
                   <label className="block text-gray-600 font-semibold">Confirm Password</label>
                   <input
-                    type="password"
+                    type={showConfirmPassword ? 'text' : 'password'}
                     name="confirmPassword" // Corrected name
                    {...register("confirm_password", {
                     required: true,
@@ -177,7 +196,13 @@ const CompanySignUpForm = () => {
                    })}
                     placeholder="Confirm password"
                     className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:border-teal-500"
-                  />                  
+                  /> 
+                  <span
+                  onClick={toggleConfirmPasswordVisibility}
+                  className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                >
+                  <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
+                </span>                 
                  <small className="text-red-600 text-sm mt-2">
                   {errors?.confirm_password && errors.confirm_password.message}
                 </small>
