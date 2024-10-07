@@ -50,6 +50,7 @@ const ResetPassword = () => {
     } catch (error) {
       setLoading(false);
       console.log(error);
+      alert('Failed to reset password. Please try again')
 
     }
   }

@@ -59,6 +59,7 @@ const CompanySignUpForm = () => {
   
     } catch (error) {
       console.log(error);
+      alert('Regiteration failed. Please insert valid credentials')
 
     }
   }

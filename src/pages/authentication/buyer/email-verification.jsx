@@ -39,6 +39,7 @@ const EmailVerification = () => {
     } catch (error) {
       console.error('Error verifying email:', error);
       setEmailError('Verification failed. Please try again.');
+      alert('Verification failed. Please try again.')
     } finally {
       setIsLoading(false); // Stop loading
     }

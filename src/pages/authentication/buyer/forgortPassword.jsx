@@ -45,8 +45,9 @@ const ForgotPassword = () => {
 
   
     } catch (error) {
-      setLoading(false);
+      // setLoading(false);
       console.log(error);
+      alert('Operation failed. Please try again.')
 
     }
   }
