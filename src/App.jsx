@@ -9,13 +9,21 @@ function App() {
       <Router>
         <MainLayout>
           <Routes>
-            <Route path="/Dashboard" element={<Dashboard />} />
-            <Route path="*" element={<Settings />} />
+            <Route path='/settings' element={
+              <MainLayout>
+                <Settings />
+              </MainLayout>
+            }/>
+
+                <Route path='/settings/security' element={
+                <MainLayout>
+                <Settings />
+                </MainLayout>
+              } />
           </Routes>
         </MainLayout>
       </Router>
     </>
   );
 }
-
 export default App;

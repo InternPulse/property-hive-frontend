@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
-import { FaKey, FaLock, FaSignOutAlt, FaEye } from "react-icons/fa";
 
 const Security = () => {
   // State for modals
@@ -13,20 +12,19 @@ const Security = () => {
 
   const openPinModal = () => setIsPinModalOpen(true);
   const closePinModal = () => setIsPinModalOpen(false);
-
   return (
-    <div className="min-h-screen flex bg-[#F5F6F6]">
+    <div className="flex min-h-screen bg-[#F5F6F6]">
       <div className="flex-1 p-8">
-        <div className="flex flex-col justify-start gap-2 mt-6 space-y-4 bg-[#FCFDFD] p-6 rounded-lg shadow w-full">
+        <div className="mt-6 flex w-full flex-col justify-start gap-2 space-y-4 rounded-lg bg-[#FCFDFD] p-6 shadow">
           <button
-            className="w-1/4 text-[15px] text-start bg-[#389294] text-[#fff] px-6 py-3 rounded-md shadow hover:bg-teal-500"
+            className="h-[60px] max-w-[271px] rounded-md bg-[#389294] px-6 py-3 text-start text-[15px] text-[#fff] shadow hover:bg-teal-500"
             onClick={openPasswordModal}
           >
             Change Password
           </button>
 
           <button
-            className="w-1/4 text-[15px] text-start bg-[#389294] text-[#fff] px-2 py-3 rounded-md shadow hover:bg-teal-500"
+            className="h-[60px] max-w-[271px] rounded-md bg-[#389294] px-6 py-3 text-start text-[15px] text-[#fff] shadow hover:bg-teal-500"
             onClick={openPinModal}
           >
             Change Withdrawal PIN
@@ -37,17 +35,17 @@ const Security = () => {
         <Modal
           isOpen={isPasswordModalOpen}
           onRequestClose={closePasswordModal}
-          className="fixed inset-0 bg-[#000] bg-opacity-50 flex items-center justify-center p-4"
+          className="fixed inset-0 flex items-center justify-center bg-[#000] bg-opacity-50 p-4"
           ariaHideApp={false}
         >
-          <div className="bg-[#fff] p-6 rounded-md w-full max-w-md">
-            <h2 className="text-xl font-semibold mb-4">Change Password</h2>
+          <div className="w-full max-w-md rounded-md bg-[#fff] p-6">
+            <h2 className="mb-4 text-xl font-semibold">Change Password</h2>
             <form className="space-y-4">
               <div>
                 <label className="block text-[#4a5568]">Current Password</label>
                 <input
                   type="password"
-                  className="mt-2 w-full border border-[#dee2e6] rounded-md p-2"
+                  className="mt-2 w-full rounded-md border border-[#dee2e6] p-2"
                   placeholder="Enter current password"
                 />
               </div>
@@ -55,7 +53,7 @@ const Security = () => {
                 <label className="block text-[#4a5568]">New Password</label>
                 <input
                   type="password"
-                  className="mt-2 w-full border border-[#dee2e6] rounded-md p-2"
+                  className="mt-2 w-full rounded-md border border-[#dee2e6] p-2"
                   placeholder="Enter new password"
                 />
               </div>
@@ -65,16 +63,16 @@ const Security = () => {
                 </label>
                 <input
                   type="password"
-                  className="mt-2 w-full border border-[#dee2e6] rounded-md p-2"
+                  className="mt-2 w-full rounded-md border border-[#dee2e6] p-2"
                   placeholder="Confirm new password"
                 />
               </div>
               <div className="mt-6">
-                <button className="bg-[#389294] text-[#fff] px-6 py-2 rounded-md shadow hover:bg-teal-500">
+                <button className="rounded-md bg-[#389294] px-6 py-2 text-[#fff] shadow hover:bg-teal-500">
                   Save Password
                 </button>
                 <button
-                  className="ml-4 bg-[#F44336] text-[#fff] px-6 py-2 rounded-md shadow hover:bg-red-400"
+                  className="ml-4 rounded-md bg-[#F44336] px-6 py-2 text-[#fff] shadow hover:bg-red-400"
                   onClick={closePasswordModal}
                 >
                   Cancel
@@ -88,11 +86,11 @@ const Security = () => {
         <Modal
           isOpen={isPinModalOpen}
           onRequestClose={closePinModal}
-          className="fixed inset-0 bg-[#000] bg-opacity-50 flex items-center justify-center p-4"
+          className="fixed inset-0 flex items-center justify-center bg-[#000] bg-opacity-50 p-4"
           ariaHideApp={false}
         >
-          <div className="bg-[#fff] p-6 rounded-md w-full max-w-md">
-            <h2 className="text-xl font-semibold mb-4">
+          <div className="w-full max-w-md rounded-md bg-[#fff] p-6">
+            <h2 className="mb-4 text-xl font-semibold">
               Change Withdrawal PIN
             </h2>
             <form className="space-y-4">
@@ -100,7 +98,7 @@ const Security = () => {
                 <label className="block text-[#4a5568]">Current PIN</label>
                 <input
                   type="password"
-                  className="mt-2 w-full border border-[#dee2e6] rounded-md p-2"
+                  className="mt-2 w-full rounded-md border border-[#dee2e6] p-2"
                   placeholder="Enter current PIN"
                 />
               </div>
@@ -108,7 +106,7 @@ const Security = () => {
                 <label className="block text-[#4a5568]">New PIN</label>
                 <input
                   type="password"
-                  className="mt-2 w-full border border-[#dee2e6] rounded-md p-2"
+                  className="mt-2 w-full rounded-md border border-[#dee2e6] p-2"
                   placeholder="Enter new PIN"
                 />
               </div>
@@ -116,16 +114,16 @@ const Security = () => {
                 <label className="block text-[#4a5568]">Confirm New PIN</label>
                 <input
                   type="password"
-                  className="mt-2 w-full border border-[#dee2e6] rounded-md p-2"
+                  className="mt-2 w-full rounded-md border border-[#dee2e6] p-2"
                   placeholder="Confirm new PIN"
                 />
               </div>
               <div className="mt-6">
-                <button className="bg-[#389294] text-[#fff] px-6 py-2 rounded-md shadow hover:bg-teal-500">
+                <button className="rounded-md bg-[#389294] px-6 py-2 text-[#fff] shadow hover:bg-teal-500">
                   Save PIN
                 </button>
                 <button
-                  className="ml-4 bg-[#F44336] text-[#fff] px-6 py-2 rounded-md shadow hover:bg-red-400"
+                  className="ml-4 rounded-md bg-[#F44336] px-6 py-2 text-[#fff] shadow hover:bg-red-400"
                   onClick={closePinModal}
                 >
                   Cancel

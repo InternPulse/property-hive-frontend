@@ -1,28 +1,37 @@
-import Phone from "../../assets/phone.png";
+import Phone from "../../assets/call.png";
 import Instagram from "../../assets/instagram.png";
 import Facebook from "../../assets/facebook.png";
 import Linkedin from "../../assets/mdi_linkedin.png";
 import Twitter from "../../assets/x.png";
 import Camera from "../../assets/Vector.png";
 import Photo from "../../assets/profile-picture.png";
+import { useRef } from "react";
 
 const Profile = () => {
+  const fileRef = useRef(null);
+  const handleFile = () => {
+    fileRef.current.click();
+  };
   return (
-    <div className="p-11 min-h-screen flex bg-[#F5F6F6]">
-      <div className="mt-6 bg-[#FCFDFD] p-6 rounded-lg shadow w-full">
+    <div className="flex min-h-screen bg-[#F5F6F6] p-11">
+      <div className="mt-6 w-full rounded-lg bg-[#FCFDFD] p-6 shadow">
         {/* Profile Picture */}
         <div className="flex flex-col items-center">
-          <div className="relative w-24 h-24">
+          <div className="relative h-24 w-24">
             <img
-              className="w-full h-full rounded-full object-cover"
+              className="h-full w-full rounded-full object-cover"
               src={Photo}
               alt="Profile"
             />
-            <div className="absolute bottom-0 right-0 bg-[#389294] p-2 rounded-full">
-              <img className="text-[#fff] w-5" src={Camera} alt="" />
+            <div
+              onClick={handleFile}
+              className="absolute bottom-0 right-0 cursor-pointer rounded-full bg-[#389294] p-2"
+            >
+              <img className="w-5 text-[#fff]" src={Camera} alt="" />
+              <input type="file" hidden ref={fileRef} />
             </div>
           </div>
-          <h2 className="text-xl font-semibold mt-4">Dream Homes</h2>
+          <h2 className="mt-4 text-xl font-semibold">Dream Homes</h2>
         </div>
 
         {/* Contact Form */}
@@ -34,8 +43,8 @@ const Profile = () => {
             >
               Phone number 1 *
             </label>
-            <div className="mt-1 flex items-center border border-[#e2e8f0] rounded-md p-2">
-              <img className="text-[#cbd5e0] mr-2 w-5" src={Phone} alt="" />
+            <div className="mt-1 flex items-center rounded-md border border-[#e2e8f0] p-2">
+              <img className="mr-2 w-5 text-[#cbd5e0]" src={Phone} alt="" />
               <input
                 id="phone1"
                 type="text"
@@ -52,8 +61,8 @@ const Profile = () => {
             >
               Phone number 2
             </label>
-            <div className="mt-1 flex items-center border border-[ #e2e8f0] rounded-md p-2">
-              <img className="text-[#cbd5e0] mr-2 w-5" src={Phone} alt="" />
+            <div className="border-[ #e2e8f0] mt-1 flex items-center rounded-md border p-2">
+              <img className="mr-2 w-5 text-[#cbd5e0]" src={Phone} alt="" />
               <input
                 id="phone2"
                 type="text"
@@ -70,8 +79,8 @@ const Profile = () => {
             >
               Instagram
             </label>
-            <div className="mt-1 flex items-center border border-[#e2e8f0] rounded-md p-2">
-              <img className="text-[#cbd5e0] mr-2 w-5" src={Instagram} alt="" />
+            <div className="mt-1 flex items-center rounded-md border border-[#e2e8f0] p-2">
+              <img className="mr-2 w-5 text-[#cbd5e0]" src={Instagram} alt="" />
               <input
                 id="instagram"
                 type="text"
@@ -88,8 +97,8 @@ const Profile = () => {
             >
               Facebook
             </label>
-            <div className="mt-1 flex items-center border border-[#e2e8f0] rounded-md p-2">
-              <img className="text-[#cbd5e0] mr-2 w-5" src={Facebook} alt="" />
+            <div className="mt-1 flex items-center rounded-md border border-[#e2e8f0] p-2">
+              <img className="mr-2 w-5 text-[#cbd5e0]" src={Facebook} alt="" />
               <input
                 id="facebook"
                 type="text"
@@ -106,8 +115,8 @@ const Profile = () => {
             >
               LinkedIn
             </label>
-            <div className="mt-1 flex items-center border border-[#e2e8f0] rounded-md p-2">
-              <img className="text-[#cbd5e0] mr-2 w-5" src={Linkedin} alt="" />
+            <div className="mt-1 flex items-center rounded-md border border-[#e2e8f0] p-2">
+              <img className="mr-2 w-5 text-[#cbd5e0]" src={Linkedin} alt="" />
               <input
                 id="linkedin"
                 type="text"
@@ -124,8 +133,8 @@ const Profile = () => {
             >
               Twitter
             </label>
-            <div className="mt-1 flex items-center border border-[#e2e8f0] rounded-md p-2">
-              <img className="text-[#cbd5e0] mr-2 w-5" src={Twitter} alt="" />
+            <div className="mt-1 flex items-center rounded-md border border-[#e2e8f0] p-2">
+              <img className="mr-2 w-5 text-[#cbd5e0]" src={Twitter} alt="" />
               <input
                 id="twitter"
                 type="text"

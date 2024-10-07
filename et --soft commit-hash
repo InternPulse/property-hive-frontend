@@ -1,0 +1,80 @@
+[33mcommit b381a39ba854ddf0268133e0c5b06a6d4e131f62[m[33m ([m[1;36mHEAD -> [m[1;32mpro-064/settings/security-profile[m[33m)[m
+Author: Innocentemeka <innocent7932@gmail.com>
+Date:   Thu Sep 26 23:04:12 2024 +0100
+
+    security profile component
+
+[33mcommit 632806981f777d04c7d30cc272769ba781420b9f[m[33m ([m[1;32mdev[m[33m)[m
+Merge: 2c20af9 53a7cb8
+Author: jib2004 <96600412+jib2004@users.noreply.github.com>
+Date:   Wed Sep 18 15:55:42 2024 +0100
+
+    Merge pull request #4 from jib2004/dev
+    
+    Added navbar and sidebar
+
+[33mcommit 53a7cb81b3699323175f5fa4b455a9dd413b7abe[m
+Author: jib2004 <obasaajibola04@gmail.com>
+Date:   Wed Sep 18 15:50:07 2024 +0100
+
+    Added thr navbar and sidebar
+
+[33mcommit 5a29271deca911b62123dab621bec94dae0e7ef2[m
+Author: jib2004 <obasaajibola04@gmail.com>
+Date:   Tue Sep 17 16:20:14 2024 +0100
+
+     test
+
+[33mcommit 6d286e99ad82891620cd62a4ad93c65f9de8bb1c[m
+Author: jib2004 <obasaajibola04@gmail.com>
+Date:   Mon Sep 16 20:32:54 2024 +0100
+
+    work
+
+[33mcommit 2c20af96cd7f67cacfc9306f5840d2056faa62c9[m
+Merge: 69b10e3 eebaefb
+Author: jib2004 <96600412+jib2004@users.noreply.github.com>
+Date:   Mon Sep 16 16:02:21 2024 +0100
+
+    Merge pull request #3 from jib2004/dev
+    
+    Correction
+
+[33mcommit eebaefb4b3e0c7b62b1f3c44b2a0fc1c33e4c75f[m
+Author: jib2004 <obasaajibola04@gmail.com>
+Date:   Mon Sep 16 16:00:00 2024 +0100
+
+    Correction
+
+[33mcommit 69b10e3bb5a8410f5406665c37cdfac5ac799834[m
+Merge: f388a22 e503c5b
+Author: jib2004 <96600412+jib2004@users.noreply.github.com>
+Date:   Mon Sep 16 15:32:05 2024 +0100
+
+    Merge pull request #2 from jib2004/dev
+    
+    I installed various libraries needed for the project
+
+[33mcommit e503c5b2c575b1dbf391ef3e0ed892d0d67804d3[m
+Author: jib2004 <obasaajibola04@gmail.com>
+Date:   Mon Sep 16 15:28:20 2024 +0100
+
+    I installed various libraries needed for the project
+
+[33mcommit f388a221c8736cf974b1a9a5e76c03605c930b04[m
+Author: johndiginee <johndbizz@gmail.com>
+Date:   Fri Sep 13 01:36:41 2024 +0100
+
+    Chore: Added PR template
+
+[33mcommit bdd094dbc4a0a919d51d0ec67a4d1aca455498dd[m
+Author: John Diginee <john@hyfig.com>
+Date:   Fri Sep 6 09:45:41 2024 +0100
+
+    Update README.md
+
+[33mcommit 6b28ca0a4eca1f0c4db303ed074e3fbb4e5d081b[m
+Author: John Diginee <john@hyfig.com>
+Date:   Tue Sep 3 21:11:23 2024 +0100
+
+    Initial commit

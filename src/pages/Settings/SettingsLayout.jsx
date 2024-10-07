@@ -1,12 +1,12 @@
-import MainSettings from "./MainSettings";
+// import MainSettings from "./MainSettings";
 
-const SettingsLayout = ({ children }) => {
-  return (
-      <div>
-        <MainSettings />
-        {children}
-    </div>
-  );
-};
+// const SettingsLayout = ({ children }) => {
+//   return (
+//       <div>
+//         <MainSettings />
+//         {children}
+//     </div>
+//   );
+// };
 
-export default SettingsLayout;
+// export default SettingsLayout;
