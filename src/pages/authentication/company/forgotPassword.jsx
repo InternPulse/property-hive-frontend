@@ -33,15 +33,22 @@ const ForgotPassword1 = () => {
       const response = await axios.post(`${baseurl}api/v1/forgot-password/` , data, {
         headers: headers
       })
+
+      console.log(response);
+      
+      if (response.status === 200) {
+        alert('Password reset email sent. Please check your email to reset password')
+        // localStorage.setItem('user-email', data?.email);
+      }
     
 
-      const message = response.data.message;
+      // const message = response.data.message;
      
       
 
-      if (response.data.message === 'Password reset email sent.') {
-        alert('Password reset email sent. Please check your email to reset password')
-      }
+      // if (response.data.message === 'Password reset email sent.') {
+      //   alert('Password reset email sent. Please check your email to reset password')
+      // }
 
   
     } catch (error) {
