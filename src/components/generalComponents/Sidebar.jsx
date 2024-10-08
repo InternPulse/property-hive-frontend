@@ -20,15 +20,22 @@ const Sidebar = () => {
     const navigate = useNavigate();
     const {display} = useContext(DisplayContext)
 
-    const accessToken = localStorage.getItem("accessToken");
+    const access = localStorage.getItem("accessToken");
+    const refresh = localStorage.getItem("refreshToken");
 
-    console.log("acessToken" +accessToken);
+    console.log("acessToken" +access);
+    console.log("refreshToken" +refresh);
+
+    const newData = {
+      refresh : refresh
+    } 
+    console.log(newData);
 
 
     const handleLogout = async () => {
 try {
-  const response = await axios.post(`${baseurl}api/v1/log-out`, {}, {
-    headers: {Authorization: `Bearer ${accessToken}`}
+  const response = await axios.post(`${baseurl}api/v1/log-out`, newData, {
+    headers: {Authorization: `Bearer ${access}`}
     
   });
 
