@@ -12,10 +12,7 @@ export default defineConfig({
        "@": path.resolve(__dirname, "./"), 
     },
   },
-
-
   build: {
-    outDir: 'dist', // Ensure this is set to 'dist'
+    outDir: "dist", // Ensure this is set to 'dist'
   },
-})
-
+});

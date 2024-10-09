@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { baseurl } from '../company/company -signup';
+import { baseurl } from './company -signup';
 import { useForm } from "react-hook-form";
 import { registerOptions } from '../../../utlis/validator';
 
-const EmailVerification = () => {
+const CompanyEmailVerification = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -13,7 +13,7 @@ const EmailVerification = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleBackClick = () => {
-    navigate('/buyer-signin');
+    navigate('/company-signin');
   };
 
   // Email validation function
@@ -47,7 +47,7 @@ const EmailVerification = () => {
       if (message === 'Email verified successfully') {
         // localStorage.clear();
         alert('Email Verified Successfully.')
-        navigate('/buyer-signin')
+        navigate('/copany-signin')
       }
 
 
@@ -55,7 +55,7 @@ const EmailVerification = () => {
     } catch (error) {
       console.error('Error verifying email:', error);
       setEmailError('Verification failed. Please try again.');
-      alert('Too many Requests. Expected available in 397 seconds.')
+      alert('Error verifying email. Please try again.')
     } finally {
       setIsLoading(false); // Stop loading
     }
@@ -162,4 +162,7 @@ const EmailVerification = () => {
   );
 };
 
-export default EmailVerification;
+export default CompanyEmailVerification;
+
+
+

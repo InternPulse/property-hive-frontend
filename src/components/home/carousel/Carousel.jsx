@@ -15,32 +15,42 @@ export function EmblaCarousel() {
 				<div className='flex flex-row justify-between items-center space-x-6'>
 					<>
 						<img
+
 							src={image1}
+
 							alt='Pwanhomes Logo'
 							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
+
 							src={image2}
+
 							alt='Octo5 Logo'
 							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
+
 							src={image3}
+
 							alt='Revolution Logo'
 							className='h-[100px] w-[130px] object-contain'
 						/>
 						<img
+
 							src={image4}
 							alt='Mixta Africa Logos'
 							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
 							src={image5}
+
 							alt='LG Logo'
 							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
+
 							src={image6}
+
 							alt='Logo WW'
 							className='h-[100px] w-[140px] object-contain'
 						/>
