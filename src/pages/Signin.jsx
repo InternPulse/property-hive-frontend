@@ -12,7 +12,7 @@ const SignIn = () => {
       }}
     >
      
-      <div className="bg-white rounded-lg p-8 max-w-md w-full text-center">
+      <div className="bg-white rounded-lg p-10 max-w-md 2xl:max-w-lg text-center">
         <h2 className="text-3xl font-semibold mb-4 mt-20">Sign In</h2>
         <p className="mb-8 text-gray-600">Choose an option to continue</p>
 

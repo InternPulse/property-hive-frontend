@@ -19,15 +19,25 @@ const Sidebar = () => {
     const navigate = useNavigate();
     const {display} = useContext(DisplayContext)
 
-    const accessToken = localStorage.getItem("accessToken");
+    const access = localStorage.getItem("accessToken");
+    const refresh = localStorage.getItem("refreshToken");
 
-    console.log("acessToken" +accessToken);
-    
+    // console.log("acessToken" +access);
+    // console.log("refreshToken" +refresh);
+
+    // const newData = {
+    //   refresh : refresh
+    // } 
+    // console.log(newData);
+
+    const data = new FormData();
+    data.append("refresh", refresh);
 
     const handleLogout = async () => {
 try {
-  const response = await axios.post(`${baseurl}api/v1/log-out`,  {}, {
-    headers: {Authorization: `Bearer ${accessToken}`}
+  const response = await axios.post(`${baseurl}api/v1/log-out`, data, {
+    headers: {Authorization: `Bearer ${access}`}
+    
   });
 
   console.log(response);
@@ -39,9 +49,6 @@ try {
 }
       
     }
-
-  
-    
     
   return (
     <div className={`fixed z-10 ${display? ' translate-x-0': '-translate-x-[500px]'}  duration-300  xl:translate-x-0 xl:static w-[279px] text-[#F5F6F6] bg-[#203F41] min-h-screen py-[32px] flex flex-col justify-between items-center`}>

@@ -17,6 +17,13 @@ export const registerOptions = {
         message: "Password must have at least 8 characters"
       }
     },
+    code: {
+      required: "Verification code is required",
+      length: {
+        value: 5,
+        message: "Code is 5 digits long"
+      }
+    },
     login_password: {
       required: "Password is required",
 

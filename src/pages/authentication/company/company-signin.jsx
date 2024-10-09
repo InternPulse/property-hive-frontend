@@ -30,7 +30,7 @@ const CompanySignInForm = () => {
         'Content-Type' : 'application/json'
       }
       console.log(data);
-      const response = await axios.post(`${baseurl}api/v1/login/` , data, {
+      const response = await axios.post(`${baseurl}api/v1/login/company` , data, {
         headers: headers
       })
       console.log(response);
@@ -67,6 +67,7 @@ const CompanySignInForm = () => {
     } catch (error) {
       setLoading(false);
       console.log(error);
+      alert('Invalid email or password. Please enter valid credentials')
 
     }
   }
