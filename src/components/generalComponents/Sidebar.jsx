@@ -23,18 +23,20 @@ const Sidebar = () => {
     const access = localStorage.getItem("accessToken");
     const refresh = localStorage.getItem("refreshToken");
 
-    console.log("acessToken" +access);
-    console.log("refreshToken" +refresh);
+    // console.log("acessToken" +access);
+    // console.log("refreshToken" +refresh);
 
-    const newData = {
-      refresh : refresh
-    } 
-    console.log(newData);
+    // const newData = {
+    //   refresh : refresh
+    // } 
+    // console.log(newData);
 
+    const data = new FormData();
+    data.append("refresh", refresh);
 
     const handleLogout = async () => {
 try {
-  const response = await axios.post(`${baseurl}api/v1/log-out`, newData, {
+  const response = await axios.post(`${baseurl}api/v1/log-out`, data, {
     headers: {Authorization: `Bearer ${access}`}
     
   });
