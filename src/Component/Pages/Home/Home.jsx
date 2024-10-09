@@ -4,6 +4,7 @@ import ContactUs from "./ContactUs/ContactUs";
 import Subscription from "./NewsLetter/Subscription";
 import Features from "../../../components/home/Features";
 import Testimonial from "../../../components/home/carousel/Testimonial";
+import Footer from "../../../components/home/footer/footer";
 
 
 
@@ -18,6 +19,7 @@ const Home = () => {
         <ContactUs />
       </section>
       <Subscription />
+      <Footer />
     </>
   );
 };

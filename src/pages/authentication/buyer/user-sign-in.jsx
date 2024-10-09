@@ -67,7 +67,7 @@ const CompanySignInForm = () => {
     } catch (error) {
       setLoading(false);
       console.log(error);
-      alert('Invalid email or password. Please enter valid credentials')
+      alert('401 Unauthorized: Invalid email or password. Please enter valid credentials')
 
     }
   }
