@@ -35,7 +35,7 @@ function Table() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://api.propertyhive.com.ng/api/v1/transactions/",
+          "https://api.propertyhive.com.ng/api/v1/transactions/",
         );
         const formattedData = response.data.map((item) => ({
           buyer: item.buyer, // Adjust this based on your API response structure
