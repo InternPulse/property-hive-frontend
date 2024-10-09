@@ -3,7 +3,7 @@ import { BiMoney } from "react-icons/bi";
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
 import { MdCheck } from 'react-icons/md';
-import { Button } from "@/components/ui/button"
+import { Button } from "../ui/button"
 import {
   Card,
   CardContent,
@@ -11,11 +11,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "../ui/card"
 import { Link } from 'react-router-dom';
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import logo from '../../assets/Group 1000002785.png'
+import { Input } from "../ui/input"
+import { Separator } from "../ui/separator"
+import logo from '../../assets/icons/Group 1000002785.png'
 
 const earnings = [
   {

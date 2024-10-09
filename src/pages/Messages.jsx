@@ -1,5 +1,5 @@
 import EmptyState from '../components/MessageComponents/EmptyState'
-import OnPage from '../components/MessageComponents/OnPage'
+
 
 const Messages = () => {
   return (

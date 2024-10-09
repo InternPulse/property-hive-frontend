@@ -1,35 +1,63 @@
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import DisplayContext from '../../context/DispalyContext'
 import sqm from '../../assets/Vector (7).png'
+import Instance2 from '../../http/Instaance2'
+import { useNavigate } from 'react-router-dom'
 
 const Preview = () => {
     const {data} = useContext(DisplayContext)
-    console.log(data)
+    const formData = new FormData();
+    const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate()
+
+formData.append('sellerId', 1);
+formData.append('is_sold', false);
+formData.append('common_propertyimages',data.propertyImage)
+FormData.append("propertyImage", data.propertyImage)
+Object.entries(data).forEach(([key, value]) => {
+    formData.append(key, value);
+});
+    
+    const handleSubmit = async() =>{
+        setIsLoading(true)
+        console.log(data)
+        try {
+            setIsLoading(false)
+            await Instance2.post('/properties',formData)
+            navigate('/manage-properties') 
+        } catch (error) {
+            setIsLoading(false)
+            console.log(error)
+        }
+    }
+
+    console.log(isLoading)
  
   return (
     <div className='px-6 py-4 text-[#242828]'>
+        <>
         <h3 className='leading-[32px] tracking-[-1px] font-semibold text-[24px]'>Preview</h3>
         <div>
-            <div>
+            {/* <div>
                 <div>
-                    <div className='rounded-t-2xl'><img src={URL.createObjectURL(data?.propertyImage[0])} alt="" className='w-[1088px] h-[585px] object-cover rounded-t-2xl'/></div>
+                    <div className='rounded-t-2xl'><img src={URL?.createObjectURL(data.propertyImage[0])} alt="" className='w-[1088px] h-[585px] object-cover rounded-t-2xl'/></div>
                 </div>
 
                 <div className='my-4 flex gap-5'>
-                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data.propertyImage[0])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
-                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data.propertyImage[1])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
-                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data.propertyImage[2])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
-                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data.propertyImage[3])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
-                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data.propertyImage[4])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
-                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data.propertyImage[5])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
+                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[0])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
+                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[1])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
+                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[2])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
+                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[3])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
+                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[4])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
+                    <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[5])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
                 </div>
 
-            </div>
+            </div> */}
 
             <div>
                 <span className='leading-[28px] tracking-[-0.75px]  text-[20px]'>{data.propertyType}</span>
                 <h1 className='leading-[44px] tracking-[-1px] font-semibold text-[36px]'>{data.propertyName}</h1>
-                <p className='leading-[32px] tracking-[-1px] font-medium text-[24px] flex items-center gap-2'><img src={sqm} alt="" /> {data.size} Sqm.</p>
+                <p className='leading-[32px] tracking-[-1px] font-medium text-[24px] flex items-center gap-2'><img src={sqm} alt="" /> {data.squaremeters} Sqm.</p>
             </div>
 
             <div>
@@ -50,15 +78,15 @@ const Preview = () => {
             <h2 className='bg-[#255A5D] px-[16px] leading-[40px] tracking-[-1px] font-medium text-[32px] text-[#F5F6F6]'>Pricing</h2>
             <div>
                 <div className='flex items-center gap-3'>
-                    <span className='leading-[36px] tracking-[-1px] font-medium text-[28px] text-[#545D5D]'>Outright Price:</span> <span className='leading-[32px] tracking-[-1px] font-semibold text-[40px] text-[#2B7376] text-justify'>{data.Outright_Payment_Price}</span>
+                    <span className='leading-[36px] tracking-[-1px] font-medium text-[28px] text-[#545D5D]'>Outright Price:</span> <span className='leading-[32px] tracking-[-1px] font-semibold text-[40px] text-[#2B7376] text-justify'>{parseInt(data.price).toLocaleString()}</span>
                 </div>
 
                 <div className='flex items-center gap-3'>
-                    <span className='leading-[36px] tracking-[-1px] font-medium text-[28px] text-[#545D5D]'>Installment</span> <span className='leading-[32px] tracking-[-1px] font-semibold text-[40px] text-[#2B7376] text-justify'>{data.Installment_Payment_Price} {`(${data.duration})`}</span>
+                    <span className='leading-[36px] tracking-[-1px] font-medium text-[28px] text-[#545D5D]'>Installment</span> <span className='leading-[32px] tracking-[-1px] font-semibold text-[40px] text-[#2B7376] text-justify'>{data.installment_payment_price} {`(${data.installment_duration})`}</span>
                 </div>
 
                 <div className='flex items-center gap-3'>
-                    <span className='leading-[36px] tracking-[-1px] font-medium text-[28px] text-[#545D5D]'>Down Payment:</span> <span className='leading-[32px] tracking-[-1px] font-semibold text-[40px] text-[#2B7376] text-justify'>{data.Down_Payment}</span>
+                    <span className='leading-[36px] tracking-[-1px] font-medium text-[28px] text-[#545D5D]'>Down Payment:</span> <span className='leading-[32px] tracking-[-1px] font-semibold text-[40px] text-[#2B7376] text-justify'>{data.down_payment}</span>
                 </div>
 
                 <div className='flex items-center gap-3'>
@@ -73,10 +101,12 @@ const Preview = () => {
             Back
           </button>
 
-          <button type='submit'  className="next-button py-[16px] px-[28px] rounded-lg w-[160px] text-[#FAFDFE] font-medium text-[20px] leading-7 tracking-[-0.75px]  disabled:bg-[#CED3D3] bg-[#389294] ">
+          <button type='submit' disabled={isLoading} onClick={handleSubmit}  className="next-button py-[16px] px-[28px] rounded-lg w-[160px] text-[#FAFDFE] font-medium text-[20px] leading-7 tracking-[-0.75px]  disabled:bg-[#CED3D3] bg-[#389294] ">
               Proceed
           </button>
         </div>
+        </>
+        
     </div>
   )
 }
