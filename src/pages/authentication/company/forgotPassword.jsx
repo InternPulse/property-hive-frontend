@@ -9,7 +9,7 @@ const ForgotPassword1 = () => {
   const navigate = useNavigate();
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
  
 
   const handleBackClick = () => {
@@ -22,6 +22,7 @@ const ForgotPassword1 = () => {
 
   const handleError = (errors) => { };
 
+
   const handleForgotPassword = async (data) => {
     // navigate('/dashboard')
     setIsSubmitted(true);
@@ -33,21 +34,28 @@ const ForgotPassword1 = () => {
       const response = await axios.post(`${baseurl}api/v1/forgot-password/` , data, {
         headers: headers
       })
+
+      console.log(response);
+      
+      if (response.status === 200) {
+        alert('Password reset email sent. Please check your email to reset password')
+        // localStorage.setItem('user-email', data?.email);
+      }
     
 
-      const message = response.data.message;
+      // const message = response.data.message;
      
       
 
-      if (message === 'Password reset email sent.') {
-        alert('Password reset email sent. Please check your email')
-      }
+      // if (response.data.message === 'Password reset email sent.') {
+      //   alert('Password reset email sent. Please check your email to reset password')
+      // }
 
   
     } catch (error) {
       setLoading(false);
       console.log(error);
-
+      alert('Operation failed. Please try again.')
     }
   }
 

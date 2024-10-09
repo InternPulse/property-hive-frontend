@@ -6,6 +6,7 @@ import axios from 'axios'; // Import Axios
 import { useForm } from "react-hook-form";
 import { registerOptions } from '../../../utlis/validator';
 import { baseurl } from './company -signup';
+import { Toaster,toast } from 'sonner';
 
 
 const CompanySignInForm = () => {
@@ -30,7 +31,7 @@ const CompanySignInForm = () => {
         'Content-Type' : 'application/json'
       }
       console.log(data);
-      const response = await axios.post(`${baseurl}api/v1/login/` , data, {
+      const response = await axios.post(`${baseurl}api/v1/login/company` , data, {
         headers: headers
       })
       console.log(response);
@@ -45,28 +46,12 @@ const CompanySignInForm = () => {
       }
       
       
-      // const roleSelection = (await response).data.role;
-      // switch (roleSelection) {
-      //   case 'Admin':
-      //     navigate('/admin-dashboard');
-      //     break;
-      //   case 'Real Estate Agent':
-      //     navigate('/agent-dashboard');
-      //     break;
-      //   case 'Buyer':
-      //     navigate('/buyer-dashboard');
-      //     break;
-      //   case 'Seller':
-      //     navigate('/seller-dashboard');
-      //     break;
-      //   default:
-      //     alert('Invalid role selected.');
-      //     break;
-      // }
+
   
     } catch (error) {
       setLoading(false);
       console.log(error);
+      toast.error('Invalid email or password. Please enter valid credentials')
 
     }
   }
@@ -179,6 +164,7 @@ const CompanySignInForm = () => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

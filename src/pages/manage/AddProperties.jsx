@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form"
 import {  useState,useContext } from "react";
 import Form1 from "./Form1";
@@ -17,7 +16,6 @@ const AddProperties = () => {
     setValue,
     control,
     formState:{errors,isValid},
-    
   } = useForm()
 
   const handlePageSwitch = () =>{
@@ -29,9 +27,6 @@ const AddProperties = () => {
     setData({...data})
     navigate('/manage-properties/add-property/preview')
   }
-
-
-  
 
   return (
     <div className="px-2 md:px-8 pt-[25px]">

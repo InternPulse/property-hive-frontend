@@ -1,4 +1,3 @@
-import React from "react";
 import HeroSection from "./HeroSection/HeroSection";
 import ContactUs from "./ContactUs/ContactUs";
 import Subscription from "./NewsLetter/Subscription";
@@ -8,7 +7,7 @@ import Footer from "../../../components/home/footer/footer";
 
 const Home = () => {
   return (
-    <>
+    <div className="bg-white">
       <HeroSection />
       <section id="features">
         <Features />
@@ -21,7 +20,9 @@ const Home = () => {
       </section>
       <Subscription />
       <Footer />
-    </>
+
+    </div>
+
   );
 };
 
