@@ -13,6 +13,7 @@ const Preview = () => {
 formData.append('sellerId', 1);
 formData.append('is_sold', false);
 formData.append('common_propertyimages',data.propertyImage)
+FormData.append("propertyImage", data.propertyImage)
 Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value);
 });

@@ -21,10 +21,10 @@ const PropertyDescription = () => {
     const handlePurchase = async () =>{
         try {
              await Instance2.post('/purchase',{
-                propertyId:1,
+                propertyId:productId,
                 userId:1,
                 paymentMethod:'Transfer',
-                totalAmount:5000
+                totalAmount:amount
               })
               navigate('/properties/buyers/successful')
         } catch (error) {
