@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { MdCheck } from "react-icons/md";
-import { Separator } from "@/components/ui/separator"
-import logo from '../../assets/Group 1000002785.png'
+import { Separator } from "@/components/ui/separator";
+import logo from "../../assets/Group 1000002785.png";
+import axios from "axios"; // Axios import
 
 const tableItems = [
   {
@@ -21,73 +22,24 @@ const tableItems = [
     receipt: "View",
     status: "successful",
   },
-  {
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt:"View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-  },
-  {
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt: "View",
-    status: "successful",
-},
-{
-    date: "Sept 12, 08:55pm",
-    amount: "30,000,000",
-    receipt:"View",
-    status: "successful",
-},
+  //... other items
 ];
 
 // Number of items per page
 const itemsPerPage = 6;
 
 function Withdraw() {
-  const [pages, setPages] = useState(["1", "2", "3", , "...", "8", "9", "10",])
+  const [pages, setPages] = useState(["1", "2", "3", "...", "8", "9", "10"]);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(tableItems.length / itemsPerPage);
   const currentItems = tableItems.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
@@ -95,17 +47,33 @@ function Withdraw() {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-
-  const handleReceiptClick = (item) => {
-    setSelectedItem(item);
-    setPopupVisible(true);
+  const handleReceiptClick = async (item) => {
+    try {
+      const response = await axios.get(
+        "https://api.propertyhive.com.ng/api/v1/invoice/1",
+        {
+          headers: {
+            Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI4MzEzMzYwLCJpYXQiOjE3MjgzMDYxNjAsImp0aSI6ImI5NjY3ZDhjYjI3ZjQyMTFhZDM4ZjYxODk1OTAzOTRiIiwidXNlcl9pZCI6NX0.0WunVWGIdQt_d_xpwuvuOOLN3s4vIfrjQxqBcAvvSmI`,
+          },
+        }
+      );      
+      if (response.data) {
+        setSelectedItem({ ...item, ...response.data });
+        setErrorMessage("");
+        setPopupVisible(true);
+      } else {
+        setErrorMessage("No data fetched");
+      }
+    } catch (error) {
+      setErrorMessage("Error fetching data");
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handleClosePopup = () => {
     setPopupVisible(false);
     setSelectedItem(null);
+    setErrorMessage("");
   };
 
   return (
@@ -136,17 +104,19 @@ function Withdraw() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.date}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <Badge variant="outline" className="text-[#5FC92E]">{item.status}</Badge>
+                    <Badge variant="outline" className="text-[#5FC92E]">
+                      {item.status}
+                    </Badge>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                  <Button
+                    <Button
                       variant="link"
                       className="text-[#389294]"
                       onClick={() => handleReceiptClick(item)}
                     >
                       {item.receipt}
                     </Button>
-                    </td>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -160,24 +130,28 @@ function Withdraw() {
               Page {currentPage} of {totalPages}
             </div>
             <div className="flex items-center gap-32" aria-label="Pagination">
-            <ul className="flex items-center gap-1">
-                {pages.map((item, idx) => (
-                    <li key={item}>
+              <ul className="flex items-center gap-1">
+                {pages.map((item) => (
+                  <li key={item}>
                     {item === "..." ? (
-                        <div>{item}</div>
+                      <div>{item}</div>
                     ) : (
-                        <button
+                      <button
                         onClick={() => setCurrentPage(Number(item))}
                         aria-current={currentPage == item ? "page" : undefined}
                         className={`px-3 py-2 rounded-lg duration-150 hover:text-white hover:bg-[#389294] 
-                            ${currentPage == item ? "border border-[#389294] text-[#389294] font-medium" : "text-gray-600"}`}
-                        >                          
+                            ${
+                              currentPage == item
+                                ? "border border-[#389294] text-[#389294] font-medium"
+                                : "text-gray-600"
+                            }`}
+                      >
                         {item}
-                        </button>
+                      </button>
                     )}
-                    </li>
+                  </li>
                 ))}
-                </ul>
+              </ul>
               <div className="flex gap-4">
                 <button
                   onClick={handlePreviousPage}
@@ -207,7 +181,9 @@ function Withdraw() {
 
           {/* Mobile Pagination */}
           <div className="flex items-center justify-between text-sm text-gray-600 font-medium md:hidden">
-            <div className="font-semi-bold">Page {currentPage} of {totalPages}</div>
+            <div className="font-semi-bold">
+              Page {currentPage} of {totalPages}
+            </div>
             <button
               onClick={handlePreviousPage}
               disabled={currentPage === 1}
@@ -226,10 +202,17 @@ function Withdraw() {
         </div>
       </div>
 
+      {/* Popup for Receipt */}
       {popupVisible && selectedItem && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="absolute inset-0 bg-black opacity-50" onClick={handleClosePopup}></div>
-            <div className="relative p-6 bg-white rounded-lg  max-w-md">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div
+            className="absolute inset-0 bg-black opacity-50"
+            onClick={handleClosePopup}
+          ></div>
+          <div className="relative p-6 bg-white rounded-lg max-w-md">
+            {errorMessage ? (
+              <div className="text-red-500">{errorMessage}</div>
+            ) : (
               <Card className="w-full max-w-sm">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-xl font-semibold flex flex-col items-center text-gray-500">
@@ -241,52 +224,50 @@ function Withdraw() {
                         <MdCheck />
                       </span>
                     </div>
-                    Withdrawal Successful
+                    <span>Transaction successful</span>
                   </CardTitle>
                 </CardHeader>
-                <CardDescription className="text-center text-3xl font-semibold text-black">
-                  ₦{selectedItem.amount}
-                </CardDescription>
-                <CardContent className="p-6 text-sm">
-                  <Separator className="my-2" />
-                  <ul className="grid gap-3">
-                    <li className="flex items-center justify-between">
-                      <span className="text-base">Ref Number</span>
-                      <span>000085752257</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                      <span className="text-base">Payment Time</span>
-                      <span>{selectedItem.date}</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                      <span className="text-base">Account Name</span>
-                      <span>John James</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                      <span className="text-base">Payment Number</span>
-                      <span>1234567890</span>
-                    </li>
-                    <li className="flex items-center justify-between">
-                      <span className="text-base">Bank</span>
-                      <span>Guaranty Bank PLC</span>
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex flex-col items-center">
-                  <Button
-                    variant="outline"
-                    className="w-full gap-1.5 text-sm border-[#389294]"
-                  >
-                    <span className="text-[#389294]">Download Receipt</span>
-                  </Button>
-                  <div className="mt-6">
-                    <img src={logo} alt="logo" />
+                <CardContent className="grid gap-4">
+                  <div className="flex justify-between">
+                    <CardDescription>Amount</CardDescription>
+                    <span className="font-semibold text-md">
+                      ₦ {selectedItem.amount}
+                    </span>
                   </div>
+                  <div className="flex justify-between">
+                    <CardDescription>Fee</CardDescription>
+                    <span className="font-semibold text-md">
+                      ₦ {selectedItem.fee}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <CardDescription>Date</CardDescription>
+                    <span className="font-semibold text-md">
+                      {selectedItem.date}
+                    </span>
+                  </div>
+                  <Separator />
+                  <div className="flex justify-between">
+                    <CardDescription>Receipt</CardDescription>
+                    <span className="font-semibold text-md">
+                      {selectedItem.receipt}
+                    </span>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex justify-center">
+                  <Button
+                    variant="default"
+                    size="md"
+                    onClick={handleClosePopup}
+                  >
+                    Close
+                  </Button>
                 </CardFooter>
               </Card>
-            </div>
+            )}
           </div>
-        )}
+        </div>
+      )}
     </>
   );
 }
