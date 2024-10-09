@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "./Component/Layout/Layout";
 import Home from "../src/Component/Pages/Home/Home";
@@ -25,11 +24,9 @@ import CompanySignUpForm from './pages/authentication/company/company -signup';
 import Inquiries from './pages/Inquiries';
 
 
-
 function App() {
   return (
     <>
-      
         
 
           <Router>
@@ -41,8 +38,6 @@ function App() {
           </Route>
         </Routes>
 
-    
-
         <Routes>
           {/* Authentication Routes */}
           <Route path="/signin" element={<SignIn />} />
@@ -52,7 +47,9 @@ function App() {
           <Route path="/forgot-password1" element={<ForgotPassword1 />} /> 
           <Route path="/token-verification" element={<Verification />} />
           <Route path="/email-verification" element={<EmailVerification />} />
+
           <Route path="/company-email-verification" element={<CompanyEmailVerification />} /> 
+
           <Route path="/user-reset-password" element={<ResetPassword />} />
           <Route path="/reset-password" element={<ResetPassword1 />} />
           <Route path="/company-signin" element={<CompanySignInForm />} />
@@ -106,6 +103,50 @@ function App() {
 
     </Router>
 
+        {/* Main Application Routes */}
+        <Routes>
+          <Route
+            path="/dashboard"
+            element={
+              <MainLayout>
+                <Dashboard />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/manage-properties"
+            element={
+              <MainLayout>
+                <ManageProperties />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/manage-properties/add-property"
+            element={
+              <MainLayout>
+                <AddProperties />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/manage-properties/add-property/preview"
+            element={
+              <MainLayout>
+                <Preview />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/messages"
+            element={
+              <MainLayout>
+                <Messages />
+              </MainLayout>
+            }
+          />
+        </Routes>
+      </Router>
     </>
   );
 
