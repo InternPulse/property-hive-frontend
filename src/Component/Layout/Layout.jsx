@@ -7,7 +7,8 @@ import Navbar from '../common/Header/Navbar'
 export default function Layout() {
   return (
     <>
-      <Navbar  />
+       <Navbar  />
+    
         <main>
             <Outlet />
         </main>

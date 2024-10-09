@@ -5,21 +5,34 @@ import Subscription from "./NewsLetter/Subscription";
 import Features from "../../../components/home/Features";
 import Testimonial from "../../../components/home/carousel/Testimonial";
 
+// Centralized section IDs
+const sectionIds = {
+  features: "features",
+  testimonials: "testimonials",
+  contact: "contact",
+};
 
-
-
-const Home = () => { 
+const Home = () => {
   return (
     <>
       <HeroSection />
-      <Features />
-    <Testimonial />
-      <section id="contact">
+      <section id={sectionIds.features}>
+        <Features />
+      </section>
+
+      <section id={sectionIds.testimonials}>
+        <Testimonial />
+      </section>
+
+      <section id={sectionIds.contact}>
         <ContactUs />
       </section>
-      <Subscription />
+
+      <section>
+        <Subscription />
+      </section>
     </>
   );
 };
 
-export default Home
+export default Home;

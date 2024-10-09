@@ -11,7 +11,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white pkout b-[48px]">
       <div className="flex justify-center items-center py-8 px-4 md:px-12">
         <h1 className="text-[#255A5D] text-3xl md:text-5xl font-bold mt-14 mb-4">
           Contact Us
