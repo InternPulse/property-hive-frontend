@@ -7,7 +7,9 @@ import "./index.css";
 import DisplayContextProvider from './context/DisplayContextProvider.jsx'
 
 
+
 // @ts-ignore
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <DisplayContextProvider>

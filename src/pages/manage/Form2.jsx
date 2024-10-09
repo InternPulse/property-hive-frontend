@@ -46,7 +46,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
 
       useEffect(()=>{
         set('propertyDocument',addedPhotos)
-        set('duration',duration)
+        set('installment_duration',duration)
         set('payment_frequency',selectState)
       },[set,addedPhotos,duration,selectState])
 
@@ -63,7 +63,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
 
         <div >
           <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Outright Payment Price (N) *</label>
-          <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter outright payment amount" {...r("Outright_Payment_Price",{required:true, pattern: {
+          <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter outright payment amount" {...r("price",{required:true, pattern: {
             value: /^[0-9]+$/,
             message: 'Please enter only numbers',
           },})}/>
@@ -73,7 +73,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
           <div className="md:flex items-center gap-4 mt-3">
             <div className="basis-1/2">
             <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Installment Payment Price (N)*</label>
-            <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter Installment Price" {...r("Installment_Payment_Price",{required:true, pattern: {
+            <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter Installment Price" {...r("installment_payment_price",{required:true, pattern: {
             value: /^[0-9]+$/,
             message: 'Please enter only numbers',
           },})}/>
@@ -82,7 +82,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
 
             <div className="basis-1/2">
             <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Down Payment (₦)</label>
-            <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter down payment to activate installment" {...r("Down_Payment",{ pattern: {
+            <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter down payment to activate installment" {...r("down_payment",{ pattern: {
             value: /^[0-9]+$/,
             message: 'Please enter only numbers',
           },})}/>
@@ -93,7 +93,7 @@ const Form2 = ({r,switchPage,set,error,isValid}) => {
           <div className="md:flex items-center gap-4 mt-3">
             <div className="basis-1/2 relative">
             <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Installment duration (Months)</label>
-            <input type="text" name="" id="" value={duration}  onClick={()=> setProperty(!propertyItem)} {...r("duration")} placeholder='Select Property Type'  className='basis-1/2 border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg' />
+            <input type="text" name="" id="" value={duration}  onClick={()=> setProperty(!propertyItem)} {...r("installment_duration")} placeholder='Select Property Type'  className='basis-1/2 border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg' />
            
             <fieldset className={` ${propertyItem ? ' flex ':' hidden '} duration-200 flex-col w-full absolute bg-white border border-[#CED3D3] select-items p-4 top-[90px]  rounded-lg`}>
                 <label className="flex items-center mb-4">

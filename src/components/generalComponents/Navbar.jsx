@@ -3,12 +3,35 @@ import notificationIcon from '../../assets/images/Group 1000002800.png'
 import user from '../../assets/icons/Frame 1000010090.png'
 import downArrow from '../../assets/icons/Profile arrow.png'
 import hamburger_menu from '../../assets/hamburger.png'
-import { useContext } from 'react'
+import { useContext,useEffect,useState } from 'react'
 import DisplayContext from '../../context/DispalyContext'
 import PropTypes from 'prop-types'
+import Instance2 from '../../http/Instaance2'
 
 const Navbar = ({pagetitle}) => {
     const {display,setDisplay} = useContext(DisplayContext)
+    const [show, setShow] = useState('')
+   
+  
+      const handleSearch = (e) =>  {
+        setShow(e.target.value)
+      }
+      console.log(show)
+
+      useEffect(()=>{
+        const fetctData = async() =>{
+          try {
+            const res = - Instance2.get(`/properties/search?city=${show}`) 
+            console.log(res.data)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        if(show){
+        fetctData()
+      }
+      },[show])
+
     
   return (
     <nav className=' w-full bg-[#FCFDFD] pt-[16px] pb-[8px] px-2 xl:px-[40px] gap-0 md:gap-3 xl:gap-0 flex justify-between items-center'>
@@ -17,7 +40,7 @@ const Navbar = ({pagetitle}) => {
         </div>
 
         <div>
-            <input type="search" name="" id=""  placeholder='  Search Property' className='bg-[#F5F6F6] md:w-[461px] py-[2px] px-[8px] md:h-[48px]'/>
+            <input type="search" name="" id=""  placeholder='Search Property' value={show} onChange={handleSearch} className='bg-[#F5F6F6] md:w-[461px] py-[2px] px-[8px] md:h-[48px]'/>
         </div>
 
         <div className='hidden xl:block'>

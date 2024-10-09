@@ -1,9 +1,9 @@
-import image1 from '../../../assets/Property Hive/pwanhomes-logo 1.png'
-import image2 from '../../../assets/Property Hive/Octo5-Logo 1.png'
-import image3 from '../../../assets/Property Hive/revolution 1.png'
-import image4 from '../../../assets/Property Hive/mixtafrica-logo-1 1.png'
-import image5 from '../../../assets/Property Hive/LG-LOGO-SITE 1.png'
-import image6 from '../../../assets/Property Hive/logoww 1.png'
+import image1 from '../../../assets/pwanhomes-logo 1.svg'
+import image2 from '../../../assets/Octo5-Logo 1.svg'
+import image3 from '../../../assets/revolution 1.svg'
+import image4 from '../../../assets/mixtafrica-logo-1 1.svg'
+import image5 from '../../../assets/LG-LOGO-SITE 1.svg'
+import image6 from '../../../assets/logoww 1.svg'
 
 
 
@@ -17,32 +17,32 @@ export function EmblaCarousel() {
 						<img
 							src={image1}
 							alt='Pwanhomes Logo'
-							className='h-[37px] w-[120px]'
+							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
 							src={image2}
 							alt='Octo5 Logo'
-							className='h-[100px] w-auto'
+							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
 							src={image3}
 							alt='Revolution Logo'
-							className='h-[68px] w-[130px]'
+							className='h-[100px] w-[130px] object-contain'
 						/>
 						<img
 							src={image4}
 							alt='Mixta Africa Logos'
-							className='h-[70px] w-[140px]'
+							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
 							src={image5}
 							alt='LG Logo'
-							className='h-[89px] w-[140px]'
+							className='h-[100px] w-[140px] object-contain'
 						/>
 						<img
 							src={image6}
 							alt='Logo WW'
-							className='h-[47px] w-[120px]'
+							className='h-[100px] w-[140px] object-contain'
 						/>
 					</>
 				</div>

@@ -1,4 +1,7 @@
 import { EmblaCarousel } from "./carousel/Carousel";
+import landingPage from '../../assets/Featured Properties Section.svg'
+import top from '../../assets/Top.svg'
+import properties from '../../assets/Properties section.svg'
 
 const Features = () => {
 	return (
@@ -37,7 +40,7 @@ const Features = () => {
 						</div>
 						<div className=' bg-[#F5F6F6] border rounded-2xl shadow-2xl items-center justify-center flex p-7 flex-col space-y-3  w-[440px] lg:w-[480px] '>
 							<img
-								src='/src/assets/Landing-Page.png'
+								src={landingPage}
 								className=' border'
 								sizes={100}
 							/>
@@ -47,10 +50,11 @@ const Features = () => {
 					<div className=' flex justify-between flex-col lg:flex-row space-y-7 mt-20 '>
 						<div className=' bg-[#F5F6F6] border rounded-2xl shadow-2xl items-center justify-center flex p-7 flex-col space-y-3  w-[400px] lg:w-[480px] '>
 							<img
-								src='/src/assets/Properties-section.png'
-								className=' border'
+								src={properties}
+								className=' border h-[244px] w-[900px] object-cover'
+
 							/>
-							<img src='/src/assets/Top.png' className=' border' />
+							<img src={top} className=' border' />
 						</div>
 						<div className=' mt-40'>
 							<h4 className='text-base md:text-base lg:text-base xl:text-lg font-light text-[#2B7376] bg-[#ECFFFF] p-1.5 text-center w-48  xl:w-[195px] border border-[#2B7376] rounded-full  '>
