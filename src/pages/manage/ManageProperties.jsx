@@ -78,8 +78,7 @@ const PROPERTY_TYPES_CONDITIONS = {
 };
 
 const ManageProperties = () => {
-  const { data, isLoading, isFetching, isError, error } =
-    useGetAllPropertiesQuery();
+  const { data, isLoading, isFetching, isError, error } = useGetAllPropertiesQuery();
   const [statusFilter, setStatusFilter] = useState("all");
   const [propertyTypeFilter, setPropertyTypeFilter] = useState("all");
 

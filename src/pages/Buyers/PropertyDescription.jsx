@@ -20,7 +20,7 @@ const PropertyDescription = () => {
 
     const handlePurchase = async () =>{
         try {
-            const res = await Instance2.post('/purchase',{
+             await Instance2.post('/purchase',{
                 propertyId:productId,
                 userId:1,
                 paymentMethod:'Transfer',
@@ -38,6 +38,7 @@ const PropertyDescription = () => {
                 const res = await Instance2.get(`/properties/${id}`)
                 const similar = await Instance2.get(`/properties/search?city=${res.data.data.city}`)
                 setProperty(res.data.data)
+                console.log(res.data.data)
                 setSimilarity(similar.data.data)
                 setAmount(res.data.data.price)
                 setProductId(res.data.data.id)
@@ -47,7 +48,7 @@ const PropertyDescription = () => {
             }
         }
         getProperty()
-    },[id])
+    },[id,amount])
 
   return (
     <div className=''>
