@@ -128,8 +128,8 @@ try {
               <span>Help & Support</span>
             </Link>
           </li>
-          <li className="">
-            <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+          <li className={`${pathname.includes('/settings') && 'border-l-[4px] border-white bg-[#389294]'}`}>
+            <Link to={'/settings'} className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
               <img src={settingsIcon} alt="" />
               <span>Settings</span>
             </Link>

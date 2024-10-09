@@ -43,11 +43,14 @@ const Form2 = ({ r, switchPage, set, error, isValid }) => {
     }
   };
 
-  useEffect(() => {
-    set("propertyDocument", addedPhotos);
-    set("duration", duration);
-    set("payment_frequency", selectState);
-  }, [set, addedPhotos, duration, selectState]);
+
+
+      useEffect(()=>{
+        set('propertyDocument',addedPhotos)
+        set('installment_duration',duration)
+        set('payment_frequency',selectState)
+      },[set,addedPhotos,duration,selectState])
+
 
   return (
     <div>
@@ -64,150 +67,74 @@ const Form2 = ({ r, switchPage, set, error, isValid }) => {
           </span>
         </div>
 
-        <div>
-          <label className="text-[20px] font-medium leading-[28px] tracking-[-0.75px]">
-            Outright Payment Price (N) *
-          </label>
-          <input
-            type="text"
-            className="w-full rounded-lg border border-[#CED3D3] px-[14px] py-[16px]"
-            placeholder="Enter outright payment amount"
-            {...r("Outright_Payment_Price", {
-              required: true,
-              pattern: {
-                value: /^[0-9]+$/,
-                message: "Please enter only numbers",
-              },
-            })}
-          />
-          {error.Outright_Payment_Price && (
-            <span className="text-red-500">
-              {error.Outright_Payment_Price.message}
-            </span>
-          )}
+
+        <div >
+          <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Outright Payment Price (N) *</label>
+          <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter outright payment amount" {...r("price",{required:true, pattern: {
+            value: /^[0-9]+$/,
+            message: 'Please enter only numbers',
+          },})}/>
+          {error.Outright_Payment_Price && <span className='text-red-500 '>{error.Outright_Payment_Price.message}</span>}
         </div>
 
-        <div className="mt-3 items-center gap-4 md:flex">
-          <div className="basis-1/2">
-            <label className="text-[20px] font-medium leading-[28px] tracking-[-0.75px]">
-              Installment Payment Price (N)*
-            </label>
-            <input
-              type="text"
-              className="w-full rounded-lg border border-[#CED3D3] px-[14px] py-[16px]"
-              placeholder="Enter Installment Price"
-              {...r("Installment_Payment_Price", {
-                required: true,
-                pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Please enter only numbers",
-                },
-              })}
-            />
-            {error.Installment_Payment_Price && (
-              <span className="text-red-500">
-                {error.Installment_Payment_Price.message}
-              </span>
-            )}
+          <div className="md:flex items-center gap-4 mt-3">
+            <div className="basis-1/2">
+            <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Installment Payment Price (N)*</label>
+            <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter Installment Price" {...r("installment_payment_price",{required:true, pattern: {
+            value: /^[0-9]+$/,
+            message: 'Please enter only numbers',
+          },})}/>
+          {error.Installment_Payment_Price && <span className='text-red-500 '>{error.Installment_Payment_Price.message}</span>}
+            </div>
+
+            <div className="basis-1/2">
+            <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Down Payment (₦)</label>
+            <input type="text" className="border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg" placeholder="Enter down payment to activate installment" {...r("down_payment",{ pattern: {
+            value: /^[0-9]+$/,
+            message: 'Please enter only numbers',
+          },})}/>
+          {error.Down_Payment && <span className='text-red-500 '>{error.Down_Payment.message}</span>}
+            </div>
           </div>
+          
+          <div className="md:flex items-center gap-4 mt-3">
+            <div className="basis-1/2 relative">
+            <label className=" font-medium text-[20px] tracking-[-0.75px] leading-[28px]">Installment duration (Months)</label>
+            <input type="text" name="" id="" value={duration}  onClick={()=> setProperty(!propertyItem)} {...r("installment_duration")} placeholder='Select Property Type'  className='basis-1/2 border border-[#CED3D3] w-full py-[16px] px-[14px] rounded-lg' />
+           
+            <fieldset className={` ${propertyItem ? ' flex ':' hidden '} duration-200 flex-col w-full absolute bg-white border border-[#CED3D3] select-items p-4 top-[90px]  rounded-lg`}>
+                <label className="flex items-center mb-4">
+                  <input type="radio"  onClick={handleInput} name="duration" value="3 months" className="hidden peer" />
+                  <div className="w-[24px] h-[24px] border-2 border-gray-300 rounded-full flex justify-center items-center peer-checked:border-green-600 peer-checked:bg-green-500">
+                    <span className="w-[12px] h-[12px] bg-white rounded-full peer-checked:bg-green-500"></span>
+                  </div>
+                  <span className="ml-2 text-lg font-medium">3 months</span>
+                </label>
 
-          <div className="basis-1/2">
-            <label className="text-[20px] font-medium leading-[28px] tracking-[-0.75px]">
-              Down Payment (₦)
-            </label>
-            <input
-              type="text"
-              className="w-full rounded-lg border border-[#CED3D3] px-[14px] py-[16px]"
-              placeholder="Enter down payment to activate installment"
-              {...r("Down_Payment", {
-                pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Please enter only numbers",
-                },
-              })}
-            />
-            {error.Down_Payment && (
-              <span className="text-red-500">{error.Down_Payment.message}</span>
-            )}
-          </div>
-        </div>
+                <label className="flex items-center mb-4">
+                  <input type="radio"  onClick={handleInput} name="duration" value="6 months" className="hidden peer"/>
+                  <div className="w-[24px] h-[24px] border-2 border-gray-300 rounded-full flex justify-center items-center peer-checked:border-green-600 peer-checked:bg-green-500">
+                    <span className="w-[12px] h-[12px] bg-white rounded-full peer-checked:bg-green-500"></span>
+                  </div>
+                  <span className="ml-2 text-lg font-medium">6 months</span>
+                </label>
 
-        <div className="mt-3 items-center gap-4 md:flex">
-          <div className="relative basis-1/2">
-            <label className="text-[20px] font-medium leading-[28px] tracking-[-0.75px]">
-              Installment duration (Months)
-            </label>
-            <input
-              type="text"
-              name=""
-              id=""
-              value={duration}
-              onClick={() => setProperty(!propertyItem)}
-              {...r("duration")}
-              placeholder="Select Property Type"
-              className="w-full basis-1/2 rounded-lg border border-[#CED3D3] px-[14px] py-[16px]"
-            />
+                <label className="flex items-center mb-4">
+                  <input type="radio"  onClick={handleInput} name="duration" value="12 months" className="hidden peer" />
+                  <div className="w-[24px] h-[24px] border-2 border-gray-300 rounded-full flex justify-center items-center peer-checked:border-green-600 peer-checked:bg-green-500">
+                    <span className="w-[12px] h-[12px] bg-white rounded-full peer-checked:bg-green-500"></span>
+                  </div>
+                  <span className="ml-2 text-lg font-medium">12 months</span>
+                </label>
 
-            <fieldset
-              className={` ${propertyItem ? "flex" : "hidden"} select-items absolute top-[90px] w-full flex-col rounded-lg border border-[#CED3D3] bg-white p-4 duration-200`}
-            >
-              <label className="mb-4 flex items-center">
-                <input
-                  type="radio"
-                  onClick={handleInput}
-                  name="duration"
-                  value="3 months"
-                  className="peer hidden"
-                />
-                <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-gray-300 peer-checked:border-green-600 peer-checked:bg-green-500">
-                  <span className="h-[12px] w-[12px] rounded-full bg-white peer-checked:bg-green-500"></span>
-                </div>
-                <span className="ml-2 text-lg font-medium">3 months</span>
-              </label>
+                <label className="flex items-center mb-4">
+                  <input type="radio"  onClick={handleInput} name="duration" value="Custom (Specify Months)" className="hidden peer" />
+                  <div className="w-[24px] h-[24px] border-2 border-gray-300 rounded-full flex justify-center items-center peer-checked:border-green-600 peer-checked:bg-green-500">
+                    <span className="w-[12px] h-[12px] bg-white rounded-full peer-checked:bg-green-500"></span>
+                  </div>
+                  <span className="ml-2 text-lg font-medium">Custom (Specify Months)</span>
+                </label>
 
-              <label className="mb-4 flex items-center">
-                <input
-                  type="radio"
-                  onClick={handleInput}
-                  name="duration"
-                  value="6 months"
-                  className="peer hidden"
-                />
-                <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-gray-300 peer-checked:border-green-600 peer-checked:bg-green-500">
-                  <span className="h-[12px] w-[12px] rounded-full bg-white peer-checked:bg-green-500"></span>
-                </div>
-                <span className="ml-2 text-lg font-medium">6 months</span>
-              </label>
-
-              <label className="mb-4 flex items-center">
-                <input
-                  type="radio"
-                  onClick={handleInput}
-                  name="duration"
-                  value="12 months"
-                  className="peer hidden"
-                />
-                <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-gray-300 peer-checked:border-green-600 peer-checked:bg-green-500">
-                  <span className="h-[12px] w-[12px] rounded-full bg-white peer-checked:bg-green-500"></span>
-                </div>
-                <span className="ml-2 text-lg font-medium">12 months</span>
-              </label>
-
-              <label className="mb-4 flex items-center">
-                <input
-                  type="radio"
-                  onClick={handleInput}
-                  name="duration"
-                  value="Custom (Specify Months)"
-                  className="peer hidden"
-                />
-                <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-gray-300 peer-checked:border-green-600 peer-checked:bg-green-500">
-                  <span className="h-[12px] w-[12px] rounded-full bg-white peer-checked:bg-green-500"></span>
-                </div>
-                <span className="ml-2 text-lg font-medium">
-                  Custom (Specify Months)
-                </span>
-              </label>
             </fieldset>
           </div>
 
