@@ -29,7 +29,7 @@ const Testimonial = () => {
 	};
 
 	return (
-		<div className='max-w-7xl mx-auto p-10'>
+		<div className='max-w-7xl mx-auto p-10 bg-[#203F41]'>
 			<div className='mt-5'>
 				<Slider {...settings}>
 					{data.map((d, index) => (
