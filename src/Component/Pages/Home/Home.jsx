@@ -18,7 +18,8 @@ const Home = () => {
         <ContactUs />
       </section>
       <Subscription />
-    </>
+    <Footer/>
+    </div>
   );
 };
 
