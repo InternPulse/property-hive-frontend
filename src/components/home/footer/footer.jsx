@@ -1,9 +1,12 @@
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { BiX } from 'react-icons/bi';
+
 export default function Footer() {
 	return (
 		<footer>
 			<div className=' flex  mx-10 lg:mx-20 justify-between  mt-10 lg:mt-20  '>
 				<div className='items-center justify-center mx-auto'>
-					<img src='/logos/logo.png' alt='logo' className='w-32' />
+					<img src='/logos/Group 2.png' alt='logo' className='w-32' />
 					<p className=' font-normal text-base mt-3 space-y-3'>
 						Join a network of top real estate companies on our platform.
 						Advertise <br /> your properties and elevate your business with a
@@ -11,20 +14,34 @@ export default function Footer() {
 					</p>
 
 					<div className='flex space-x-4 mt-7'>
-					<a href="https://web.facebook.com/profile.php?id=61566534966411" target="_blank" rel="noopener noreferrer">
-						<img src='/icon/facebook.png' alt='facebook' />
-					</a>
-					<a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
-						<img src='/icon/instagram.png' alt='instagram' />
-					</a>
-					<a href="https://www.linkedin.com/company/propertyhivehq/" target="_blank" rel="noopener noreferrer">
-						<img src='/icon/linkedin.png' alt='linkedin' />
-					</a>
-					<a href="https://x.com/PropertyHiveHq" target="_blank" rel="noopener noreferrer">
-						<img src='/icon/x.png' alt='twitter' />
-					</a>
+						<a href="https://web.facebook.com/profile.php?id=61566534966411" target="_blank" rel="noopener noreferrer">
+							<FaFacebookF className="text-teal-700" size={20} />
+						</a>
+						<a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+							<FaInstagram className="text-teal-700" size={20} />
+						</a>
+						<a href="https://www.linkedin.com/company/propertyhivehq/" target="_blank" rel="noopener noreferrer">
+							<FaLinkedinIn className="text-teal-700" size={20} />
+						</a>
+
+						<a href="https://x.com/PropertyHiveHq" target="_blank" rel="noopener noreferrer">
+							<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							className="text-teal-700" // Apply deep teal color
+							width="20" // Size of the icon
+							height="20"
+							>
+							<path d="M23.636 0L14.157 10.157 24 23.636 14.157 14.157 0 24 10.157 14.157 0 .364l9.515 9.515L24 0z" />
+							</svg>
+						</a>
+						{/* <a href="https://x.com/PropertyHiveHq" target="_blank" rel="noopener noreferrer">
+							<FaTwitter className="text-teal-700" size={20} />
+						</a> */}
 					</div>
 				</div>
+				
 				<div className='md:flex space-x-20 mt-14 hidden '>
 					<div>
 						<h1 className='font-semibold text-xl '>Features</h1>
