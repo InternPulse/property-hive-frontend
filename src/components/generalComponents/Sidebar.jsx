@@ -22,14 +22,7 @@ const Sidebar = () => {
     const access = localStorage.getItem("accessToken");
     const refresh = localStorage.getItem("refreshToken");
 
-    // console.log("acessToken" +access);
-    // console.log("refreshToken" +refresh);
-
-    // const newData = {
-    //   refresh : refresh
-    // } 
-    // console.log(newData);
-
+  
     const data = new FormData();
     data.append("refresh", refresh);
 
@@ -83,8 +76,8 @@ try {
               <span>Manage Properties</span>
             </Link>
           </li>
-          <li className="">
-            <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+          <li className={`${pathname.includes("/transactions") && "border-l-[4px] border-white bg-[#389294]"}`}>
+            <Link to={'/transactions'} className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
               <img src={transactionsIcon} alt="" />
               <span>Transactions</span>
             </Link>

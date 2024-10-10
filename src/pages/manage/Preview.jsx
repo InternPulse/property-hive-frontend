@@ -13,7 +13,7 @@ const Preview = () => {
 formData.append('sellerId', 1);
 formData.append('is_sold', false);
 formData.append('common_propertyimages',data.propertyImage)
-FormData.append("propertyImage", data.propertyImage)
+
 Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value);
 });
@@ -38,7 +38,7 @@ Object.entries(data).forEach(([key, value]) => {
         <>
         <h3 className='leading-[32px] tracking-[-1px] font-semibold text-[24px]'>Preview</h3>
         <div>
-            {/* <div>
+            <div>
                 <div>
                     <div className='rounded-t-2xl'><img src={URL?.createObjectURL(data.propertyImage[0])} alt="" className='w-[1088px] h-[585px] object-cover rounded-t-2xl'/></div>
                 </div>
@@ -52,7 +52,7 @@ Object.entries(data).forEach(([key, value]) => {
                     <div className='w-[164px] h-[108px] rounded-lg'><img src={URL.createObjectURL(data?.propertyImage[5])} className='w-full h-full object-cover rounded-lg' alt="" /></div>
                 </div>
 
-            </div> */}
+            </div>
 
             <div>
                 <span className='leading-[28px] tracking-[-0.75px]  text-[20px]'>{data.propertyType}</span>

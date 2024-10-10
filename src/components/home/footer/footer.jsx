@@ -1,19 +1,24 @@
+import logo from '../../../assets/logos/logo.png'
+import facebook from '../../../assets/icon/facebook.png'
+import instagram from '../../../assets/icon/instagram.png'
+import twitter from '../../../assets/icon/x.png'
+import linkedIn from '../../../assets/icon/linkedin.png'
 export default function Footer() {
 	return (
 		<footer>
 			<div className=' flex  mx-10 lg:mx-20 justify-between  mt-10 lg:mt-20  '>
 				<div className='items-center justify-center mx-auto'>
-					<img src='src/assets/logos/logo.png' alt='logo' className='w-32' />
+					<img src={logo} alt='logo' className='w-32' />
 					<p className=' font-normal text-base mt-3 space-y-3'>
 						Join a network of top real estate companies on our platform.
 						Advertise <br /> your properties and elevate your business with a
 						trusted partner.
 					</p>
 					<div className='flex space-x-4 mt-7'>
-						<img src='src/assets/icon/facebook.png' alt='facebook' />
-						<img src='src/assets/icon/instagram.png' alt='insta' />
-						<img src='src/assets/icon/linkedin.png' alt='linkedin' />
-						<img src='src/assets/icon/x.png' alt='twitter' />
+						<a href="https://web.facebook.com/profile.php?id=61566534966411" target='_blank'><img src={facebook} alt='facebook' /></a>
+						<img src={instagram} alt='insta' />
+						<a target='_blank' href="https://www.linkedin.com/posts/propertyhivehq_property-hive-activity-7249392696048439297-sbon?utm_source=share&utm_medium=member_android"><img src={linkedIn} alt='linkedin' /></a>
+						<a href="https://www.linkedin.com/company/propertyhivehq/" target="_blank" rel="noopener noreferrer"><img src={twitter} alt='twitter' /></a>
 					</div>
 				</div>
 				<div className='md:flex space-x-20 mt-14 hidden '>

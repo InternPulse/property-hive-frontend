@@ -14,7 +14,7 @@ import image6 from '../../assets/Finances.png'
 
 const Features = () => {
 	return (
-		<div className='bg-[#FCFDFD] '>
+		<div id="features" className='bg-[#FCFDFD] '>
 			<div className=' mx-20 xl:mx-36 mt-10'>
 				<EmblaCarousel />
 				<div className=' flex flex-col text-center items-center justify-center '>
