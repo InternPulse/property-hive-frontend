@@ -1,65 +1,65 @@
-
 import testImg from "@/src/assets/images/testPropImg.png";
 import addIcon from '@/src/assets/icons/add-circle.png'
 import ListingCard from "@/src/components/Blocks/ListingCard";
 import { PropertiesFilterDropDown } from "@/src/components/Blocks/PropertiesFilterDropDown";
-import { useReducer, useState } from "react";
-import { useSearchParams,Link } from "react-router-dom";
+import { useGetAllPropertiesQuery } from "@/src/redux/service/propertiesApi";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const dummyPropertiesData = [
   {
     image: testImg,
     title: "Luxury Detached Duplex Active House",
-    propType: "house",
+    property_type: "house",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: true,
+    is_sold: true,
   },
   {
     image: testImg,
     title: "Luxury Detached Duplex Disabled House",
-    propType: "house",
+    property_type: "house",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: false,
+    is_sold: false,
   },
   {
     image: testImg,
     title: "Luxury Detached Duplex Disabled Land",
-    propType: "land",
+    property_type: "land",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: false,
+    is_sold: false,
   },
   {
     image: testImg,
     title: "Luxury Detached Duplex Active Land",
-    propType: "land",
+    property_type: "land",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: true,
+    is_sold: true,
   },
   {
     image: testImg,
     title: "Luxury Detached Duplex Disabled Commercial",
-    propType: "commercial",
+    property_type: "apartment",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: false,
+    is_sold: false,
   },
   {
     image: testImg,
     title: "Luxury Detached Duplex Active Commercial",
-    propType: "commercial",
+    property_type: "apartment",
     location: "Maitama, Abuja",
     details: ["4 Beds", "5 Baths", "2,500 Sq. m"],
     price: "N120,000,000",
-    isActive: true,
+    is_sold: true,
   },
 ];
 
@@ -78,134 +78,108 @@ const PROPERTY_TYPES_CONDITIONS = {
 };
 
 const ManageProperties = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { data, isLoading, isFetching, isError, error } = useGetAllPropertiesQuery();
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [propertyTypeFilter, setPropertyTypeFilter] = useState("all");
 
-  const searchQuery = searchParams.get("query") || "";
+  const [originalData, setOriginalData] = useState([]);
 
-  const reducer = (state, action) => {
-    const statusKeyFound = Object.keys(STATUS_CONDITIONS).includes(action.type);
-    const propTypeKeysFound = Object.keys(PROPERTY_TYPES_CONDITIONS).includes(
-      action.type,
-    );
+  const filteredData = useMemo(() => {
+    return originalData?.filter((item) => {
+      let matchStatus = true;
+      let matchPropertyType = true;
+      if (
+        ["allProps", "all"].includes(propertyTypeFilter) &&
+        statusFilter === "all"
+      ) {
+        return matchStatus && matchPropertyType;
+      } else if (
+        ["allProps", "all"].includes(propertyTypeFilter) &&
+        statusFilter !== "all"
+      )
+        return (matchStatus = item.is_sold === STATUS_CONDITIONS[statusFilter]);
+      else if (
+        !["allProps", "all"].includes(propertyTypeFilter) &&
+        statusFilter === "all"
+      )
+        return (matchPropertyType =
+          item.property_type.toLowerCase() === propertyTypeFilter);
+      else if (
+        !["allProps", "all"].includes(propertyTypeFilter) &&
+        statusFilter !== "all"
+      )
+        return (
+          (matchStatus = item.is_sold === STATUS_CONDITIONS[statusFilter]) &&
+          (matchPropertyType =
+            item.property_type.toLowerCase() === propertyTypeFilter)
+        );
 
-    if (statusKeyFound) {
-      return {
-        ...state,
-        status: action.type,
-        data: action.data.filter((item) => {
-          // if the the property type is all and the status is changed from other options to all, we will return all the properties
-          if (
-            ["allProps", "all"].includes(state.propertyType) &&
-            action.type === "all"
-          )
-            return true;
-          // if property type is still all but we change status, return listings that match the chosen status
-          else if (
-            ["allProps", "all"].includes(state.propertyType) &&
-            action.type !== "all"
-          )
-            return item.isActive === STATUS_CONDITIONS[action.type];
+      return matchStatus && matchPropertyType;
+    });
+  }, [propertyTypeFilter, statusFilter, originalData]);
 
-          // if we change properties to all when the status is not all, return all the properties matching the status
-          if (
-            ["allProps", "all"].includes(action.type) &&
-            state.status !== "all"
-          )
-            return item.propType === state.propertyType;
-          // if we change properties to all when the status is not all, return all the properties matching the status
-          else
-            return (
-              item.isActive === STATUS_CONDITIONS[action.type] &&
-              item.propType === state.propertyType
-            );
-        }),
-      };
+  useEffect(() => {
+    if (data) {
+      setOriginalData(data.properties);
     }
+  }, [data]);
 
-    if (propTypeKeysFound) {
-      return {
-        ...state,
-        propertyType: action.type,
-        data: action.data.filter((item) => {
-          // if the the property type is switched to all and the status is all, we will return all the properties
-          if (
-            ["allProps", "all"].includes(action.type) &&
-            state.status === "all"
-          )
-            return true;
-          // if we change properties and status is not all, return all the properties matching the status
-          else if (
-            !["allProps", "all"].includes(action.type) &&
-            state.status !== "all"
-          ) {
-            return (
-              item.propType === action.type &&
-              item.isActive === STATUS_CONDITIONS[state.status]
-            );
-          }
-          // if we select the status to be all and a property type is selected, display both disabled and enabled listings with that property type
-          else if (
-            !["allProps", "all"].includes(action.type) &&
-            state.status === "all"
-          ) {
-            return item.propType === action.type;
-          }
-        }),
-      };
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    status: "all",
-    propertyType: "all",
-    data: dummyPropertiesData,
-  });
-
-  // Instead of mutating the original array, this state will store the original data and help react know when changes has been made to it so that there is consistency in renders.
-  const [originalData] = useState(dummyPropertiesData);
+  if ((isFetching && originalData.length === 0) || isLoading)
+    return <p>Loading...</p>;
+  if (isError) return <p>{error}!</p>;
 
   return (
-
     <main className="h-full bg-neutrals-50 lg:px-10 lg:pt-[calc(50rem/16)] xl:px-10">
       <section className="mb-[calc(30rem/16)] flex items-end justify-between">
         <div className="flex items-center gap-4 capitalize">
-          <div className="flex flex-col gap-1 space-y-1">
+          <div className="space-y-1">
             <span className="font-medium text-neutrals-950">status</span>
             <PropertiesFilterDropDown
-              titles={Object.keys(STATUS_CONDITIONS)}
-              state={state.status}
-              dispatch={dispatch}
-              data={originalData}
+              titles={Object.keys(STATUS_CONDITIONS).map((item) => `${item}S`)}
+              state={statusFilter}
+              dispatch={setStatusFilter}
             />
           </div>
           <div className="space-y-1">
             <span className="font-medium text-neutrals-950">property type</span>
             <PropertiesFilterDropDown
-              titles={Object.keys(PROPERTY_TYPES_CONDITIONS).filter(
-                (item) => item !== "allProps",
-              )}
-              state={state.propertyType}
-              dispatch={dispatch}
-              data={originalData}
+              titles={Object.keys(PROPERTY_TYPES_CONDITIONS)
+                .filter((item) => item !== "allProps")
+                .map((item) => `${item}P`)}
+              state={propertyTypeFilter}
+              dispatch={setPropertyTypeFilter}
             />
           </div>
         </div>
         <Link
           to="/manage-properties/add-property"
-          className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 font-medium capitalize text-primary-25 lg:text-base text-[#F5F6F6] bg-[#389294]"
+          className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 font-medium capitalize text-primary-25 lg:text-base"
         >
           <img src="" alt="" className="" />
-          <span className="flex items-center gap-2">add property <img src={addIcon} alt="" /></span>
+          <span className="">add property</span>
+
         </Link>
       </section>
       <section className="grid gap-x-3 gap-y-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-        {state.data.map((item, index) => (
-          <ListingCard key={index} {...item} />
-        ))}
+        {filteredData?.length === 0 ? (
+          <p>No properties found!</p>
+        ) : (
+          filteredData?.map((item, index) => (
+            <ListingCard
+              key={index}
+              isSold={item.is_sold}
+              details={`${item.number_of_bedrooms} beds | ${item.number_of_bathrooms} baths | ${item.squaremeters} sq. m`}
+              image={testImg}
+              location={`${item.city}, ${item.state}`}
+              price={item.price}
+              title={item.name}
+              id={item.id}
+            />
+          ))
+        )}
       </section>
     </main>
   );
 };
-
 
 export default ManageProperties;

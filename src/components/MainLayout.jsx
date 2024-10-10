@@ -8,7 +8,8 @@ const pageTitles = {
   "/manage-properties": "Manage Properties",
   "/manage-properties/add-property": "Add Property",
   "/messages": "Messages",
-  "/manage-properties/add-property/preview":"Preview"
+  "/manage-properties/add-property/preview":"Preview",
+  "/manage-properties/:id":"Edit"
 };
 const MainLayout = ({ children }) => {
   const pathname = useLocation().pathname;

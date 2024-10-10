@@ -37,7 +37,7 @@ export default function Footer() {
 				</div>
 			</div>
 			<div className='bg-[#515151] w-[79rem] mt-10 h-[1px] mx-auto'></div>
-			<div className='flex  mt-3 mx-20 justify-between text-[#7B7A7A]'>
+			<div className='flex  mt-3 mx-20 px-12 justify-between text-[#7B7A7A]'>
 				<div className='flex gap-5'>
 					<h5 className=''>Terms and Condition </h5>
 					<h5>Privacy Policy</h5>
