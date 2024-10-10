@@ -61,7 +61,7 @@ const CompanySignUpForm = () => {
   
     } catch (error) {
       console.log(error);
-      alert('Regiteration failed. Please insert valid credentials')
+      alert('400 Bad Request: Invalid input data')
     }
   }
 

@@ -47,7 +47,7 @@ const CompanyEmailVerification = () => {
       if (message === 'Email verified successfully') {
         // localStorage.clear();
         alert('Email Verified Successfully.')
-        navigate('/copany-signin')
+        navigate('/company-signin')
       }
 
 
@@ -55,7 +55,7 @@ const CompanyEmailVerification = () => {
     } catch (error) {
       console.error('Error verifying email:', error);
       setEmailError('Verification failed. Please try again.');
-      alert('Error verifying email. Please try again.')
+      alert('Verification failed!. Please try again.')
     } finally {
       setIsLoading(false); // Stop loading
     }

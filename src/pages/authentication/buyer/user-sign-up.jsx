@@ -53,13 +53,14 @@ const CompanySignUpForm = () => {
       console.log(response);
       
       if (response.status === 201) {
+        alert('Regiteration successful. Verication email sent, Please check your email')
         navigate('/email-verification')
       }
      
   
     } catch (error) {
       console.log(error);
-      alert('Regiteration failed. Please insert valid credentials')
+      alert('400 Bad Request: Invalid input data')
 
     }
   }

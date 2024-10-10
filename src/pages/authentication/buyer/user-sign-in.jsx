@@ -51,7 +51,8 @@ const CompanySignInForm = () => {
   
     } catch (error) {
       setLoading(false);
-      toast.error('Invalid email or password. Please enter valid credentials')
+      console.log(error);
+      alert('Invalid email or password. Please enter valid credentials')
 
     }
   }
