@@ -3,17 +3,17 @@ export default function Footer() {
 		<footer>
 			<div className=' flex  mx-10 lg:mx-20 justify-between  mt-10 lg:mt-20  '>
 				<div className='items-center justify-center mx-auto'>
-					<img src='src/assets/logos/logo.png' alt='logo' className='w-32' />
+					<img src='/logos/logo.png' alt='logo' className='w-32' />
 					<p className=' font-normal text-base mt-3 space-y-3'>
 						Join a network of top real estate companies on our platform.
 						Advertise <br /> your properties and elevate your business with a
 						trusted partner.
 					</p>
 					<div className='flex space-x-4 mt-7'>
-						<img src='src/assets/icon/facebook.png' alt='facebook' />
-						<img src='src/assets/icon/instagram.png' alt='insta' />
-						<img src='src/assets/icon/linkedin.png' alt='linkedin' />
-						<img src='src/assets/icon/x.png' alt='twitter' />
+						<img src='/icon/facebook.png' alt='facebook' href="https://web.facebook.com/profile.php?id=61566534966411"/>
+						<img src='/icon/instagram.png' alt='insta' href="https://www.linkedin.com/company/propertyhivehq/"/>
+						<img src='/icon/linkedin.png' alt='linkedin' href="https://www.linkedin.com/company/propertyhivehq/"/>
+						<img src='/icon/x.png' alt='twitter' href="https://x.com/PropertyHiveHq"/>
 					</div>
 				</div>
 				<div className='md:flex space-x-20 mt-14 hidden '>
