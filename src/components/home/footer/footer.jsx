@@ -4,9 +4,9 @@ import { BiX } from 'react-icons/bi';
 export default function Footer() {
 	return (
 		<footer>
-			<div className=' flex  mx-10 lg:mx-20 justify-between  mt-10 lg:mt-20  '>
-				<div className='items-center justify-center mx-auto'>
-					<img src='/logos/Group 2.png' alt='logo' className='w-32' />
+			<div className=' flex  mx-10 lg:mx-20 justify-between mt-7 lg:mt-16  '>
+				<div>
+					<img src='/logos/2.svg' alt='logo'/>
 					<p className=' font-normal text-base mt-3 space-y-3'>
 						Join a network of top real estate companies on our platform.
 						Advertise <br /> your properties and elevate your business with a
