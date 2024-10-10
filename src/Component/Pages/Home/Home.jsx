@@ -12,8 +12,12 @@ const Home = () => {
   return (
     <div className="bg-white">
       <HeroSection />
+      <section id="features">
       <Features />
+      </section>
+      <section id="testimonials">
     <Testimonial />
+    </section>
       <section id="contact">
         <ContactUs />
       </section>

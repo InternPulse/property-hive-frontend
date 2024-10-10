@@ -9,11 +9,20 @@ export default function Footer() {
 						Advertise <br /> your properties and elevate your business with a
 						trusted partner.
 					</p>
+
 					<div className='flex space-x-4 mt-7'>
-						<img src='/icon/facebook.png' alt='facebook' href="https://web.facebook.com/profile.php?id=61566534966411"/>
-						<img src='/icon/instagram.png' alt='insta' href="https://www.linkedin.com/company/propertyhivehq/"/>
-						<img src='/icon/linkedin.png' alt='linkedin' href="https://www.linkedin.com/company/propertyhivehq/"/>
-						<img src='/icon/x.png' alt='twitter' href="https://x.com/PropertyHiveHq"/>
+					<a href="https://web.facebook.com/profile.php?id=61566534966411" target="_blank" rel="noopener noreferrer">
+						<img src='/icon/facebook.png' alt='facebook' />
+					</a>
+					<a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+						<img src='/icon/instagram.png' alt='instagram' />
+					</a>
+					<a href="https://www.linkedin.com/company/propertyhivehq/" target="_blank" rel="noopener noreferrer">
+						<img src='/icon/linkedin.png' alt='linkedin' />
+					</a>
+					<a href="https://x.com/PropertyHiveHq" target="_blank" rel="noopener noreferrer">
+						<img src='/icon/x.png' alt='twitter' />
+					</a>
 					</div>
 				</div>
 				<div className='md:flex space-x-20 mt-14 hidden '>

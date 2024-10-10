@@ -26,7 +26,8 @@ import Inquiries from './pages/Inquiries';
 import EditProperties from './pages/manage/EditProperties';
 import Buyers from './pages/Buyers/Buyers';
 import PropertyDescription from './pages/Buyers/PropertyDescription';
-import PurchaseSuccessful from './pages/Buyers/purchaseSuccessful';
+// import PurchaseSuccessful from './pages/Buyers/purchaseSuccessful';
+
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
           <Routes>
           <Route path='/properties/buyers' element={<Buyers />}/>
           <Route path='/properties/buyers/:id' element={<PropertyDescription />}/>
-          <Route path='/properties/buyers/successful' element={<PurchaseSuccessful />} />
+          {/* <Route path='/properties/buyers/successful' element={<PurchaseSuccessful />} /> */}
           <Route/>
         </Routes>
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/features" element={<Features />} />
           </Route>
         </Routes>
+
 
         <Routes>
           {/* Authentication Routes */}
