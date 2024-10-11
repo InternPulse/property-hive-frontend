@@ -3,10 +3,10 @@ import subscription from "../../../../assets/images/subscription-img.png";
 
 const Subscription = () => {
   return (
-    <div className="bg-teal-900 text-white py-10  pl-10 pr-0 flex items-center gap-28 justify-between h-[404px]">
+    <div className="bg-teal-900 text-white py-10 px-4 md:px-10 flex flex-col md:flex-row items-center gap-10 md:gap-28 justify-between h-auto md:h-[404px]">
       {/* Left Text Section */}
-      <div className="w-2/5">
-        <h2 className="text-3xl font-bold mb-4">
+      <div className="w-full md:w-2/5 text-center md:text-left">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">
           Stay Updated with the Latest Listings
         </h2>
         <p className="mb-6">
@@ -14,27 +14,23 @@ const Subscription = () => {
           your inbox.
         </p>
 
-        <div className="flex space-x-4">
-          <div>
-            <input
-              type="email"
-              placeholder="Enter Your Email Address"
-              className="p-3 rounded-lg w-[328px] text-black"
-            />
-          </div>
-          <div>
-            <button className="bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-lg">
-              Subscribe
-            </button>
-          </div>
+        <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4">
+          <input
+            type="email"
+            placeholder="Enter Your Email Address"
+            className="p-3 rounded-lg w-full md:w-[328px] text-black"
+          />
+          <button className="bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-lg w-full md:w-auto">
+            Subscribe
+          </button>
         </div>
       </div>
 
-      <div className="w-3/5 h-[404px]">
+      <div className="w-full md:w-3/5 h-[250px] md:h-[404px] mt-8 md:mt-0">
         <img
           src={subscription}
           alt="Working on laptop"
-          className="h-[404px] w-full object-cover rounded-lg"
+          className="h-full w-full object-cover rounded-lg"
         />
       </div>
     </div>
