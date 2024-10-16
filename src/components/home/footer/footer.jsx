@@ -21,6 +21,19 @@ export default function Footer() {
 						<a href="https://www.linkedin.com/company/propertyhivehq/" target="_blank" rel="noopener noreferrer">
 							<FaLinkedinIn className="text-teal-700" size={20} />
 						</a>
+
+						<a href="https://x.com/PropertyHiveHq" target="_blank" rel="noopener noreferrer">
+							<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							className="text-teal-700" // Apply deep teal color
+							width="20" // Size of the icon
+							height="20"
+							>
+							<path d="M23.636 0L14.157 10.157 24 23.636 14.157 14.157 0 24 10.157 14.157 0 .364l9.515 9.515L24 0z" />
+							</svg>
+						</a>
 					</div>
 				</div>
 

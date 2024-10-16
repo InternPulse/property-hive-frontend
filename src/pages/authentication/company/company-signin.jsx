@@ -44,9 +44,6 @@ const CompanySignInForm = () => {
       if (response?.status === 200) {
         navigate('/dashboard')
       }
-      
-      
-
   
     } catch (error) {
       setLoading(false);

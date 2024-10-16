@@ -83,14 +83,24 @@ try {
               <span>Manage Properties</span>
             </Link>
           </li>
-          <li className="">
-            <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+          <li
+            className={`${pathname.includes("/transactions") && "border-l-[4px] border-white bg-[#389294]"}`}
+          >
+            <Link
+             to={"/transactions"}
+             className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]"
+             >
               <img src={transactionsIcon} alt="" />
               <span>Transactions</span>
             </Link>
           </li>
-          <li className="">
-            <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
+          <li
+            className={`${pathname.includes("/inquiries") && "border-l-[4px] border-white bg-[#389294]"}`}
+          >
+            <Link 
+            to={"/inquiries"}
+            className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]"
+            >
               <img src={inquiriesIcon} alt="" />
               <span>Inquiries</span>
             </Link>
@@ -111,12 +121,14 @@ try {
 
       <div className="w-full">
         <ul className="w-full">
-          <li className="">
+        <li className={`${pathname.includes('/support') && 'border-l-[4px] border-white bg-[#389294]'}`}>
             <Link className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
               <img src={infoIcon} alt="" />
               <span>Help & Support</span>
             </Link>
           </li>
+
+          
           <li className={`${pathname.includes('/settings') && 'border-l-[4px] border-white bg-[#389294]'}`}>
             <Link to={'/settings'} className="flex items-center gap-3 py-[12px] pl-5 text-[20px] leading-[28px] tracking-[-0.75px]">
               <img src={settingsIcon} alt="" />

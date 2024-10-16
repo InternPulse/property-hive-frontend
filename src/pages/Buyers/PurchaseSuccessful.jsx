@@ -2,8 +2,11 @@ import React from 'react'
 import success from '../../assets/icons/Success Icon.svg'
 import cancel from '../../assets/icons/Cancel (1).svg'
 import { useNavigate } from 'react-router-dom'
+
+
 const PurchaseSuccessful = () => {
     const navigate = useNavigate()
+    
    const  handleClick = () =>{
         navigate('/properties/buyers/')
    }
