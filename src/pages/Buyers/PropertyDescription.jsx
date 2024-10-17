@@ -18,23 +18,23 @@ const PropertyDescription = () => {
     const [productId,setProductId] = useState(0) 
     const navigate = useNavigate()
 
-    const handlePaystackPayment = () => {
-        const paystack = window.PaystackPop.setup({
-          key: 'pk_test_5d8bb03e04af8dcff8599e8b7f82584bdefa92a1', // Replace with your Paystack public key
-          email: 'customer-email@example.com',
-          amount: property.price, // Amount is in kobo (5000 NGN)
-          currency: 'ZAR', // Use your desired currency
-          ref: `${Math.floor(Math.random() * 1000000000) + 1}`, // Unique transaction reference
-          callback: function (response) {
-            alert('Payment successful! Reference: ' + response.reference);
-            // You can make further API calls or post-payment processes here
-          },
-          onClose: function () {
-            alert('Transaction was not completed.');
-          }
-        });
-        paystack.openIframe();
-      };
+    // const handlePaystackPayment = () => {
+    //     const paystack = window.PaystackPop.setup({
+    //       key: 'pk_test_5d8bb03e04af8dcff8599e8b7f82584bdefa92a1', // Replace with your Paystack public key
+    //       email: 'customer-email@example.com',
+    //       amount: property.price, // Amount is in kobo (5000 NGN)
+    //       currency: 'ZAR', // Use your desired currency
+    //       ref: `${Math.floor(Math.random() * 1000000000) + 1}`, // Unique transaction reference
+    //       callback: function (response) {
+    //         alert('Payment successful! Reference: ' + response.reference);
+    //         // You can make further API calls or post-payment processes here
+    //       },
+    //       onClose: function () {
+    //         alert('Transaction was not completed.');
+    //       }
+    //     });
+    //     paystack.openIframe();
+    //   };
 
       
     useEffect(()=>{
@@ -136,7 +136,7 @@ const PropertyDescription = () => {
 
                 <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handlePaystackPayment}
+        // onClick={handlePaystackPayment}
       >
         Buy Now
       </button>
